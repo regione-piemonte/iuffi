@@ -1,0 +1,43 @@
+ion-item {
+    &.iuffi-item-detail {
+        --background: var(--card-background-color);
+        --padding-start: 20px;
+        --padding-end: 20px;
+        --inner-padding-end: 0;
+        --min-height: 68px;
+        border-bottom: 0;
+        .travel-img {
+            ion-img {
+                width: 65%;
+                display: inline-block;
+            }
+            p {
+                color: #748a9d;
+                @extend %text-smaller;
+                @extend %text-bold;
+            }
+        }
+        ion-label {
+            --color: var(--app-text-color-dark);
+            ion-text {
+                h2 {
+                    color: #748a9d;
+                }
+            }
+            h2 {
+                @extend %text-bold;
+                @extend %text-medium;
+                @extend %text-capitalize;
+            }
+            p {
+                @extend %text-smaller;
+                @extend %text-normal;
+            }
+        }
+
+        ion-icon {
+            background: var(--card-background-color);
+            font-size: 36px;
+        }
+    }
+}

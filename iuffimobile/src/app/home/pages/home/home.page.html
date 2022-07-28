@@ -1,0 +1,49 @@
+<ion-header [translucent]="false">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button>
+                <ion-icon name="app-menu"></ion-icon>
+            </ion-menu-button>
+        </ion-buttons>
+        <ion-title> {{ 'MISSION_LIST' | translate }} </ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="toggle(!isOpen)">
+                <ion-icon name="iuffi-calendar"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <search-box [isOpen]="isOpen"
+        (onReset)="resetSearch($event)"
+        (onSearch)="searchByDate($event)"
+        #searchBox></search-box>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-refresher slot="fixed"
+        (ionRefresh)="getMissionList($event)"
+        pullMin="100">
+        <ion-refresher-content pullingIcon="chevron-down-circle-outline"
+            refreshingSpinner="crescent">
+        </ion-refresher-content>
+    </ion-refresher>
+
+    <ion-grid class="ion-no-padding"
+        fixed>
+        <ion-row>
+            <ion-col *ngFor="let mission of missionList"
+                size-md="6"
+                size="12">
+                <mission-card [mission]="mission"
+                    (click)="openMissionDetail(mission.idMissione, mission.dataMissione)"> </mission-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-fab vertical="bottom"
+        horizontal="end"
+        slot="fixed">
+        <ion-fab-button color="primary"
+            (click)="openNewMission()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

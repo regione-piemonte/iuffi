@@ -1,0 +1,307 @@
+<ion-header [translucent]="false">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button icon="arrow-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title> {{ 'DETECTION' | translate }} </ion-title>
+        <!-- <ion-title *ngIf="actionRoot === 'NEW'"> {{ 'NEW_DETECTION' | translate }} </ion-title>
+        <ion-title *ngIf="actionRoot === 'MODIFY'"> {{ 'MODIFY_DETECTION' | translate }} </ion-title> -->
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item class="emergency-survey ion-margin" lines="none">
+        <ion-label class="ion-text-wrap">La rilevazione è relativa ad una emergenza?</ion-label>
+        <ion-toggle
+            [disabled]="actionRoot === 'MODIFY'"
+            [(ngModel)]="emergencySelected"
+            (ionChange)="onChangeEmergency()"
+        ></ion-toggle>
+    </ion-item>
+    <ion-grid class="survey-time ion-no-padding">
+        <ion-row class="ion-padding-vertical ion-align-items-start">
+            <ion-col size="2">
+                <ion-icon name="iuffi-time"></ion-icon>
+            </ion-col>
+            <ion-col size="3">
+                <p>{{ 'START_TIME' | translate }}</p>
+                <ion-text>
+                    <h2>{{detection?.oraInizio}}</h2>
+                </ion-text>
+            </ion-col>
+            <ion-col size="2">
+                <ion-icon name="iuffi-time"></ion-icon>
+            </ion-col>
+            <ion-col size="3">
+                <p>{{ 'END_TIME' | translate }}</p>
+                <ion-text>
+                    <h2>{{ detection?.oraFine}}</h2>
+                </ion-text>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-item class="ion-margin" lines="none" (click)="selectAreaType()">
+        <ion-label class="ion-text-wrap">
+            <ion-text>
+                <h2>{{ 'AREA_TYPE' | translate }}</h2>
+            </ion-text>
+            <p *ngIf="areaTypeSelected">{{areaTypeSelected?.descrizione}}</p>
+        </ion-label>
+        <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+        <ion-icon slot="start" name="iuffi-area"></ion-icon>
+    </ion-item>
+
+    <ng-container *ngIf="isRelatedToNursery || areaTypeSelected">
+        <ion-item class="ion-margin" lines="none" (click)="openAvivServiceModal()">
+            <ion-label class="ion-text-wrap">
+                <ion-text>
+                    <h2>{{'RETRIEVE_COMPANY_INFORMATION' | translate}}</h2>
+                </ion-text>
+            </ion-label>
+            <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+            <ion-icon slot="start" name="iuffi-field"></ion-icon>
+        </ion-item>
+        <ion-card *ngIf="avivRegistry">
+            <ion-card-content>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col
+                            ><ion-text class="subtitle"
+                                ><strong>{{'COMPANY_REGISTRY' | translate}}</strong></ion-text
+                            ></ion-col
+                        >
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <ion-grid class="ion-no-padding ion-padding-horizontal">
+                                <ion-row>
+                                    <ion-col class="ion-text-left"
+                                        ><ion-text class="title"
+                                            >{{'AUTHORIZATION_CODE' | translate}}</ion-text
+                                        ></ion-col
+                                    >
+                                </ion-row>
+                                <ion-row class="ion-padding-bottom">
+                                    <ion-col class="ion-text-left">
+                                        <ion-text class="description">{{avivRegistry?.anagRuop}}</ion-text>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col class="ion-text-left"
+                                        ><ion-text class="title">Partita IVA</ion-text></ion-col
+                                    >
+                                </ion-row>
+                                <ion-row class="ion-padding-bottom">
+                                    <ion-col class="ion-text-left">
+                                        <ion-text class="description">{{ avivRegistry?.anagPiva }}</ion-text>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col class="ion-text-left"><ion-text class="title">C.U.A.A.</ion-text></ion-col>
+                                </ion-row>
+                                <ion-row class="ion-padding-bottom">
+                                    <ion-col class="ion-text-left">
+                                        <ion-text class="description">{{ avivRegistry?.anagCuaa }}</ion-text>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col class="ion-text-left"
+                                        ><ion-text class="title">Denominazione</ion-text></ion-col
+                                    >
+                                </ion-row>
+                                <ion-row class="ion-padding-bottom">
+                                    <ion-col class="ion-text-left">
+                                        <ion-text class="description">{{ avivRegistry?.anagDenom }}</ion-text>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-col>
+                    </ion-row>
+                    <ng-container *ngIf="businessCenter">
+                        <ion-row>
+                            <ion-col
+                                ><ion-text class="subtitle"><strong>Centro aziendale</strong></ion-text></ion-col
+                            >
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <ion-grid class="ion-no-padding ion-padding-horizontal">
+                                    <ng-container *ngIf="businessCenter?.denomiUte">
+                                        <ion-row>
+                                            <ion-col class="ion-text-left"
+                                                ><ion-text class="title">Denominazione</ion-text></ion-col
+                                            >
+                                        </ion-row>
+                                        <ion-row class="ion-padding-bottom">
+                                            <ion-col class="ion-text-left">
+                                                <ion-text class="description">{{ businessCenter?.denomiUte }}</ion-text>
+                                            </ion-col>
+                                        </ion-row>
+                                    </ng-container>
+                                    <ion-row>
+                                        <ion-col class="ion-text-left"
+                                            ><ion-text class="title">Comune</ion-text></ion-col
+                                        >
+                                    </ion-row>
+                                    <ion-row class="ion-padding-bottom">
+                                        <ion-col class="ion-text-left">
+                                            <ion-text class="description">{{ businessCenter?.comuneUte }}</ion-text>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row>
+                                        <ion-col class="ion-text-left"
+                                            ><ion-text class="title">Indirizzo</ion-text></ion-col
+                                        >
+                                    </ion-row>
+                                    <ion-row class="ion-padding-bottom">
+                                        <ion-col class="ion-text-left">
+                                            <ion-text class="description">{{ businessCenter?.indirizzoUte }}</ion-text>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-grid>
+                            </ion-col>
+                        </ion-row>
+                    </ng-container>
+                </ion-grid>
+                <ng-container *ngIf="avivRegistry">
+                    <ion-item lines="none" (click)="selectPlantSpeciesAviv()">
+                        <ion-label class="ion-text-wrap">
+                            <ion-text>
+                                <h2>{{ 'PLANT_SPECIES_AVIV' | translate }}</h2>
+                            </ion-text>
+                        </ion-label>
+                        <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+                        <ion-icon slot="start" name="iuffi-plants"></ion-icon>
+                    </ion-item>
+                    <ion-item class="ion-margin-top" lines="none" (click)="viewLastReportAviv()">
+                        <ion-label class="ion-text-wrap">
+                            <ion-text>
+                                <h2>{{ 'VIEW_REPORT_AVIV' | translate }}</h2>
+                            </ion-text>
+                        </ion-label>
+                        <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+                        <ion-icon slot="start" name="iuffi-report"></ion-icon>
+                    </ion-item>
+                </ng-container>
+            </ion-card-content>
+            <!-- <ng-container *ngIf="detection?.cuaa && !businessCenter">
+                <iuffi-button
+                    color="medium"
+                    (click)="getBusinessCenter()"
+                    [label]="'BUSINESS_GET' | translate"
+                    expand="block"
+                ></iuffi-button>
+            </ng-container> -->
+            <iuffi-button
+                color="medium"
+                (click)="bussinessDelete()"
+                [label]="'BUSINESS_DELETE' | translate"
+                expand="block"
+            ></iuffi-button>
+        </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="areaTypeSelected">
+        <ion-item (click)="newVisualInspection()" class="ion-margin" lines="none">
+            <ion-label class="ion-text-wrap">
+                <ion-text>
+                    <h2>{{ 'VISUAL_INSPECTION' | translate }}</h2>
+                </ion-text>
+            </ion-label>
+            <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+            <ion-icon slot="start" name="iuffi-inspection"></ion-icon>
+        </ion-item>
+
+        <ion-item (click)="newSample()" class="ion-margin" lines="none">
+            <ion-label class="ion-text-wrap">
+                <ion-text>
+                    <h2>{{ 'SAMPLING' | translate }}</h2>
+                </ion-text>
+            </ion-label>
+            <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+            <ion-icon slot="start" name="iuffi-sampling"></ion-icon>
+        </ion-item>
+
+        <ion-item (click)="newTrap()" class="ion-margin" lines="none">
+            <ion-label class="ion-text-wrap">
+                <ion-text>
+                    <h2>{{ 'TRAPPING' | translate }}</h2>
+                </ion-text>
+            </ion-label>
+            <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+            <ion-icon slot="start" name="iuffi-trapping"></ion-icon>
+        </ion-item>
+
+        <ion-item *ngIf="detection" class="textarea">
+            <ion-label position="stacked">{{'INSERT_NOTE' | translate}}</ion-label>
+            <ion-textarea [(ngModel)]="detection.note" autoGrow="true" rows="8" cols="20"></ion-textarea>
+        </ion-item>
+    </ng-container>
+    <ion-grid fixed>
+        <ion-row>
+            <ion-col>
+                <ion-item-divider
+                    *ngIf="detection?.ispezioniVisive?.length > 0 || detection?.campionamenti?.length || detection?.trappolaggi?.length"
+                    class="ion-margin-vertical"
+                >
+                    <ion-label>{{'ACTIVITIES' | translate}}</ion-label>
+                </ion-item-divider>
+                <ion-grid class="ion-no-padding no-resize" fixed>
+                    <ion-row *ngFor="let inspection of detection?.ispezioniVisive">
+                        <ion-col>
+                            <detection-card-component
+                                [detection]="inspection"
+                                [flagEmergenza]="detection?.flagEmergenza"
+                            ></detection-card-component>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row *ngFor="let sampling of detection?.campionamenti">
+                        <ion-col>
+                            <detection-card-component
+                                *ngIf="!sampling.idIspezioneVisiva"
+                                [detection]="sampling"
+                                [flagEmergenza]="detection?.flagEmergenza"
+                            ></detection-card-component>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row *ngFor="let trapping of detection?.trappolaggi">
+                        <ion-col>
+                            <detection-card-component
+                                *ngIf="trapping.idOperazione !== 1"
+                                [detection]="trapping"
+                                [flagEmergenza]="detection?.flagEmergenza"
+                            ></detection-card-component>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+<ion-footer class="ion-no-border ion-no-padding hide-on-keyboard-open">
+    <ion-toolbar>
+        <ion-grid class="ion-no-padding" fixed>
+            <ion-row>
+                <ion-col>
+                    <iuffi-button
+                        color="medium"
+                        label="DELETE"
+                        (click)="deleteDetection()"
+                        expand="block"
+                    ></iuffi-button>
+                </ion-col>
+                <ion-col
+                    *ngIf="detection?.ispezioniVisive?.length > 0 || detection?.campionamenti?.length > 0 || detection?.trappolaggi?.length > 0"
+                >
+                    <iuffi-button
+                        color="primary"
+                        [label]="!detection?.oraFine? 'ENDS' : 'SAVE'"
+                        (click)="saveDetection()"
+                        expand="block"
+                    ></iuffi-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-footer>

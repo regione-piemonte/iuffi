@@ -1,0 +1,14 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start" *ngIf="showMenu">
+            <ion-menu-button>
+                <ion-icon name="app-menu"></ion-icon>
+            </ion-menu-button>
+        </ion-buttons>
+        <ion-title> {{ title | translate }} </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content scroll-y="false">
+    <div class="ion-text-center ion-padding ion-margin-bottom text-medium">{{ subtitle | translate }}</div>
+</ion-content>

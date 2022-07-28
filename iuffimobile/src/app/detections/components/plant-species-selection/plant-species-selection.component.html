@@ -1,0 +1,9 @@
+<ion-item class="ion-margin" lines="none" (click)="selectPlantSpecies()">
+    <ion-label class="ion-text-wrap">
+        <ion-text>
+            <h2>{{ 'PLANT_SPECIES' | translate }}</h2>
+        </ion-text>
+    </ion-label>
+    <ion-icon *ngIf="!readOnly" class="chevron" name="chevron-forward-outline"></ion-icon>
+    <ion-icon slot="start" name="iuffi-plant-species"></ion-icon>
+</ion-item>

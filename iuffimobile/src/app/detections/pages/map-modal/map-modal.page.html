@@ -1,0 +1,51 @@
+<ion-header [translucent]="false">
+    <ion-toolbar color="primary">
+        <ion-title> {{ 'MODIFY_POSITION' | translate }} </ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="close()">
+                <ion-icon name="iuffi-close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div class="mapcontainer">
+        <leaflet-map-component
+            draggable="true"
+            [currentPosition]="currentPosition"
+            (onCurrentPositionChange)="updateCoords($event)"
+        ></leaflet-map-component>
+    </div>
+    <div class="infobox ion-padding">
+        <ion-grid class="detection-position ion-no-padding">
+            <ion-row class="ion-padding-vertical">
+                <ion-col size="2">
+                    <ion-icon name="iuffi-position"></ion-icon>
+                </ion-col>
+                <ion-col class="ion-padding-start">
+                    <p>{{ 'GPS_COORD' | translate }}</p>
+                    <ion-text>
+                        <h2>{{latitude | number:'1.2-7'}} - {{longitude | number:'1.2-7'}}</h2>
+                    </ion-text>
+                </ion-col>
+                <ion-col size="2" class="ion-text-center">
+                    <ion-button fill="clear" size="small" (click)="confirm()">
+                        <ion-icon name="chevron-forward-outline" slot="start"></ion-icon>
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="2">
+                    <ion-icon name="iuffi-municipality"></ion-icon>
+                </ion-col>
+                <ion-col class="ion-padding-start">
+                    <p>{{ 'MUNICIPALITY' | translate }}</p>
+                    <ion-text *ngIf="comune?.nome">
+                        <h2>{{comune?.nome}}</h2>
+                    </ion-text>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>

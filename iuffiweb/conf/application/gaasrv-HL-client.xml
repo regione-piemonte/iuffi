@@ -1,0 +1,32 @@
+<porta-delegata name="iuffiweb.pd.gaaserv.hl">
+  <services>
+    <service name="iuffiweb.pd.gaaserv.hl.service" public-interface-class="it.csi.smranags.gaaserv.interfacecsi.IGaaservHeavyLoadCSIInterface">
+     <operations>
+        <operation name="gaaservGetAnagraficaTributariaByCUAARange" type="synch-call" >
+          <param-list>
+            <param name="elencoCUAA" type="java.lang.String[]" />
+            <param name="sianUtenteVO" type="it.csi.solmr.dto.anag.sian.SianUtenteVO" />
+            <param name="tipoRisultato" type="int" />
+          </param-list>
+          <ret-val type="it.csi.smranags.gaaserv.dto.anagraficatributaria.AnagraficaTributariaVO[]" />
+        </operation>
+     </operations>
+    </service>
+  </services>
+  <config>
+    <url-pa>not_used</url-pa>
+    <pluggable-pd-list chooser-class="it.csi.csi.porte.FixedDelegateChooser">
+      <pluggable-pd
+        name="iuffiweb.pd.gaaserv.hl.business"
+        class="it.csi.csi.porte.ejb.PortaDelegataEJB"
+        url-pa="gaaserv/ejb/PA_GaaservHeavyLoadFacade" 
+      >
+        <properties>
+          <property name="java.naming.provider.url" value="t3://<COMMA_SEPARATED_LIST_OF_SERVER:PORT>" />
+          <property name="java.naming.factory.initial" value="weblogic.jndi.WLInitialContextFactory" />
+        </properties>
+      </pluggable-pd>
+    </pluggable-pd-list>
+    <queue-manager url="not_used"/>
+  </config>
+</porta-delegata>

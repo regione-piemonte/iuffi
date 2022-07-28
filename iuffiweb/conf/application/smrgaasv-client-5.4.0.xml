@@ -1,0 +1,807 @@
+<porta-delegata name="iuffiweb.smrgaasrv">
+  <services>
+    <service name="AnagService" public-interface-class="it.csi.solmr.interfaceCSI.anag.services.AnagServiceCSIInterface">
+     <operations>
+         <operation name="serviceGetAziendaById" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.AnagAziendaVO"/>
+        </operation>
+        <operation name="serviceGetAziendaById" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="sianUtenteVO" type="it.csi.solmr.dto.anag.sian.SianUtenteVO" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.AnagAziendaVO"/>
+        </operation>
+        <operation name="serviceGetAziendaByIdAnagraficaAzienda" type="synch-call" >
+          <param-list>
+             <param name="idAnagraficaAzienda" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.AnagAziendaVO"/>
+        </operation>
+        <operation name="serviceGetAziendaByIdAnagraficaAzienda" type="synch-call" >
+          <param-list>
+             <param name="idAnagraficaAzienda" type="java.lang.Long" />
+             <param name="sianUtenteVO" type="it.csi.solmr.dto.anag.sian.SianUtenteVO" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.AnagAziendaVO"/>
+        </operation>
+        <operation name="serviceGetAziendaByCuaa" type="synch-call" >
+          <param-list>
+             <param name="cuaa" type="java.lang.String" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.AnagAziendaVO"/>
+        </operation>
+        <operation name="serviceGetAziendaByCuaa" type="synch-call" >
+          <param-list>
+             <param name="cuaa" type="java.lang.String" />
+             <param name="sianUtenteVO" type="it.csi.solmr.dto.anag.sian.SianUtenteVO" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.AnagAziendaVO"/>
+        </operation>
+        <operation name="serviceGetAziendaByPartitaIva" type="synch-call" >
+          <param-list>
+             <param name="partitaIva" type="java.lang.String" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.AnagAziendaVO"/>
+        </operation>
+        <operation name="serviceGetAziendaByPartitaIva" type="synch-call" >
+          <param-list>
+             <param name="partitaIva" type="java.lang.String" />
+             <param name="sianUtenteVO" type="it.csi.solmr.dto.anag.sian.SianUtenteVO" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.AnagAziendaVO"/>
+        </operation>
+        <operation name="serviceGetListAziendeByIdRange" type="synch-call" >
+          <param-list>
+             <param name="collIdAziende" type="java.util.Vector" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.AnagAziendaVO[]"/>
+        </operation>
+        <operation name="serviceGetListAziendeByIdRange" type="synch-call" >
+          <param-list>
+             <param name="collIdAziende" type="java.util.Vector" />
+             <param name="dataSituazioneAl" type="java.util.Date" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.AnagAziendaVO[]"/>
+        </operation>
+        <operation name="serviceGetListAziendeByIdAnagraficaAziendeRange" type="synch-call" >
+          <param-list>
+             <param name="collIdAnagraficaAziende" type="java.util.Vector" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.AnagAziendaVO[]"/>
+        </operation>
+        <operation name="serviceGetListIdAnagraficaAziende" type="synch-call" >
+          <param-list>
+             <param name="aaVO" type="it.csi.solmr.dto.anag.AnagAziendaVO" />
+             <param name="attivitaBool" type="java.lang.Boolean" />
+             <param name="schedario" type="java.lang.Boolean" />
+          </param-list>
+          <ret-val type="java.util.Vector"/>
+        </operation>
+        <operation name="serviceGetListIdAziende" type="synch-call" >
+          <param-list>
+             <param name="aaVO" type="it.csi.solmr.dto.anag.AnagAziendaVO" />
+             <param name="attivitaBool" type="java.lang.Boolean" />
+             <param name="schedario" type="java.lang.Boolean" />
+          </param-list>
+          <ret-val type="java.util.Vector"/>
+        </operation>
+        <operation name="serviceGetListIdAziende" type="synch-call" >
+          <param-list>
+             <param name="aaVO" type="it.csi.solmr.dto.anag.AnagAziendaVO" />
+             <param name="attivita" type="java.lang.String" />
+             <param name="schedario" type="java.lang.Boolean" />
+          </param-list>
+          <ret-val type="java.util.Vector"/>
+        </operation>
+        <operation name="serviceGetTitolareORappresentanteLegaleAzienda" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="dataSituazioneAl" type="java.util.Date" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.PersonaFisicaVO"/>
+        </operation>
+        <operation name="serviceGetSoggetti" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="data" type="java.util.Date" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.PersonaFisicaVO[]"/>
+        </operation>
+        <operation name="serviceGetDettaglioSoggetti" type="synch-call" >
+          <param-list>
+             <param name="idSoggetto" type="java.lang.Long" />
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="data" type="java.util.Date" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.PersonaFisicaVO"/>
+        </operation>
+        <operation name="serviceGetElencoUteAttiveForAzienda" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.UteVO[]"/>
+        </operation>
+        <operation name="serviceGetPersonaFisicaByCodiceFiscale" type="synch-call" >
+          <param-list>
+             <param name="codiceFiscale" type="java.lang.String" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.PersonaFisicaVO"/>
+        </operation>
+        <operation name="serviceGetPersonaFisicaByCodiceFiscale" type="synch-call" >
+          <param-list>
+             <param name="codiceFiscale" type="java.lang.String" />
+             <param name="date" type="java.util.Date" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.PersonaFisicaVO"/>
+        </operation>
+        <operation name="serviceGetAziendaById" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="dataSituazioneAl" type="java.util.Date" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.AnagAziendaVO"/>
+        </operation>
+        <operation name="serviceGetAziendaById" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="dataSituazioneAl" type="java.util.Date" />
+             <param name="sianUtenteVO" type="it.csi.solmr.dto.anag.sian.SianUtenteVO" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.AnagAziendaVO"/>
+        </operation>
+        <operation name="serviceGetProvinceTerreniByIdAzienda" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.ProvinciaVO[]"/>
+        </operation>
+        <operation name="serviceGetSoggetto" type="synch-call" >
+          <param-list>
+             <param name="idSoggetto" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.PersonaFisicaVO"/>
+        </operation>
+         <operation name="serviceGetSoggetto" type="synch-call" >
+          <param-list>
+             <param name="idSoggetto" type="java.lang.Long" />
+             <param name="date" type="java.util.Date" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.PersonaFisicaVO"/>
+        </operation>
+         <operation name="serviceGetRuoloSoggetto" type="synch-call" >
+          <param-list>
+             <param name="idSoggetto" type="java.lang.Long" />
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="dataSituazioneAl" type="java.util.Date" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ContitolareVO"/>
+        </operation>
+         <operation name="serviceGetSportelloById" type="synch-call" >
+          <param-list>
+             <param name="idSportello" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.BancaSportelloVO"/>
+        </operation>
+         <operation name="serviceGetParticelleByIdConduzioneRange" type="synch-call" >
+          <param-list>
+             <param name="idRange" type="java.lang.Long[]" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ParticellaVO[]"/>
+        </operation>
+         <operation name="serviceGetContoCorrente" type="synch-call" >
+          <param-list>
+             <param name="idContoCorrente" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ContoCorrenteVO"/>
+        </operation>
+        <operation name="serviceGetStoricoParticella" type="synch-call" >
+          <param-list>
+             <param name="idStoricoParticella" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ParticellaVO[]"/>
+        </operation>
+        <operation name="serviceGetElencoComuniTerreni" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="idProvincia" type="java.lang.String" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.ComuneVO[]"/>
+        </operation>
+        <operation name="serviceSearchStoricoParticella" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="istatComune" type="java.lang.String" />
+             <param name="sezione" type="java.lang.String" />
+             <param name="foglio" type="java.lang.Long" />
+             <param name="particella" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ParticellaVO[]"/>
+        </operation>
+        <operation name="serviceGetUltimaDichiarazioneConsistenza" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ConsistenzaVO"/>
+        </operation>
+        <operation name="serviceGetUltimaDichiarazioneConsistenza" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="dataAl" type="java.util.Date" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ConsistenzaVO"/>
+        </operation>
+        <operation name="serviceGetUltimaDichiarazioneConsistenza" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="dataAl" type="java.util.Date" />
+             <param name="idProcedimento" type="java.lang.Long" />
+             <param name="escludiDichParticolari" type="boolean" />
+             <param name="dichiarazioniAttive" type="boolean" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ConsistenzaVO"/>
+        </operation>
+        <operation name="serviceGetDichiarazioniConsistenza" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="dataAl" type="java.util.Date" />
+             <param name="idProcedimento" type="java.lang.Long" />
+             <param name="escludiDichParticolari" type="boolean" />
+             <param name="dichiarazioniAttive" type="boolean" />
+             <param name="sottoProcedimento" type="java.lang.String" />
+             <param name="annoCampagna" type="java.lang.Integer" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ConsistenzaVO[]"/>
+        </operation>
+        <operation name="serviceGetDichiarazioniConsistenza" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="dataAl" type="java.util.Date" />
+             <param name="dataDal" type="java.util.Date" />
+             <param name="idProcedimento" type="java.lang.Long" />
+             <param name="escludiDichParticolari" type="boolean" />
+             <param name="dichiarazioniAttive" type="boolean" />
+             <param name="sottoProcedimento" type="java.lang.String" />
+             <param name="annoCampagna" type="java.lang.Integer" />
+             <param name="protocollo" type="boolean" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ConsistenzaVO[]"/>
+        </operation>
+        <operation name="serviceSearchBanca" type="synch-call" >
+          <param-list>
+             <param name="abi" type="java.lang.String" />
+             <param name="denominazione" type="java.lang.String" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.BancaSportelloVO[]"/>
+        </operation>
+        <operation name="serviceSearchSportello" type="synch-call" >
+          <param-list>
+             <param name="abi" type="java.lang.String" />
+             <param name="cab" type="java.lang.String" />
+             <param name="comune" type="java.lang.String" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.BancaSportelloVO[]"/>
+        </operation>
+        <operation name="serviceGetElencoContiCorrentiAttivi" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ContoCorrenteVO[]"/>
+        </operation>
+        <operation name="serviceGetContrattoByIdConduzioneParticella" type="synch-call" >
+          <param-list>
+             <param name="idConduzione" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ContrattoVO"/>
+        </operation>
+        <operation name="serviceSearchStoricoParticella" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="istatComune" type="java.lang.String" />
+             <param name="idUtilizzo" type="java.lang.Long" />
+             <param name="sezione" type="java.lang.String" />
+             <param name="foglio" type="java.lang.Long" />
+             <param name="particella" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ParticellaVO[]"/>
+        </operation>
+        <operation name="serviceGetStoricoParticellaByIdRange" type="synch-call" >
+          <param-list>
+             <param name="idRange" type="java.lang.Long[]" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ParticellaVO[]"/>
+        </operation>
+        <operation name="serviceGetDichiarazioneConsistenza" type="synch-call" >
+          <param-list>
+             <param name="idDichiarazioneConsistenza" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ConsistenzaVO"/>
+        </operation>
+        <operation name="serviceGetUteById" type="synch-call" >
+          <param-list>
+             <param name="idUte" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.UteVO"/>
+        </operation>
+        <operation name="serviceGetElencoUteAzienda" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="dataValidita" type="java.util.Date" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.UteVO[]"/>
+        </operation>
+        <operation name="serviceGetTotaliSuperficieFlagSau" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="idUte" type="java.lang.Long" />
+             <param name="IdDichiarazioneConsistenza" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.SuperficieVO[]"/>
+        </operation>
+        <operation name="serviceGetTotaliSuperficiPerTipo" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="idUte" type="java.lang.Long" />
+             <param name="IdDichiarazioneConsistenza" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.SuperficieVO[]"/>
+        </operation>
+        <operation name="serviceIsAziendaBloccata" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.CodeDescription"/>
+        </operation>
+        <operation name="serviceIsEsenteDelega" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="java.lang.Boolean"/>
+        </operation>
+        <operation name="serviceGetDelega" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="codiceEnte" type="java.lang.String" />
+             <param name="ricercaSuEntiFigli" type="java.lang.Boolean" />
+             <param name="data" type="java.util.Date" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.services.DelegaAnagrafeVO"/>
+        </operation>
+        <operation name="serviceGetAziendaAAEP" type="synch-call" >
+          <param-list>
+             <param name="cuaa" type="java.lang.String" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.AnagAziendaAndPersonaFisicaVO"/>
+        </operation>
+        <operation name="serviceAggiornaDatiAAEP" type="synch-call" >
+          <param-list>
+             <param name="cuaa" type="java.lang.String" />
+          </param-list>
+          <ret-val type="java.lang.Boolean"/>
+        </operation>
+        <operation name="serviceAggiornaDatiAAEP" type="synch-call" >
+          <param-list>
+             <param name="cuaa" type="java.lang.String[]" />
+          </param-list>
+          <ret-val type="java.lang.Boolean[]"/>
+        </operation>
+        <operation name="serviceGetAziendeAAEPAnagrafe" type="synch-call" >
+          <param-list>
+             <param name="codiceFiscale" type="java.lang.String" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ParametroRitornoVO"/>
+        </operation>
+        <operation name="serviceGetAziendeAAEPAnagrafe" type="synch-call" >
+          <param-list>
+             <param name="codiceFiscale" type="java.lang.String" />
+             <param name="controllaPresenzaSuAAEP" type="boolean" />
+             <param name="bloccaAssenzaAAEP" type="java.lang.Boolean" />
+             <param name="controllaLegameRLsuAnagrafe" type="boolean" />
+             <param name="controllaPresenzaValidazione" type="boolean" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ParametroRitornoVO"/>
+        </operation>
+        <operation name="serviceGetAziendeAAEPAnagrafe" type="synch-call" >
+          <param-list>
+             <param name="codiceFiscale" type="java.lang.String" />
+             <param name="controllaPresenzaSuAAEP" type="boolean" />
+             <param name="bloccaAssenzaAAEP" type="java.lang.Boolean" />
+             <param name="controllaLegameRLsuAnagrafe" type="boolean" />
+             <param name="controllaPresenzaValidazione" type="boolean" />
+             <param name="aziendeAttive" type="boolean" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ParametroRitornoVO"/>
+        </operation>
+        <operation name="serviceGetAziendeAAEPAnagrafe" type="synch-call" >
+          <param-list>
+             <param name="codiceFiscale" type="java.lang.String" />
+             <param name="controllaPresenzaSuAAEP" type="boolean" />
+             <param name="bloccaAssenzaAAEP" type="java.lang.Boolean" />
+             <param name="controllaLegameRLsuAnagrafe" type="java.lang.Boolean" />
+             <param name="controllaPresenzaValidazione" type="boolean" />
+             <param name="aziendeAttive" type="boolean" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ParametroRitornoVO"/>
+        </operation>
+        <operation name="serviceGetAziendeByCfPersona" type="synch-call" >
+          <param-list>
+             <param name="codiceFiscale" type="java.lang.String" />
+             <param name="idRuolo" type="java.lang.Long" />
+             <param name="ruoloAttivo" type="boolean" />
+          </param-list>
+          <ret-val type="java.util.Vector"/>
+        </operation>
+        <operation name="serviceGetConduzioniDichiarate" type="synch-call" >
+          <param-list>
+             <param name="idDichiarazioneConsistenza" type="java.lang.Long" />
+             <param name="usoSuolo" type="java.lang.Boolean" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ParticellaVO[]"/>
+        </operation>
+        <operation name="serviceGetListSoggettiByIdSoggettoRange" type="synch-call" >
+          <param-list>
+             <param name="idSoggetto" type="java.lang.Long[]" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.PersonaFisicaVO[]"/>
+        </operation>
+        <operation name="serviceInserisciNotifica" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="idProcedimentoMittente" type="java.lang.Long" />
+             <param name="idCategoriaNotifica" type="java.lang.Long" />
+             <param name="descrizione" type="java.lang.String" />
+             <param name="idProcedimentoDestinatario" type="java.lang.Long" />
+             <param name="idUtente" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="void"/>
+        </operation>
+        <operation name="serviceGetMandato" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="codiceEnte" type="java.lang.String" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.services.MandatoVO"/>
+        </operation>
+        <operation name="serviceVerificaGerarchiaIride1" type="synch-call" >
+          <param-list>
+             <param name="idUtenteConnesso" type="java.lang.Long" />
+             <param name="idUtentePratica"  type="java.lang.Long" />
+          </param-list>
+          <ret-val type="boolean"/>
+        </operation>
+        <operation name="serviceSianTitoliProduttore" type="synch-call" >
+          <param-list>
+             <param name="CUAA" type="java.lang.String" />
+             <param name="campagna" type="java.lang.String" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.sian.SianTitoloRispostaVO"/>
+        </operation>
+        <operation name="serviceSianTitoliProduttore" type="synch-call" >
+          <param-list>
+             <param name="CUAA" type="java.lang.String" />
+             <param name="campagna" type="java.lang.String" />
+             <param name="sianUtenteVO" type="it.csi.solmr.dto.anag.sian.SianUtenteVO" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.sian.SianTitoloRispostaVO"/>
+        </operation>
+        <operation name="serviceSianTitoliProduttoreConInfoPegni" type="synch-call" >
+          <param-list>
+             <param name="CUAA" type="java.lang.String" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.sian.SianTitoloRispostaVO"/>
+        </operation>
+        <operation name="serviceSianTitoliProduttoreConInfoPegni" type="synch-call" >
+          <param-list>
+             <param name="CUAA" type="java.lang.String" />
+             <param name="sianUtenteVO" type="it.csi.solmr.dto.anag.sian.SianUtenteVO" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.sian.SianTitoloRispostaVO"/>
+        </operation>
+        <operation name="serviceSianTitoliProduttoreAggregati" type="synch-call" >
+          <param-list>
+             <param name="CUAA" type="java.lang.String" />
+             <param name="campagna" type="java.lang.String" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.sian.SianTitoliAggregatiRispostaVO"/>
+        </operation>
+        <operation name="serviceSianTitoliProduttoreAggregati" type="synch-call" >
+          <param-list>
+             <param name="CUAA" type="java.lang.String" />
+             <param name="campagna" type="java.lang.String" />
+             <param name="sianUtenteVO" type="it.csi.solmr.dto.anag.sian.SianUtenteVO" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.sian.SianTitoliAggregatiRispostaVO"/>
+        </operation>
+        <operation name="serviceSianAggiornaDatiTributaria" type="synch-call" >
+          <param-list>
+             <param name="cuaa" type="java.lang.String" />
+             <param name="sianUtenteVO" type="it.csi.solmr.dto.anag.sian.SianUtenteVO" />
+          </param-list>
+          <ret-val type="java.lang.Boolean"/>
+        </operation>
+        <operation name="serviceSianAggiornaDatiTributaria" type="synch-call" >
+          <param-list>
+             <param name="cuaa" type="java.lang.String[]" />
+             <param name="sianUtenteVO" type="it.csi.solmr.dto.anag.sian.SianUtenteVO" />
+          </param-list>
+          <ret-val type="java.lang.Boolean[]"/>
+        </operation>
+        <operation name="serviceGetParticellaCertificata" type="synch-call" >
+          <param-list>
+             <param name="comune" type="java.lang.String" />
+             <param name="sezione" type="java.lang.String" />
+             <param name="foglio" type="java.lang.String" />
+             <param name="particella" type="java.lang.String" />
+             <param name="subalterno" type="java.lang.String" />
+             <param name="onlyActive" type="java.lang.Boolean" />
+             <param name="dataDichiarazione" type="java.util.Date" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ParticellaCertificataVO"/>
+        </operation>
+        <operation name="serviceGetConduzioniDichiarateByIdConduzioneRange" type="synch-call" >
+          <param-list>
+             <param name="idDichiarazioneConsistenza" type="java.lang.Long" />
+             <param name="usoSuolo" type="java.lang.Boolean" />
+             <param name="idRange" type="java.lang.Long[]" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ParticellaVO[]"/>
+        </operation>
+        <operation name="serviceGetPartInDichiarConsistenzaByIdCondPartRange" type="synch-call" >
+          <param-list>
+             <param name="usoSuolo" type="java.lang.Boolean" />
+             <param name="idCondPartRange" type="java.lang.Long[]" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.ParticellaVO[]"/>
+        </operation>
+        <operation name="serviceGetFabbricati" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="idDichiarazioneConsistenza" type="java.lang.Long" />
+             <param name="attivi" type="java.lang.Boolean" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.FabbricatoVO[]"/>
+        </operation>
+        <operation name="serviceGetAnagraficaByCuaa" type="synch-call" >
+          <param-list>
+             <param name="cuaa" type="java.lang.String" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.services.AnagrafeSoggettoVO"/>
+        </operation>
+        <operation name="serviceGetParticelleByCuaa" type="synch-call" >
+          <param-list>
+             <param name="cuaa" type="java.lang.String" />
+             <param name="dataInizio" type="java.util.Date" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.services.ParticellaConduzioneVO[]"/>
+        </operation>
+        <operation name="serviceGetUtilizziByCuaaAndParticella" type="synch-call" >
+          <param-list>
+             <param name="cuaa" type="java.lang.String" />
+             <param name="istatComune" type="java.lang.String" />
+             <param name="foglio" type="java.lang.String" />
+             <param name="sezione" type="java.lang.String" />
+             <param name="particella" type="java.lang.String" />
+             <param name="subalterno" type="java.lang.String" />
+             <param name="dataInizio" type="java.util.Date" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.services.UsoSuoloVO[]"/>
+        </operation>
+        <operation name="serviceGetParticellaCertificataAllaData" type="synch-call" >
+          <param-list>
+             <param name="istatComune" type="java.lang.String" />
+             <param name="foglio" type="java.lang.String" />
+             <param name="sezione" type="java.lang.String" />
+             <param name="particella" type="java.lang.String" />
+             <param name="subalterno" type="java.lang.String" />
+             <param name="dataInizio" type="java.util.Date" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.services.ParticellaCatastaleCertificataVO"/>
+        </operation>
+        <operation name="serviceGetDocumentiByParameters" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="CUAA" type="java.lang.String" />
+             <param name="tipoDocumento" type="java.lang.Long" />
+             <param name="categoriaDocumento" type="java.lang.Long" />
+             <param name="tipoTipologiaDocumento" type="java.lang.Long" />
+             <param name="statoDocumento" type="java.lang.Long" />
+             <param name="orderBy" type="java.lang.String[]" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.DocumentoVO[]"/>
+        </operation>
+        <operation name="serviceAnagraficaDettaglio" type="synch-call" >
+          <param-list>
+             <param name="CUAA" type="java.lang.String" />
+             <param name="sianUtenteVO" type="it.csi.solmr.dto.anag.sian.SianUtenteVO" />
+          </param-list>
+          <ret-val type="it.csi.sian.anagrafeAT.ISWSReturnDett"/>
+        </operation>
+        <operation name="serviceRicercaAnagrafica" type="synch-call" >
+          <param-list>
+             <param name="cuaa" type="java.lang.String" />
+             <param name="sianUtenteVO" type="it.csi.solmr.dto.anag.sian.SianUtenteVO" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.sian.SianAnagTributariaVO"/>
+        </operation>
+        <operation name="serviceGetListSportelliByIdRange" type="synch-call" >
+          <param-list>
+             <param name="idSportello" type="java.lang.Long[]" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.BancaSportelloVO[]"/>
+        </operation>
+        <operation name="serviceCheckSportelliByAbi" type="synch-call" >
+          <param-list>
+             <param name="idSportello" type="java.lang.Long[]" />
+             <param name="abi" type="java.lang.String" />
+          </param-list>
+          <ret-val type="java.lang.Long[]"/>
+        </operation>
+        <operation name="serviceSianEsitiRicevuti" type="synch-call" >
+          <param-list>
+             <param name="ultimoEsito" type="java.lang.String" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.sian.SianEsitiRicevutiRispostaVO"/>
+        </operation>
+        <operation name="serviceSianEsitoDomande" type="synch-call" >
+          <param-list/>
+          <ret-val type="it.csi.solmr.dto.anag.sian.SianEsitoDomandeRispostaVO"/>
+        </operation>
+        <operation name="serviceSianAggiornaDatiBDN" type="synch-call" >
+          <param-list>
+             <param name="CUAA" type="java.lang.String" />
+          </param-list>
+          <ret-val type="void"/>
+        </operation>
+        <operation name="serviceSianAggiornaDatiParticella" type="synch-call" >
+          <param-list>
+             <param name="istat" type="java.lang.String" />
+             <param name="sezione" type="java.lang.String" />
+             <param name="foglio" type="java.math.BigDecimal" />
+             <param name="particella" type="java.lang.String" />
+             <param name="subalterno" type="java.lang.String" />
+             <param name="dataRiferimento" type="java.util.Date" />
+          </param-list>
+          <ret-val type="void"/>
+        </operation>
+        <operation name="serviceGetStoricoParticellaByParameters" type="synch-call" >
+          <param-list>
+             <param name="pComune" type="java.lang.String" />
+             <param name="pSezione" type="java.lang.String" />
+             <param name="pFoglio" type="java.lang.Long" />
+             <param name="pParticella" type="java.lang.Long" />
+             <param name="pSub" type="java.lang.String" />
+             <param name="pDataInizioValidita" type="java.util.Date" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.terreni.StoricoParticellaVO"/>
+        </operation>
+
+
+
+        <operation name="serviceGetComuniParticelleAzienda" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.ComuneVO[]"/>
+        </operation>
+
+
+        <operation name="serviceGetProvincieParticelleAzienda" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.ProvinciaVO[]"/>
+        </operation>
+
+        <operation name="serviceGetSportello" type="synch-call" >
+          <param-list>
+             <param name="abi" type="java.lang.String" />
+             <param name="cab" type="java.lang.String" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.BancaSportelloVO"/>
+        </operation>
+
+        <operation name="serviceGetUteByIdRange" type="synch-call" >
+          <param-list>
+             <param name="idUte" type="java.lang.Long[]" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.UteVO[]"/>
+        </operation>
+
+        <operation name="serviceGetVariazioneDatiAnagrafici" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="data" type="java.util.Date" />
+          </param-list>
+          <ret-val type="boolean[]"/>
+        </operation>
+
+        <operation name="serviceGetAllevamentiByParameters" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="idUTE" type="java.lang.Long" />
+             <param name="dataAl" type="java.util.Date" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.AllevamentoAnagVO[]"/>
+        </operation>
+
+        <operation name="serviceIsAllParticelleInDocumento" type="synch-call" >
+          <param-list>
+             <param name="idStoriciParticella" type="java.lang.Long[]" />
+             <param name="idDocumenti" type="java.lang.Long[]" />
+          </param-list>
+          <ret-val type="boolean"/>
+        </operation>
+
+        <operation name="serviceSianAggiornaFascicolo" type="synch-call" >
+          <param-list>
+             <param name="CUAA" type="java.lang.String" />
+          </param-list>
+          <ret-val type="void"/>
+        </operation>
+
+        <operation name="serviceGetAziendeProvenienzaDestinazione" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.services.AziendeProvenienzaDestinazione"/>
+        </operation>
+
+        <operation name="serviceGetDocumentiByIdStoricoParticella" type="synch-call" >
+          <param-list>
+             <param name="idStoricoParticella" type="long" />
+             <param name="tipiDocumenti" type="long[]" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.DocumentoVO[]"/>
+        </operation>
+
+        <operation name="serviceAggiornaLavorazioniSITI" type="synch-call" >
+          <param-list>
+             <param name="idRange" type="java.lang.Long[]" />
+          </param-list>
+          <ret-val type="java.lang.Boolean"/>
+        </operation>
+
+        <operation name="serviceGetDelegaConPadriByRange" type="synch-call" >
+          <param-list>
+             <param name="cuaa" type="java.lang.String[]" />
+             <param name="data" type="java.util.Date" />
+          </param-list>
+          <ret-val type="java.util.HashMap"/>
+        </operation>
+
+
+
+        <operation name="testResources" type="synch-call">
+            <param-list />
+          <ret-val type="boolean" />
+        </operation>
+     </operations>
+    </service>
+  </services>
+
+  <config>
+    <url-pa>not_used</url-pa>
+    <pluggable-pd-list chooser-class="it.csi.csi.porte.FixedDelegateChooser">
+      <!-- pluggable-pd
+          name="protocol-AnagService"
+          class="it.csi.csi.porte.soap.apache.PortaDelegataSoap"
+          url-pa="http://csisvil4.csi.it:7152/solmrAnag/anagServices"
+          url-qm="http://csisvil4.csi.it:7152/solmrAnag/servlet/rpcrouter;urn:qm-protocollo"
+      -->
+      <pluggable-pd
+        name="iuffiweb.smrgaasrv.pd"
+        class="it.csi.csi.porte.ejb.PortaDelegataEJB"
+        url-pa="solmr/anag/PA_AnagServiceFacade"
+      >
+        <properties>
+          <property name="java.naming.provider.url" value="t3://<COMMA_SEPARATED_LIST_OF_SERVER:PORT>" />
+          <property name="java.naming.factory.initial" value="weblogic.jndi.WLInitialContextFactory" />
+        </properties>
+      </pluggable-pd>
+    </pluggable-pd-list>
+    <queue-manager url="not_used"/>
+  </config>
+</porta-delegata>

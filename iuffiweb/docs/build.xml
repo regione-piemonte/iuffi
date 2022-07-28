@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="dollyweb" xmlns:ivy="antlib:fr.jayasoft.ivy.ant" default="generate">
+	<description>Build file per creare una nuova componente a partire da DOLLYWEB</description>
+	<property name="dolly.prodotto" value="dolly" />
+	<property name="dolly.componente" value="dollyweb" />
+	<property name="dolly.prodotto.maiuscolo" value="DOLLY" />
+	<property name="dolly.componente.maiuscolo" value="DOLLYPRATICHE" />
+	<property name="dolly.acronimo" value="DOLLY" />
+	<property name="dolly.db.tablename.prefix" value="DOLLY_" />
+	<property name="app.version" value="1.0.0" />
+	<property name="app.prodotto" value="nembo" />
+	<property name="app.componente" value="nembopratiche" />
+	<property name="app.prodotto.maiuscolo" value="NEMBO" />
+	<property name="app.prodotto.caseinsensitive" value="Nembo" />
+	<property name="app.componente.maiuscolo" value="NEMBOPRATICHE" />
+	<property name="app.componente.caseinsensitive" value="Nembopratiche" />
+	<property name="app.acronimo" value="Nembopratiche" />
+	<property name="app.db.tablename.prefix" value="NEMBO_" />
+	<property name="dir.build" value="build" />
+	<property name="dir.conf" value="conf" />
+	<property name="dir.conf.web" value="{dir.conf}/web" />
+	<property name="dir.conf.application" value="{dir.conf}/application" />
+	<target name="single-replace-prodotto-in-path">
+		<move todir=".">
+			<fileset dir=".">
+				<include name="src/**" />
+				<include name="conf/**" />
+				<include name="buildfiles/**" />
+			</fileset>
+			<regexpmapper from="(.*)${dolly.prodotto}(.*)" to="\1${app.prodotto}\2" />
+		</move>
+		<move todir=".">
+			<fileset dir=".">
+				<include name="src/**" />
+				<include name="conf/**" />
+				<include name="buildfiles/**" />
+			</fileset>
+			<regexpmapper from="(.*)${dolly.prodotto.maiuscolo}(.*)" to="\1${app.prodotto.maiuscolo}\2" />
+		</move>
+		<echo>Rimpiazzo nome prodotto nei nomi di file e cartelle con regexp case insensitive </echo>
+		<move todir=".">
+			<fileset dir=".">
+				<include name="src/**" />
+				<include name="conf/**" />
+				<include name="buildfiles/**" />
+			</fileset>
+			<regexpmapper from="(.*)${dolly.prodotto.maiuscolo}(.*)" to="\1${app.prodotto.caseinsensitive}\2" casesensitive="false" />
+		</move>
+	</target>
+
+	<target name="single-replace-componente-in-path">
+		<move todir=".">
+			<fileset dir=".">
+				<include name="src/**" />
+				<include name="conf/**" />
+				<include name="buildfiles/**" />
+			</fileset>
+			<regexpmapper from="(.*)${dolly.componente}(.*)" to="\1${app.componente}\2" />
+		</move>
+		<echo>Rimpiazzo nome componente nei nomi di file e cartelle con regexp case insensitive </echo>
+		<move todir=".">
+			<fileset dir=".">
+				<include name="src/**" />
+				<include name="conf/**" />
+				<include name="buildfiles/**" />
+			</fileset>
+			<regexpmapper from="(.*)${dolly.componente.maiuscolo}(.*)" to="\1${app.componente.maiuscolo}\2" />
+		</move>
+		<move todir=".">
+			<fileset dir=".">
+				<include name="src/**" />
+				<include name="conf/**" />
+				<include name="buildfiles/**" />
+			</fileset>
+			<regexpmapper from="(.*)${dolly.componente.maiuscolo}(.*)" to="\1${app.componente.caseinsensitive}\2" casesensitive="false" />
+		</move>
+	</target>
+
+	<target name="update-files-content">
+		<replaceregexp match="${dolly.componente}" replace="${app.componente}" flags="gs" byline="true">
+			<fileset dir=".">
+				<include name="src/**" />
+				<include name="conf/**" />
+				<include name="buildfiles/**" />
+				<include name="docs/local_login.jsp" />
+			</fileset>
+		</replaceregexp>
+		<replaceregexp match="${dolly.componente.maiuscolo}" replace="${app.componente.maiuscolo}" flags="gs" byline="true">
+			<fileset dir=".">
+				<include name="src/**" />
+				<include name="conf/**" />
+				<include name="buildfiles/**" />
+				<include name="docs/local_login.jsp" />
+			</fileset>
+		</replaceregexp>
+		<replaceregexp match="${dolly.componente.maiuscolo}" replace="${app.componente.caseinsensitive}" flags="igs" byline="true">
+			<fileset dir=".">
+				<include name="src/**" />
+				<include name="conf/**" />
+				<include name="buildfiles/**" />
+				<include name="docs/local_login.jsp" />
+			</fileset>
+		</replaceregexp>
+		<replaceregexp match="${dolly.prodotto}" replace="${app.prodotto}" flags="gs" byline="true">
+			<fileset dir=".">
+				<include name="src/**" />
+				<include name="conf/**" />
+				<include name="buildfiles/**" />
+				<include name="docs/local_login.jsp" />
+			</fileset>
+		</replaceregexp>
+		<replaceregexp match="${dolly.prodotto.maiuscolo}" replace="${app.prodotto.maiuscolo}" flags="gs" byline="true">
+			<fileset dir=".">
+				<include name="src/**" />
+				<include name="conf/**" />
+				<include name="buildfiles/**" />
+				<include name="docs/local_login.jsp" />
+			</fileset>
+		</replaceregexp>
+		<replaceregexp match="${dolly.prodotto.maiuscolo}" replace="${app.prodotto.caseinsensitive}" flags="igs" byline="true">
+			<fileset dir=".">
+				<include name="src/**" />
+				<include name="conf/**" />
+				<include name="buildfiles/**" />
+				<include name="docs/local_login.jsp" />
+			</fileset>
+		</replaceregexp>
+	</target>
+
+	<target name="update-paths">
+		<echo>Aggiornamento nome cartella e file java da **/${dolly.prodotto} a **/${app.prodotto}</echo>
+		<!-- Prima la componente -->
+		<!-- Mi fermo a 3, difficile che in un path sia ripetuto più di 3 volte il nome prodotto -->
+		<!-- Ora passiamo alla componente -->
+		<!-- Ripeto più volte l'operazione dato che ad ogni rimpiazzo cambia solo una occorrenza, quindi se nel pathname ce ne sono più di una bisogna iterare -->
+		<!-- Melius abundare quam deficere -->
+		<antcall target="single-replace-componente-in-path" />
+		<antcall target="single-replace-componente-in-path" />
+		<antcall target="single-replace-componente-in-path" />
+		<!-- Ripeto più volte l'operazione dato che ad ogni rimpiazzo cambia solo una occorrenza, quindi se nel pathname ce ne sono più di una bisogna iterare -->
+		<!-- Melius abundare quam deficere -->
+		<antcall target="single-replace-prodotto-in-path" />
+		<antcall target="single-replace-prodotto-in-path" />
+		<antcall target="single-replace-prodotto-in-path" />
+		<!-- Mi fermo a 3, difficile che in un path sia ripetuto più di 3 volte il nome componente -->
+	</target>
+
+	<target name="update-alias">
+		<move todir=".">
+			<fileset dir=".">
+				<include name="src/**" />
+				<include name="conf/**" />
+				<include name="buildfiles/**" />
+				<include name="docs/local_login.jsp" />
+			</fileset>
+			<regexpmapper from="(.*)PSR(.*)" to="\1${app.componente.caseinsensitive}\2" />
+		</move>
+		<move todir=".">
+			<fileset dir=".">
+				<include name="src/**" />
+				<include name="conf/**" />
+				<include name="buildfiles/**" />
+				<include name="docs/local_login.jsp" />
+			</fileset>
+			<regexpmapper from="(.*)PSR(.*)" to="\1${app.componente.caseinsensitive}\2" casesensitive="false" />
+		</move>
+		<replaceregexp match="PSR" replace="${app.componente.caseinsensitive}" flags="igs" byline="true">
+			<fileset dir=".">
+				<include name="src/**" />
+				<include name="conf/**" />
+				<include name="buildfiles/**" />
+				<include name="docs/local_login.jsp" />
+			</fileset>
+		</replaceregexp>
+	</target>
+	<target name="update-queries">
+		<replaceregexp match="${dolly.db.tablename.prefix}" replace="${app.prodotto.tablename.prefix}" flags="igs" byline="true">
+			<fileset dir=".">
+				<include name="src/**" />
+			</fileset>
+		</replaceregexp>
+	</target>
+	<target name="generate" depends="update-paths, update-files-content, update-queries">
+		<!-- da rimuovere la chiamata ad update-alias. Serve solo per il porting da PSR20 a DOLLY (dato che uso questo stesso build per farlo) -->
+	</target>
+	<target name="delete-controller-cdu">
+    <delete dir="src/java">
+      <include name="**/CU${app.prodotto}${name}*.java" />
+     </delete>
+	</target>
+	<target name="delete-quadro">
+    <delete dir="src/java/it/csi/{app.prodotto}/{app.componente}/presentation/procedimentooggetto/${name}/" />
+	</target>
+  <target name="delete-folder-dto">
+  	<delete dir="src/java/it/csi/{app.prodotto}/{app.componente}/dto/procedimentooggetto/${name}/" />
+  </target>
+  <target name="delete-folder-jsp">
+  	<delete dir="src/web/${app.componente}/web-inf/jsp/${name}/" />
+  </target>
+</project>

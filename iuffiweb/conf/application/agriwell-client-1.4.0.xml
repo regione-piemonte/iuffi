@@ -1,0 +1,106 @@
+<porta-delegata name="iuffiweb.pd.smrcommsrv.agriwell">
+  <services>
+    <service name="iuffiweb.pd.smrcommsrv.agriwell.service" public-interface-class="it.csi.smrcomms.smrcomm.interfacecsi.IAgriWellCSIInterface">
+      <operations>
+       <operation name="agriwellServiceScriviDoquiAgri" type="synch-call" >
+         <param-list>
+            <param name="agriWellDocumentoVO" type="it.csi.smrcomms.smrcomm.dto.agriwell.AgriWellDocumentoVO" />
+         </param-list>
+         <ret-val type="it.csi.smrcomms.smrcomm.dto.agriwell.AgriWellEsitoVO"/>
+       </operation>
+       <operation name="agriwellServiceLeggiDoquiAgri" type="synch-call" >
+         <param-list>
+            <param name="idDocumentoIndex" type="long" />
+         </param-list>
+         <ret-val type="it.csi.smrcomms.smrcomm.dto.agriwell.AgriWellEsitoVO"/>
+       </operation>
+       <operation name="agriwellServiceCancellaDoquiAgri" type="synch-call" >
+         <param-list>
+            <param name="idDocumentoIndex" type="long" />
+         </param-list>
+         <ret-val type="it.csi.smrcomms.smrcomm.dto.agriwell.AgriWellEsitoVO"/>
+       </operation>
+       <operation name="agriwellFindFolderByPadreProcedimentoRuolo" type="synch-call" >
+         <param-list>
+            <param name="idProcedimento" type="int" />
+            <param name="codRuoloUtente" type="java.lang.String" />
+            <param name="idFolderMadre" type="java.lang.Long" />
+            <param name="noEmptyFolder" type="boolean" />
+            <param name="idAzienda" type="java.lang.Long" />
+         </param-list>
+         <ret-val type="it.csi.smrcomms.smrcomm.dto.agriwell.AgriWellEsitoFolderVO"/>
+       </operation>
+       <operation name="agriwellFindListaDocumentiByIdFolder" type="synch-call" >
+         <param-list>
+            <param name="idFolder" type="long" />
+            <param name="idProcedimento" type="int" />
+            <param name="codRuoloUtente" type="java.lang.String" />
+            <param name="idAzienda" type="java.lang.Long" />
+         </param-list>
+         <ret-val type="it.csi.smrcomms.smrcomm.dto.agriwell.AgriWellEsitoIdDocVO"/>
+       </operation>
+       <operation name="agriwellFindDocumentoByIdRange" type="synch-call" >
+         <param-list>
+            <param name="arrIdDocumentoIndex" type="long[]" />
+         </param-list>
+         <ret-val type="it.csi.smrcomms.smrcomm.dto.agriwell.AgriWellEsitoDocumentoVO"/>
+       </operation>
+       <operation name="agriwellFindTipologiaDocumenti" type="synch-call" >
+         <param-list>
+            <param name="flagAttivi" type="boolean" />
+            <param name="flagNativi" type="boolean" />
+         </param-list>
+         <ret-val type="it.csi.smrcomms.smrcomm.dto.agriwell.AgriWellEsitoTipologieDocumentoVO"/>
+       </operation>
+       <operation name="agriwellFindCategorieDocumentiByTipologia" type="synch-call" >
+         <param-list>
+            <param name="flagAttivi" type="boolean" />
+            <param name="idTipologiaDocumento" type="java.lang.Long" />
+         </param-list>
+         <ret-val type="it.csi.smrcomms.smrcomm.dto.agriwell.AgriWellEsitoCategorieDocumentoVO"/>
+       </operation>
+       <operation name="agriwellFindTipiDocumentiByCategoria" type="synch-call" >
+         <param-list>
+            <param name="flagAttivi" type="boolean" />
+            <param name="idCategoriaDocumento" type="java.lang.Long" />
+         </param-list>
+         <ret-val type="it.csi.smrcomms.smrcomm.dto.agriwell.AgriWellEsitoTipiDocumentoVO"/>
+       </operation>
+       <operation name="agriwellFindListaDocumentiByMetadati" type="synch-call" >
+         <param-list>
+            <param name="idProcedimento" type="java.lang.Integer" />
+            <param name="codRuoloUtente" type="java.lang.String" />
+            <param name="listMetadati" type="it.csi.smrcomms.smrcomm.dto.agriwell.AgriWellMetadatoRicercaVO[]" />
+            <param name="listAziende" type="long[]" />
+            <param name="listIdIntermediario" type="long[]" />
+            <param name="daFirmare" type="java.lang.String" />
+            <param name="ordinamento" type="java.lang.String" />
+         </param-list>
+         <ret-val type="it.csi.smrcomms.smrcomm.dto.agriwell.AgriWellEsitoIdDocVO"/>
+       </operation>
+       <operation name="agriwellServiceUpdateDoquiAgri" type="synch-call" >
+         <param-list>
+            <param name="agriWellDocumentoDaAggiornareVO" type="it.csi.smrcomms.smrcomm.dto.agriwell.AgriWellDocumentoDaAggiornareVO" />
+         </param-list>
+         <ret-val type="it.csi.smrcomms.smrcomm.dto.agriwell.AgriWellEsitoVO"/>
+       </operation>
+     </operations>
+    </service>
+  </services>
+  <config>
+    <url-pa>not_used</url-pa>
+    <pluggable-pd-list chooser-class="it.csi.csi.porte.FixedDelegateChooser">
+      <pluggable-pd
+        name="iuffiweb.pd.smrcommsrv.agriwell.business"
+        class="it.csi.csi.porte.ejb.PortaDelegataEJB"
+        url-pa="smrcomm/ejb/PA_AgriWellFacade"
+      >
+      <properties>
+          <property name="java.naming.provider.url" value="t3://<COMMA_SEPARATED_LIST_OF_SERVER:PORT>" />
+          <property name="java.naming.factory.initial" value="weblogic.jndi.WLInitialContextFactory" />
+        </properties>
+      </pluggable-pd>
+    </pluggable-pd-list>
+    <queue-manager url="not_used"/>
+  </config>
+</porta-delegata>

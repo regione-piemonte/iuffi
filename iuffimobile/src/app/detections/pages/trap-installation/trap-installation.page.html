@@ -1,0 +1,178 @@
+<ion-header [translucent]="false">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button icon="arrow-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title> {{ 'INSTALLATION' | translate }} </ion-title>
+        <ion-buttons slot="end">
+            <ion-button *ngIf="detection.cuaa" (click)="openAvivModal()">
+                <ion-icon name="iuffi-field"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid class="detection-position ion-no-padding ion-margin">
+        <ion-row class="ion-padding-vertical">
+            <ion-col size="2">
+                <ion-icon name="iuffi-position"></ion-icon>
+            </ion-col>
+            <ion-col class="ion-padding-start">
+                <p>{{ 'GPS_COORD' | translate }}</p>
+                <ion-text *ngIf="trap.latitudine && trap.longitudine">
+                    <h2>{{trap.latitudine | number:'1.2-7'}} - {{trap.longitudine | number:'1.2-7'}}</h2>
+                </ion-text>
+                <ion-text *ngIf="!trap.latitudine && !trap.longitudine">
+                    <h2>-</h2>
+                </ion-text>
+            </ion-col>
+            <ion-col *ngIf="deviceService.isOnline()" size="2" class="ion-text-center">
+                <ion-button fill="clear" size="small" (click)="openMapModal()">
+                    <ion-icon name="iuffi-modify-position" slot="start"></ion-icon>
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-card class="ion-card-input">
+        <ion-card-content>
+            <form [formGroup]="trapForm">
+                <ion-item class="no-resize" lines="none">
+                    <ion-label position="stacked"> {{ 'SFR_CODE' | translate }} </ion-label>
+                    <ion-input formControlName="codiceSfr" inputmode="text"></ion-input>
+                </ion-item>
+            </form>
+            <app-error-message [control]="this.trapForm.get('codiceSfr')"></app-error-message>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-header>
+            <plant-species-selection
+                loggerInfo="PlantSpeciesPage"
+                (plantSpeciesSelected)="onPlantSpeciesSelected($event)"
+                readOnly="true"
+            >
+            </plant-species-selection>
+        </ion-card-header>
+        <ion-card-content *ngIf="plantSpeciesSelected">
+            <ion-list>
+                <ion-item class="no-resize" lines="none">
+                    <ion-label class="ion-text-capitalize">{{ plantSpeciesSelected?.nomeVolgare }}</ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="plantSpeciesSelected">
+        <ion-card-header>
+            <harmful-organism-selection
+                loggerInfo="TrapInstallationPage"
+                [plantSpeciesSelected]="plantSpeciesSelected"
+                [harmfulOrganismsFilter]="organismiFilter.length>0? organismiFilter : null"
+                [singleSelection]="true"
+                (harmfulOrganismSelected)="onHarmfulOrganismSelected($event)"
+                [readOnly]="trap.idIspezioneVisiva"
+                [isRelatedToEmergency]="isRelatedToEmergency"
+            ></harmful-organism-selection>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list>
+                <ng-container *ngIf="singleSelection">
+                    <ion-radio-group [(ngModel)]="singleHarmfulOrganismSelected">
+                        <ion-item *ngFor="let entry of harmfulOrganismsSelected">
+                            <ion-label
+                                [ngClass]="{'emergency': entry.flagEmergenza === 'S'}"
+                                class="ion-text-capitalize"
+                                >{{entry.nomeLatino}}
+                            </ion-label>
+                            <ion-icon *ngIf="entry.euro === 'S'" slot="end" name="iuffi-euro"></ion-icon>
+                            <ion-radio mode="md" [value]="entry" slot="end"></ion-radio>
+                        </ion-item>
+                    </ion-radio-group>
+                </ng-container>
+
+                <ng-container *ngIf="!singleSelection">
+                    <ion-item *ngFor="let entry of harmfulOrganismsSelected">
+                        <ion-label [ngClass]="{'emergency': entry.flagEmergenza === 'S'}" class="ion-text-capitalize"
+                            >{{entry.nomeLatino}}
+                        </ion-label>
+                        <ion-icon *ngIf="entry.euro === 'S'" slot="end" name="iuffi-euro"></ion-icon>
+                    </ion-item>
+                </ng-container>
+            </ion-list>
+
+            <!-- <ion-item class="no-resize" lines="none" *ngFor="let entry of harmfulOrganismsSelected">
+                    <ion-label [ngClass]="{'emergency': entry.flagEmergenza === 'S'}" class="ion-text-capitalize"
+                        >{{entry.nomeLatino}}
+                    </ion-label>
+                    <ion-icon *ngIf="entry.euro === 'S'" slot="end" name="iuffi-euro"></ion-icon>
+                </ion-item>
+
+
+                <ng-container *ngIf="singleSelection">
+                    <ion-radio-group [(ngModel)]="harmfulOrganismSelected">
+                        <ion-item *ngFor="let entry of harmfulOrganismsToShow">
+                            <ion-label
+                                [ngClass]="{'emergency': entry.flagEmergenza === 'S'}"
+                                class="ion-text-capitalize"
+                                >{{entry.nomeLatino}}</ion-label
+                            >
+                            <ion-icon *ngIf="entry.euro === 'S'" slot="end" name="iuffi-euro"></ion-icon>
+                            <ion-radio mode="md" [value]="entry" slot="end"></ion-radio>
+                        </ion-item>
+                    </ion-radio-group>
+                </ng-container> -->
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="trap.idOrganismoNocivo || singleHarmfulOrganismSelected">
+        <ion-card-header>
+            <trap-type-selection
+                [trapType]="trapTypeSelected? trapTypeSelected : null"
+                loggerInfo="TrapTypesPage"
+                [harmfulOrganismSelected]="singleHarmfulOrganismSelected"
+                (trapTypeSelected)="onTrapTypeSelected($event)"
+            >
+            </trap-type-selection>
+        </ion-card-header>
+        <ion-card-content *ngIf="trapTypeSelected">
+            <ion-list>
+                <ion-item class="no-resize" lines="none">
+                    <ion-label class="ion-text-capitalize">{{ trapTypeSelected?.tipologiaTrappola }}</ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <photo-gallery
+        logger="TrapInstallationPage"
+        [photos]="(trap.photos && trap.photos.length>0)? trap.photos : []"
+    ></photo-gallery>
+
+    <ion-item class="iuffi-item-detail" lines="none" class="textarea">
+        <ion-label position="stacked">{{'INSERT_NOTE' | translate}}</ion-label>
+        <ion-textarea [(ngModel)]="trap.note" autoGrow="true" rows="8" cols="20"></ion-textarea>
+    </ion-item>
+
+    <ion-fab *ngIf="trap.photos.length < 3" vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="primary" (click)="selectImageSource()">
+            <ion-icon name="iuffi-camera"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>
+<ion-footer class="ion-no-border ion-no-padding hide-on-keyboard-open">
+    <ion-toolbar>
+        <ion-grid class="ion-no-padding" fixed>
+            <ion-row>
+                <ion-col size="6">
+                    <iuffi-button color="medium" label="DELETE" (click)="deleteTrap()" expand="block"></iuffi-button>
+                </ion-col>
+                <ion-col>
+                    <iuffi-button color="primary" label="SAVE" (click)="saveTrap()" expand="block"></iuffi-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-footer>

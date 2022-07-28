@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>Sistema di gestione pratiche - IUFFIWEB</display-name>
+  <distributable/>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/WEB-INF/mvc-dispatcher-servlet.xml,classpath:beanRefContext.xml,/WEB-INF/applicationContext.xml</param-value>
+  </context-param>
+  <context-param>
+    <param-name>remincl.resource.provider.portal</param-name>
+    <param-value>http://<WEB_SERVER_HOST:PORT></param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <filter>
+    <filter-name>Shibboleth filter</filter-name>
+    <filter-class>it.csi.shibboleth.shibfilter.ShibbolethFilter</filter-class>
+    <init-param>
+      <param-name>IRIDE_ID_SESSIONATTR</param-name>
+      <param-value>identita</param-value>
+    </init-param>
+    <init-param>
+      <param-name>NO_CHECK_PAGE</param-name>
+      <param-value></param-value>
+    </init-param>
+  </filter>
+  <filter>
+    <filter-name>WMS Proxy filter</filter-name>
+    <filter-class>it.csi.iuffi.iuffiweb.servlet.CORSFilter</filter-class>
+  </filter>
+  <servlet>
+    <servlet-name>wms-proxy</servlet-name>
+    <servlet-class>it.csi.iuffi.iuffiweb.servlet.WMSProxyServlet</servlet-class>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>wms-proxy-mobile</servlet-name>
+    <servlet-class>it.csi.iuffi.iuffiweb.servlet.WMSProxyMobileServlet</servlet-class>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>mvc-dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <filter-mapping>
+    <filter-name>Shibboleth filter</filter-name>
+    <url-pattern>/login/wrup/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>Shibboleth filter</filter-name>
+    <url-pattern>/login/sisp/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>Shibboleth filter</filter-name>
+    <url-pattern>/login/spid/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>WMS Proxy filter</filter-name>
+    <url-pattern>/rest/proxywms</url-pattern>
+  </filter-mapping>
+
+  <servlet-mapping>
+     <servlet-name>default</servlet-name>
+     <url-pattern>*.js</url-pattern>
+     <url-pattern>*.css</url-pattern>
+     <url-pattern>*.jpg"</url-pattern>
+     <url-pattern>*.jpeg</url-pattern>
+     <url-pattern>*.gif</url-pattern>
+     <url-pattern>*.png</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>wms-proxy-mobile</servlet-name>
+    <url-pattern>/rest/proxywms</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>wms-proxy</servlet-name>
+    <url-pattern>/proxywms</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>mvc-dispatcher</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>mvc-dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>mvc-dispatcher</servlet-name>
+    <url-pattern>*.json</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>mvc-dispatcher</servlet-name>
+    <url-pattern>*.xls</url-pattern>
+  </servlet-mapping>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error/notfound.do</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/error/internalerror.do</location>
+  </error-page>
+
+	<!-- impostazioni di security -->
+	<security-constraint>
+		<!-- Collezione di risorse protette e meccanismi di accesso -->
+		<web-resource-collection>
+			<web-resource-name>Restrizioni a ruolo sicuro</web-resource-name>
+			<description>Protezione servizi</description>
+			<url-pattern>/rest/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+			<http-method>PUT</http-method>
+			<http-method>DELETE</http-method>
+		</web-resource-collection>
+		<!-- Lista dei ruoli che possono accedere alla collezione di risorse -->
+		<auth-constraint>
+			<role-name>api_users</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<login-config>
+		<auth-method>BASIC</auth-method>
+		<realm-name>applications</realm-name>
+	</login-config>
+	<security-role>
+		<role-name>api_users</role-name>
+	</security-role>
+</web-app>

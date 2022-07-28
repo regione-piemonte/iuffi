@@ -1,0 +1,30 @@
+<ion-content>
+    <div class="login-logo-regione">
+        <ion-img src="assets/imgs/logo_RegPiem.png"></ion-img>
+    </div>
+
+    <div class="login-logo-app">
+        <ion-img src="assets/imgs/logo-app.png"></ion-img>
+    </div>
+    <div class="app-description">
+        <p class="overview ion-text-center">{{ 'APP_WELCOME' | translate}}</p>
+        <p class="overview ion-text-center">{{ appName}}</p>
+    </div>
+
+    <div class="app-overview">
+        <p class="overview ion-text-center">{{ 'APP_OVERVIEW' | translate}}</p>
+    </div>
+
+    <!-- <div class="container">
+        <div class="center"> -->
+    <iuffi-button color="primary"
+        label="AUTHENTICATION_PROFESSIONAL"
+        expand="block"
+        (click)="professionalsLogin()"></iuffi-button>
+    <iuffi-button color="primary"
+        label="AUTHENTICATION_PUBLIC"
+        expand="block"
+        (click)="publicLogin()"></iuffi-button>
+    <!-- </div>
+    </div> -->
+</ion-content>

@@ -1,0 +1,125 @@
+@import '../../../../theme/text-utils.scss';
+ion-card {
+    --background: var(--card-background-color);
+    padding-bottom: 0;
+    ion-card-header {
+        .title {
+            color: #748a9d;
+            @extend %text-small;
+            @extend %text-normal;
+        }
+        .description {
+            color: #000000;
+            @extend %text-medium;
+            @extend %text-bold;
+        }
+    }
+    ion-card-content {
+        ion-item {
+            --background: var(--card-background-color);
+            --padding-start: 0;
+            --inner-padding-end: 0;
+            ion-checkbox {
+                --background: var(--card-background-color);
+                --background-checked: var(--card-background-color);
+                --border-color: #000000;
+                --border-color-checked: #000000;
+                --border-radius: 2px;
+                --border-style: solid;
+                --border-width: 1px;
+                --checkmark-color: var(--ion-color-primary);
+                --checkmark-width: 2px;
+                --size: 25px;
+                &::part(mark) {
+                    width: 25px;
+                }
+            }
+
+            // &.custom-checkbox {
+            //     --ripple-color: transparent;
+            //     --background-hover: transparent;
+            // }
+            ion-label {
+                --color: #748a9d;
+                @extend %text-normal;
+                @extend %text-medium;
+                &.emergency {
+                    color: red;
+                    font-style: italic;
+                }
+            }
+        }
+    }
+}
+.custom-checkbox {
+    --ripple-color: transparent;
+    --background-hover: transparent;
+}
+
+ion-item {
+    border-radius: 8px;
+    --background: var(--card-background-color);
+    --padding-start: 20px;
+    --padding-end: 20px;
+    --inner-padding-end: 0;
+    --min-height: 68px;
+    border-bottom: 0;
+    ion-label {
+        --color: var(--app-text-color-dark);
+        ion-text {
+            h2 {
+                color: #748a9d;
+            }
+        }
+        h2 {
+            @extend %text-bold;
+            @extend %text-medium;
+            @extend %text-capitalize;
+        }
+        p {
+            margin-top: 12px;
+            color: #000000;
+            @extend %text-medium;
+            @extend %text-normal;
+            @extend %text-capitalize;
+        }
+    }
+
+    ion-icon {
+        background: var(--card-background-color);
+        font-size: 36px;
+        &.chevron {
+            font-size: 24px;
+            color: #748a9d;
+        }
+    }
+    &.textarea {
+        --background: var(--app-background-color);
+        --inner-border-width: 0;
+        border: 0;
+        ion-textarea {
+            border: 1px solid #748a9d;
+            --background: var(--app-background-color);
+            border-radius: 8px;
+            @extend %text-smaller;
+            @extend %text-normal;
+            --padding-bottom: 4px;
+            --padding-end: 4px;
+            --padding-start: 4px;
+            --padding-top: 4px;
+        }
+    }
+    &.emergency-survey {
+        --background: var(--app-background-color);
+        ion-label {
+            @extend %text-semibold;
+            @extend %text-medium;
+        }
+        ion-toggle {
+            --handle-background: no-repeat center/130%
+                url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 768 768'%3E%3Ctitle%3E%3C/title%3E%3Cg id='icomoon-ignore'%3E%3C/g%3E%3Cpath fill='%23748a9d' d='M384 63.985c177.959 0 320.015 142.056 320.015 320.015s-142.056 320.015-320.015 320.015-320.015-142.056-320.015-320.015 143.617-318.454 320.015-320.015zM485.47 471.419l-88.979-88.979 88.979-88.979c4.682-4.682 4.685-10.927 0-15.611s-10.928-4.684-15.611 0l-88.979 88.979-87.419-87.419c-4.682-4.682-10.928-4.684-15.611 0s-4.684 10.927 0 15.611l88.979 88.979-88.979 88.979c-4.682 4.682-4.684 10.928 0 15.611 1.561 1.561 4.682 1.561 9.366 3.123 3.121 0 6.242 0 9.366-3.123l88.979-88.979 88.979 88.979c1.561 1.561 4.682 1.561 9.366 3.123 3.122 0 6.242 0 9.365-3.122-3.122-6.243-3.123-12.488-7.806-17.171l0.006-0.002z'%3E%3C/path%3E%3C/svg%3E");
+            --handle-background-checked: no-repeat center/130%
+                url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 768 768'%3E%3Cpath fill='%237bed8d' d='M384 63.999c176.552 0 320.001 143.449 320.001 320.001s-143.449 320.001-320.001 320.001-320.001-143.449-320.001-320.001 143.449-320.001 320.001-320.001zM485.517 470.069l-88.276-88.276 88.276-88.276c4.414-4.415 4.414-11.033 0-15.448s-11.033-4.415-15.448 0l-88.276 88.276-88.276-88.276c-4.415-4.415-11.033-4.415-15.448 0s-4.415 11.033 0 15.448l88.276 88.276-88.276 88.276c-4.415 4.414-4.415 11.033 0 15.448 2.207 2.207 4.415 2.207 8.827 2.207s6.622 0 8.827-2.207l88.276-88.276 88.276 88.276c2.207 2.207 4.414 2.207 8.827 2.207s6.622 0 8.827-2.207c0-4.414 0-11.033-4.414-15.448z'%3E%3C/path%3E%3C/svg%3E");
+        }
+    }
+}

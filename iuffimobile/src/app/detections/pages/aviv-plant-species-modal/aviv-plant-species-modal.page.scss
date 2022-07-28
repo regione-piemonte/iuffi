@@ -1,0 +1,57 @@
+@import '../../../../theme/text-utils.scss';
+ion-card {
+    --background: var(--card-background-color);
+    padding-bottom: 0;
+    ion-card-header {
+        .title {
+            color: #748a9d;
+            @extend %text-small;
+            @extend %text-normal;
+        }
+        .description {
+            color: #000000;
+            @extend %text-medium;
+            @extend %text-bold;
+        }
+    }
+    ion-card-content {
+        ion-item {
+            --background: var(--card-background-color);
+            --padding-start: 0;
+            --inner-padding-end: 0;
+            ion-checkbox {
+                --background: var(--card-background-color);
+                --background-checked: var(--card-background-color);
+                --border-color: #000000;
+                --border-color-checked: #000000;
+                --border-radius: 2px;
+                --border-style: solid;
+                --border-width: 1px;
+                --checkmark-color: var(--ion-color-primary);
+                --checkmark-width: 2px;
+                --size: 25px;
+                &::part(mark) {
+                    width: 25px;
+                }
+            }
+
+            // &.custom-checkbox {
+            //     --ripple-color: transparent;
+            //     --background-hover: transparent;
+            // }
+            ion-label {
+                --color: #748a9d;
+                @extend %text-normal;
+                @extend %text-medium;
+                &.emergency {
+                    color: red;
+                    font-style: italic;
+                }
+            }
+        }
+    }
+}
+.custom-checkbox {
+    --ripple-color: transparent;
+    --background-hover: transparent;
+}

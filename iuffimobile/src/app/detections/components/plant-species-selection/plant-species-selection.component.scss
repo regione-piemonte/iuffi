@@ -1,0 +1,37 @@
+@import '../../../../theme/text-utils.scss';
+
+ion-item {
+    border-radius: 8px;
+    margin: 0;
+    --background: var(--card-background-color);
+    // --padding-start: 20px;
+    // --padding-end: 20px;
+    --inner-padding-end: 0;
+    --padding-end: 0;
+    --padding-start: 0;
+    --min-height: 68px;
+    border-bottom: 0;
+    ion-label {
+        --color: var(--app-text-color-dark);
+        ion-text {
+            h2 {
+                color: #748a9d;
+            }
+        }
+        h2 {
+            @extend %text-bold;
+            @extend %text-medium;
+            @extend %text-capitalize;
+        }
+    }
+
+    ion-icon {
+        background: var(--card-background-color);
+        font-size: 36px;
+        color: #000000;
+        &.chevron {
+            font-size: 24px;
+            color: #748a9d;
+        }
+    }
+}

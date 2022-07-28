@@ -1,0 +1,38 @@
+@import '../../../../theme/text-utils.scss';
+ion-item-divider {
+    --background: #ffffff;
+    --color: #000000;
+    @extend %text-large;
+    @extend %text-bold;
+}
+ion-list {
+    border: 1px solid rgba(116, 138, 157, 0.4);
+    border-radius: 8px;
+}
+
+ion-fab {
+    ion-fab-button {
+        --box-shadow: 0px 12px 16px #455b63b3;
+        ion-icon {
+            color: #000000;
+            font-size: 40px;
+        }
+    }
+}
+
+// ion-footer {
+//     ion-toolbar {
+//         --background: var(--app-background-color);
+//     }
+// }
+
+:host-context(html.plt-tablet) {
+    ion-grid {
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+        &.no-resize {
+            width: 100%;
+        }
+    }
+}

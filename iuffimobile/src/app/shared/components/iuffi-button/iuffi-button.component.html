@@ -1,0 +1,6 @@
+<ion-button class="ion-align-items-start" [expand]="expand" [disabled]="disabled" [color]="color" [size]="size">
+    <ion-icon *ngIf="icon" class="ion-text-start" [name]="icon" slot="start"></ion-icon>
+    <ion-label class="ion-text-capitalize text-medium">
+        {{ label | translate | uppercase }}
+    </ion-label>
+</ion-button>

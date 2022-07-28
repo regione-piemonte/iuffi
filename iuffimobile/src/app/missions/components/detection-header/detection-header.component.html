@@ -1,0 +1,55 @@
+<ion-grid class="detection-header ion-no-padding">
+    <ion-row class="ion-padding-top">
+        <ion-col size="2">
+            <ion-icon name="iuffi-time"></ion-icon>
+        </ion-col>
+        <ion-col size="4" class="ion-padding-start">
+            <p>{{ 'START_TIME' | translate }}</p>
+            <ion-text>
+                <h2>{{ detection.oraInizio }}</h2>
+            </ion-text>
+        </ion-col>
+        <ion-col size="2">
+            <ion-icon name="iuffi-time"></ion-icon>
+        </ion-col>
+        <ion-col size="4" class="ion-padding-start">
+            <p>{{ 'END_TIME' | translate }}</p>
+            <ion-text>
+                <h2>{{ detection.oraFine }}</h2>
+            </ion-text>
+        </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding-vertical ion-align-items-center">
+        <ion-col size="2">
+            <ion-icon name="iuffi-area"></ion-icon>
+        </ion-col>
+        <ion-col class="ion-padding-start">
+            <p>{{ 'SELECT_AREATYPE' | translate }}</p>
+            <ion-text>
+                <h2 text-capitalize>{{ areaTypeSelected?.descrizione }}</h2>
+            </ion-text>
+        </ion-col>
+    </ion-row>
+    <ion-item *ngIf="detection.note" class="note" lines="none">
+        <ion-label class="ion-text-wrap">
+            <ion-text>
+                <h2>{{ 'NOTE' | translate }}</h2>
+            </ion-text>
+            <p>{{ detection.note }}</p>
+        </ion-label>
+    </ion-item>
+    <ion-row *ngIf="canModify || canDelete" class="detection-toolbar ion-no-padding">
+        <ion-col>
+            <ion-button *ngIf="canModify" fill="clear" (click)="modify.next(detection)" size="small">
+                <ion-icon name="iuffi-modify" slot="start"></ion-icon>
+                <p>{{ 'MODIFY' | translate }}</p>
+            </ion-button>
+        </ion-col>
+        <ion-col>
+            <ion-button *ngIf="canDelete" (click)="delete.next(detection)" fill="clear" size="small">
+                <ion-icon name="iuffi-delete" slot="start"></ion-icon>
+                <p>{{ 'DELETE' | translate }}</p>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-grid>

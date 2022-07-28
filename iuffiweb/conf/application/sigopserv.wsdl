@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="sigopserv" targetNamespace="http://ws.business.sigop.csi.it/" xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws.business.sigop.csi.it/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ws.business.sigop.csi.it/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="pagamentoBeneficiarioExtVO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="anno" type="xs:int"/>
+          <xs:element minOccurs="0" name="cuaa" type="xs:string"/>
+          <xs:element minOccurs="0" name="dataCreazioneLista" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="dataDecreto" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="dataMandato" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="dataPagamento" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="dataPresentazioneDomanda" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="decreto" type="xs:string"/>
+          <xs:element minOccurs="0" name="denominazione" type="xs:string"/>
+          <xs:element minOccurs="0" name="descAmmCompetenza" type="xs:string"/>
+          <xs:element minOccurs="0" name="descRegolamento" type="xs:string"/>
+          <xs:element minOccurs="0" name="descrizioneStato" type="xs:string"/>
+          <xs:element minOccurs="0" name="extIdAmmCompetenza" type="xs:int"/>
+          <xs:element minOccurs="0" name="extIdAmmCompetenzaPadre" type="xs:int"/>
+          <xs:element minOccurs="0" name="idStatoPagamento" type="xs:int"/>
+          <xs:element minOccurs="0" name="importo" type="xs:decimal"/>
+          <xs:element minOccurs="0" name="importoInLiquidazione" type="xs:decimal"/>
+          <xs:element minOccurs="0" name="importoRecuperato" type="xs:decimal"/>
+          <xs:element minOccurs="0" name="intervento" type="tns:interventoVO"/>
+          <xs:element minOccurs="0" name="istatProvincia" type="xs:string"/>
+          <xs:element minOccurs="0" name="mandato" type="xs:string"/>
+          <xs:element minOccurs="0" name="numDomanda" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroDecreto" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroMandato" type="xs:string"/>
+          <xs:element minOccurs="0" name="settore" type="tns:settoreExtVO"/>
+          <xs:element minOccurs="0" name="siglaProvincia" type="xs:string"/>
+          <xs:element minOccurs="0" name="tipoPagamento" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="interventoVO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="codice" type="xs:string"/>
+          <xs:element minOccurs="0" name="denominazione" type="xs:string"/>
+          <xs:element minOccurs="0" name="fondiCollegati" type="xs:string"/>
+          <xs:element minOccurs="0" name="idIntervento" type="xs:long"/>
+          <xs:element minOccurs="0" name="riferimentoPSR" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="settoreExtVO">
+        <xs:complexContent>
+          <xs:extension base="tns:settoreVO">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="competenza" type="xs:string"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="settoreVO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="codiceFondo" type="xs:string"/>
+          <xs:element minOccurs="0" name="denominazione" type="xs:string"/>
+          <xs:element minOccurs="0" name="descrizioneSettore" type="xs:string"/>
+          <xs:element minOccurs="0" name="idFondo" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="recuperiPregressiVO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="cuaa" type="xs:string"/>
+          <xs:element minOccurs="0" name="esitoServizio" type="tns:esitoServizioVO"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="listaRecuperi" nillable="true" type="tns:recuperoPregressoVO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="esitoServizioVO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="codErrore" type="xs:string"/>
+          <xs:element name="esito" type="xs:int"/>
+          <xs:element minOccurs="0" name="msgErrore" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="recuperoPregressoVO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="annoCampagna" type="xs:int"/>
+          <xs:element minOccurs="0" name="annoDisposizionePagamento" type="xs:int"/>
+          <xs:element minOccurs="0" name="dataDecreto" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="descSettore" type="xs:string"/>
+          <xs:element minOccurs="0" name="enteCreditore" type="xs:string"/>
+          <xs:element minOccurs="0" name="idDecreto" type="xs:string"/>
+          <xs:element minOccurs="0" name="idSchedaCredito" type="xs:string"/>
+          <xs:element minOccurs="0" name="importoRecupero" type="xs:decimal"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="normeTrasgredite" nillable="true" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="numeriDomanda" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroDecreto" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroScheda" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="pagamentoBeneficiarioVO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="anno" type="xs:int"/>
+          <xs:element minOccurs="0" name="cuaa" type="xs:string"/>
+          <xs:element minOccurs="0" name="dataPagamento" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="decreto" type="xs:string"/>
+          <xs:element minOccurs="0" name="denominazione" type="xs:string"/>
+          <xs:element minOccurs="0" name="descAmmCompetenza" type="xs:string"/>
+          <xs:element minOccurs="0" name="descrizioneStato" type="xs:string"/>
+          <xs:element minOccurs="0" name="extIdAmmCompetenza" type="xs:int"/>
+          <xs:element minOccurs="0" name="idStatoPagamento" type="xs:int"/>
+          <xs:element minOccurs="0" name="importo" type="xs:decimal"/>
+          <xs:element minOccurs="0" name="importoInLiquidazione" type="xs:decimal"/>
+          <xs:element minOccurs="0" name="importoRecuperato" type="xs:decimal"/>
+          <xs:element minOccurs="0" name="intervento" type="tns:interventoVO"/>
+          <xs:element minOccurs="0" name="istatProvincia" type="xs:string"/>
+          <xs:element minOccurs="0" name="mandato" type="xs:string"/>
+          <xs:element minOccurs="0" name="numDomanda" type="xs:string"/>
+          <xs:element minOccurs="0" name="settore" type="tns:settoreVO"/>
+          <xs:element minOccurs="0" name="siglaProvincia" type="xs:string"/>
+          <xs:element minOccurs="0" name="tipoPagamento" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="schedaCreditoVO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="codiceFondo" type="xs:string"/>
+          <xs:element minOccurs="0" name="dataInizioDebito" type="xs:dateTime"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="elencoDisposizioniTrasgredite" nillable="true" type="tns:disposizioniTrasgrediteVO"/>
+          <xs:element minOccurs="0" name="importoDebito" type="xs:decimal"/>
+          <xs:element minOccurs="0" name="importoRecupero" type="xs:decimal"/>
+          <xs:element minOccurs="0" name="numeroScheda" type="xs:int"/>
+          <xs:element minOccurs="0" name="presenzaGaranzia" type="xs:string"/>
+          <xs:element minOccurs="0" name="statoScheda" type="xs:string"/>
+          <xs:element minOccurs="0" name="tipoDebito" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="disposizioniTrasgrediteVO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="annoCampagna" type="xs:int"/>
+          <xs:element minOccurs="0" name="dataDomanda" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="interventoTrasgredito" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroDomanda" type="xs:string"/>
+          <xs:element minOccurs="0" name="regolamentoTrasgredito" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="decretoVO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dataCreazione" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="descSettore" type="xs:string"/>
+          <xs:element minOccurs="0" name="idDecreto" type="xs:long"/>
+          <xs:element minOccurs="0" name="numeroDecreto" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="pagamentiErogatiVO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="cuaa" type="xs:string"/>
+          <xs:element minOccurs="0" name="esitoServizio" type="tns:esitoServizioVO"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="listaPagamenti" nillable="true" type="tns:pagamentoErogatoVO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="pagamentoErogatoVO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="annoCampagna" type="xs:int"/>
+          <xs:element minOccurs="0" name="annoDisposizionePagamento" type="xs:int"/>
+          <xs:element minOccurs="0" name="dataDecreto" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="dataDisposizionePagamento" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="dataMandato" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="descAmmCompetenza" type="xs:string"/>
+          <xs:element minOccurs="0" name="descIntervento" type="xs:string"/>
+          <xs:element minOccurs="0" name="descSettore" type="xs:string"/>
+          <xs:element minOccurs="0" name="importoLordo" type="xs:decimal"/>
+          <xs:element minOccurs="0" name="importoNetto" type="xs:decimal"/>
+          <xs:element minOccurs="0" name="importoRecupero" type="xs:decimal"/>
+          <xs:element minOccurs="0" name="numeroDecreto" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroDomanda" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroMandato" type="xs:string"/>
+          <xs:element minOccurs="0" name="tipoPagamento" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="fondoVO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="competenza" type="xs:string"/>
+          <xs:element minOccurs="0" name="settore" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SigopMaxRecordException" type="tns:SigopMaxRecordException"/>
+      <xs:complexType name="SigopMaxRecordException">
+        <xs:sequence>
+          <xs:element name="numeroLimite" nillable="true" type="xs:string"/>
+          <xs:element name="numeroRecord" nillable="true" type="xs:string"/>
+          <xs:element name="nestedExcClassName" nillable="true" type="xs:string"/>
+          <xs:element name="stackTraceMessage" nillable="true" type="xs:string"/>
+          <xs:element name="nestedExcMsg" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SigopSystemException" type="tns:SigopSystemException"/>
+      <xs:complexType name="SigopSystemException">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:element name="SigopServiceException" type="tns:SigopServiceException"/>
+      <xs:complexType name="SigopServiceException">
+        <xs:sequence>
+          <xs:element name="codErrore" nillable="true" type="xs:string"/>
+          <xs:element name="msgErrore" nillable="true" type="xs:string"/>
+          <xs:element name="nestedExcClassName" nillable="true" type="xs:string"/>
+          <xs:element name="stackTraceMessage" nillable="true" type="xs:string"/>
+          <xs:element name="nestedExcMsg" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceEstraiPagamentiBeneficiariCompleto" type="tns:serviceEstraiPagamentiBeneficiariCompleto"/>
+      <xs:complexType name="serviceEstraiPagamentiBeneficiariCompleto">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="anno" type="xs:int"/>
+          <xs:element minOccurs="0" name="settore" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="interventi" type="xs:int"/>
+          <xs:element minOccurs="0" name="provincia" type="xs:string"/>
+          <xs:element minOccurs="0" name="comune" type="xs:string"/>
+          <xs:element minOccurs="0" name="denominazione" type="xs:string"/>
+          <xs:element minOccurs="0" name="cuaa" type="xs:string"/>
+          <xs:element minOccurs="0" name="numDomanda" type="xs:string"/>
+          <xs:element minOccurs="0" name="dataPresDomandaDal" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="dataPresDomandaAl" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="dataCreazListaDal" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="dataCreazListaAl" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="importoConcessoDa" type="xs:decimal"/>
+          <xs:element minOccurs="0" name="importoConcessoA" type="xs:decimal"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="gestoriFascicolo" type="xs:string"/>
+          <xs:element minOccurs="0" name="extIdProcedimento" type="xs:int"/>
+          <xs:element minOccurs="0" name="sottoProcedimento" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="organismiDelegati" type="xs:int"/>
+          <xs:element minOccurs="0" name="decreto" type="xs:int"/>
+          <xs:element minOccurs="0" name="dataCreazDecretoDal" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="dataCreazDecretoAl" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="limiteNumRecord" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceEstraiPagamentiBeneficiariCompletoResponse" type="tns:serviceEstraiPagamentiBeneficiariCompletoResponse"/>
+      <xs:complexType name="serviceEstraiPagamentiBeneficiariCompletoResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="pagamenti" type="tns:pagamentoBeneficiarioExtVO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceEstraiRecuperiPregressi" type="tns:serviceEstraiRecuperiPregressi"/>
+      <xs:complexType name="serviceEstraiRecuperiPregressi">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="cuaa" type="xs:string"/>
+          <xs:element minOccurs="0" name="settore" type="xs:string"/>
+          <xs:element minOccurs="0" name="anno" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceEstraiRecuperiPregressiResponse" type="tns:serviceEstraiRecuperiPregressiResponse"/>
+      <xs:complexType name="serviceEstraiRecuperiPregressiResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="recuperi" type="tns:recuperiPregressiVO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceEstraiInterventi" type="tns:serviceEstraiInterventi"/>
+      <xs:complexType name="serviceEstraiInterventi">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="settore" type="xs:string"/>
+          <xs:element minOccurs="0" name="anno" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceEstraiInterventiResponse" type="tns:serviceEstraiInterventiResponse"/>
+      <xs:complexType name="serviceEstraiInterventiResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="interventi" type="tns:interventoVO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceAggiornaCoordinateBancariePagamento" type="tns:serviceAggiornaCoordinateBancariePagamento"/>
+      <xs:complexType name="serviceAggiornaCoordinateBancariePagamento">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="codiceDomanda" type="xs:string"/>
+          <xs:element minOccurs="0" name="extIdSportello" type="xs:long"/>
+          <xs:element minOccurs="0" name="numContoCorrente" type="xs:string"/>
+          <xs:element minOccurs="0" name="cin" type="xs:string"/>
+          <xs:element minOccurs="0" name="cifraControllo" type="xs:string"/>
+          <xs:element minOccurs="0" name="iban" type="xs:string"/>
+          <xs:element minOccurs="0" name="extIdProcedimento" type="xs:int"/>
+          <xs:element minOccurs="0" name="utenteUltimoAggiornamento" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceAggiornaCoordinateBancariePagamentoResponse" type="tns:serviceAggiornaCoordinateBancariePagamentoResponse"/>
+      <xs:complexType name="serviceAggiornaCoordinateBancariePagamentoResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="esito" type="tns:esitoServizioVO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="testResources" type="tns:testResources"/>
+      <xs:complexType name="testResources">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:element name="testResourcesResponse" type="tns:testResourcesResponse"/>
+      <xs:complexType name="testResourcesResponse">
+        <xs:sequence>
+          <xs:element name="test" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceEstraiPagamentiBeneficiariLimite" type="tns:serviceEstraiPagamentiBeneficiariLimite"/>
+      <xs:complexType name="serviceEstraiPagamentiBeneficiariLimite">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="anno" type="xs:int"/>
+          <xs:element minOccurs="0" name="settore" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="interventi" type="xs:int"/>
+          <xs:element minOccurs="0" name="provincia" type="xs:string"/>
+          <xs:element minOccurs="0" name="comune" type="xs:string"/>
+          <xs:element minOccurs="0" name="denominazione" type="xs:string"/>
+          <xs:element minOccurs="0" name="cuaa" type="xs:string"/>
+          <xs:element minOccurs="0" name="numDomanda" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="gestoriFascicolo" type="xs:string"/>
+          <xs:element minOccurs="0" name="extIdProcedimento" type="xs:int"/>
+          <xs:element minOccurs="0" name="sottoProcedimento" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="organismiDelegati" type="xs:int"/>
+          <xs:element minOccurs="0" name="decreto" type="xs:int"/>
+          <xs:element minOccurs="0" name="limiteNumRecord" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceEstraiPagamentiBeneficiariLimiteResponse" type="tns:serviceEstraiPagamentiBeneficiariLimiteResponse"/>
+      <xs:complexType name="serviceEstraiPagamentiBeneficiariLimiteResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="pagamenti" type="tns:pagamentoBeneficiarioVO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceVisualizzaDebiti" type="tns:serviceVisualizzaDebiti"/>
+      <xs:complexType name="serviceVisualizzaDebiti">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="cuaa" type="xs:string"/>
+          <xs:element minOccurs="0" name="tipoOrdinamento1" type="xs:int"/>
+          <xs:element minOccurs="0" name="tipoOrdinamento2" type="xs:int"/>
+          <xs:element minOccurs="0" name="tipoOrdinamento3" type="xs:int"/>
+          <xs:element minOccurs="0" name="tipoOrdinamento4" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceVisualizzaDebitiResponse" type="tns:serviceVisualizzaDebitiResponse"/>
+      <xs:complexType name="serviceVisualizzaDebitiResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="debiti" type="tns:schedaCreditoVO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceScriviNuovoSoggettoRegistroAntimafia" type="tns:serviceScriviNuovoSoggettoRegistroAntimafia"/>
+      <xs:complexType name="serviceScriviNuovoSoggettoRegistroAntimafia">
+        <xs:sequence>
+          <xs:element name="idAzienda" type="xs:long"/>
+          <xs:element minOccurs="0" name="cuaa" type="xs:string"/>
+          <xs:element minOccurs="0" name="ragioneSociale" type="xs:string"/>
+          <xs:element minOccurs="0" name="idAmmCompetenza" type="xs:long"/>
+          <xs:element minOccurs="0" name="idIntermediario" type="xs:long"/>
+          <xs:element minOccurs="0" name="siglaPrefettura" type="xs:string"/>
+          <xs:element minOccurs="0" name="numeroProtocollo" type="xs:long"/>
+          <xs:element minOccurs="0" name="dataProtocollo" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="dataDocumento" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="note" type="xs:string"/>
+          <xs:element name="extIdProcedimento" type="xs:long"/>
+          <xs:element name="utenteUltimoAggiornamento" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceScriviNuovoSoggettoRegistroAntimafiaResponse" type="tns:serviceScriviNuovoSoggettoRegistroAntimafiaResponse"/>
+      <xs:complexType name="serviceScriviNuovoSoggettoRegistroAntimafiaResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="esito" type="tns:esitoServizioVO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceEstraiPagamentiBeneficiari" type="tns:serviceEstraiPagamentiBeneficiari"/>
+      <xs:complexType name="serviceEstraiPagamentiBeneficiari">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="anno" type="xs:int"/>
+          <xs:element minOccurs="0" name="settore" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="interventi" type="xs:int"/>
+          <xs:element minOccurs="0" name="provincia" type="xs:string"/>
+          <xs:element minOccurs="0" name="comune" type="xs:string"/>
+          <xs:element minOccurs="0" name="denominazione" type="xs:string"/>
+          <xs:element minOccurs="0" name="cuaa" type="xs:string"/>
+          <xs:element minOccurs="0" name="numDomanda" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="gestoriFascicolo" type="xs:string"/>
+          <xs:element minOccurs="0" name="extIdProcedimento" type="xs:int"/>
+          <xs:element minOccurs="0" name="sottoProcedimento" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="organismiDelegati" type="xs:int"/>
+          <xs:element minOccurs="0" name="decreto" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceEstraiPagamentiBeneficiariResponse" type="tns:serviceEstraiPagamentiBeneficiariResponse"/>
+      <xs:complexType name="serviceEstraiPagamentiBeneficiariResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="pagamenti" type="tns:pagamentoBeneficiarioVO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceEstraiDecreti" type="tns:serviceEstraiDecreti"/>
+      <xs:complexType name="serviceEstraiDecreti">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="extIdProcedimento" type="xs:int"/>
+          <xs:element minOccurs="0" name="sottoProcedimento" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceEstraiDecretiResponse" type="tns:serviceEstraiDecretiResponse"/>
+      <xs:complexType name="serviceEstraiDecretiResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="decreti" type="tns:decretoVO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceEstraiPagamentiErogati" type="tns:serviceEstraiPagamentiErogati"/>
+      <xs:complexType name="serviceEstraiPagamentiErogati">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="cuaa" type="xs:string"/>
+          <xs:element minOccurs="0" name="settore" type="xs:string"/>
+          <xs:element minOccurs="0" name="anno" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceEstraiPagamentiErogatiResponse" type="tns:serviceEstraiPagamentiErogatiResponse"/>
+      <xs:complexType name="serviceEstraiPagamentiErogatiResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="debiti" type="tns:pagamentiErogatiVO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceEstraiFondi" type="tns:serviceEstraiFondi"/>
+      <xs:complexType name="serviceEstraiFondi">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:element name="serviceEstraiFondiResponse" type="tns:serviceEstraiFondiResponse"/>
+      <xs:complexType name="serviceEstraiFondiResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="fondi" type="tns:fondoVO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="isAlive" type="tns:isAlive"/>
+      <xs:complexType name="isAlive">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:element name="isAliveResponse" type="tns:isAliveResponse"/>
+      <xs:complexType name="isAliveResponse">
+        <xs:sequence>
+          <xs:element name="alive" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="SigopMaxRecordException">
+    <wsdl:part element="tns:SigopMaxRecordException" name="SigopMaxRecordException"/>
+  </wsdl:message>
+  <wsdl:message name="isAlive">
+    <wsdl:part element="tns:isAlive" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="serviceEstraiDecreti">
+    <wsdl:part element="tns:serviceEstraiDecreti" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="testResourcesResponse">
+    <wsdl:part element="tns:testResourcesResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="serviceEstraiFondi">
+    <wsdl:part element="tns:serviceEstraiFondi" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="testResources">
+    <wsdl:part element="tns:testResources" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="serviceScriviNuovoSoggettoRegistroAntimafiaResponse">
+    <wsdl:part element="tns:serviceScriviNuovoSoggettoRegistroAntimafiaResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="serviceEstraiPagamentiErogatiResponse">
+    <wsdl:part element="tns:serviceEstraiPagamentiErogatiResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="serviceVisualizzaDebiti">
+    <wsdl:part element="tns:serviceVisualizzaDebiti" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="isAliveResponse">
+    <wsdl:part element="tns:isAliveResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="serviceEstraiPagamentiBeneficiariLimite">
+    <wsdl:part element="tns:serviceEstraiPagamentiBeneficiariLimite" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="serviceEstraiPagamentiBeneficiari">
+    <wsdl:part element="tns:serviceEstraiPagamentiBeneficiari" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="serviceEstraiPagamentiBeneficiariCompletoResponse">
+    <wsdl:part element="tns:serviceEstraiPagamentiBeneficiariCompletoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="serviceEstraiPagamentiBeneficiariCompleto">
+    <wsdl:part element="tns:serviceEstraiPagamentiBeneficiariCompleto" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="serviceEstraiDecretiResponse">
+    <wsdl:part element="tns:serviceEstraiDecretiResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SigopServiceException">
+    <wsdl:part element="tns:SigopServiceException" name="SigopServiceException"/>
+  </wsdl:message>
+  <wsdl:message name="serviceEstraiRecuperiPregressiResponse">
+    <wsdl:part element="tns:serviceEstraiRecuperiPregressiResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="serviceVisualizzaDebitiResponse">
+    <wsdl:part element="tns:serviceVisualizzaDebitiResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="serviceEstraiInterventiResponse">
+    <wsdl:part element="tns:serviceEstraiInterventiResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="serviceEstraiPagamentiBeneficiariLimiteResponse">
+    <wsdl:part element="tns:serviceEstraiPagamentiBeneficiariLimiteResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="serviceEstraiPagamentiBeneficiariResponse">
+    <wsdl:part element="tns:serviceEstraiPagamentiBeneficiariResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="serviceEstraiRecuperiPregressi">
+    <wsdl:part element="tns:serviceEstraiRecuperiPregressi" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="serviceEstraiPagamentiErogati">
+    <wsdl:part element="tns:serviceEstraiPagamentiErogati" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="serviceAggiornaCoordinateBancariePagamentoResponse">
+    <wsdl:part element="tns:serviceAggiornaCoordinateBancariePagamentoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="serviceAggiornaCoordinateBancariePagamento">
+    <wsdl:part element="tns:serviceAggiornaCoordinateBancariePagamento" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SigopSystemException">
+    <wsdl:part element="tns:SigopSystemException" name="SigopSystemException"/>
+  </wsdl:message>
+  <wsdl:message name="serviceScriviNuovoSoggettoRegistroAntimafia">
+    <wsdl:part element="tns:serviceScriviNuovoSoggettoRegistroAntimafia" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="serviceEstraiFondiResponse">
+    <wsdl:part element="tns:serviceEstraiFondiResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="serviceEstraiInterventi">
+    <wsdl:part element="tns:serviceEstraiInterventi" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="ISigopservWS">
+    <wsdl:operation name="serviceEstraiPagamentiBeneficiariCompleto">
+      <wsdl:input message="tns:serviceEstraiPagamentiBeneficiariCompleto" name="serviceEstraiPagamentiBeneficiariCompleto"/>
+      <wsdl:output message="tns:serviceEstraiPagamentiBeneficiariCompletoResponse" name="serviceEstraiPagamentiBeneficiariCompletoResponse"/>
+      <wsdl:fault message="tns:SigopMaxRecordException" name="SigopMaxRecordException"/>
+      <wsdl:fault message="tns:SigopServiceException" name="SigopServiceException"/>
+      <wsdl:fault message="tns:SigopSystemException" name="SigopSystemException"/>
+    </wsdl:operation>
+    <wsdl:operation name="serviceEstraiRecuperiPregressi">
+      <wsdl:input message="tns:serviceEstraiRecuperiPregressi" name="serviceEstraiRecuperiPregressi"/>
+      <wsdl:output message="tns:serviceEstraiRecuperiPregressiResponse" name="serviceEstraiRecuperiPregressiResponse"/>
+      <wsdl:fault message="tns:SigopSystemException" name="SigopSystemException"/>
+    </wsdl:operation>
+    <wsdl:operation name="serviceEstraiInterventi">
+      <wsdl:input message="tns:serviceEstraiInterventi" name="serviceEstraiInterventi"/>
+      <wsdl:output message="tns:serviceEstraiInterventiResponse" name="serviceEstraiInterventiResponse"/>
+      <wsdl:fault message="tns:SigopServiceException" name="SigopServiceException"/>
+      <wsdl:fault message="tns:SigopSystemException" name="SigopSystemException"/>
+    </wsdl:operation>
+    <wsdl:operation name="serviceAggiornaCoordinateBancariePagamento">
+      <wsdl:input message="tns:serviceAggiornaCoordinateBancariePagamento" name="serviceAggiornaCoordinateBancariePagamento"/>
+      <wsdl:output message="tns:serviceAggiornaCoordinateBancariePagamentoResponse" name="serviceAggiornaCoordinateBancariePagamentoResponse"/>
+      <wsdl:fault message="tns:SigopSystemException" name="SigopSystemException"/>
+    </wsdl:operation>
+    <wsdl:operation name="testResources">
+      <wsdl:input message="tns:testResources" name="testResources"/>
+      <wsdl:output message="tns:testResourcesResponse" name="testResourcesResponse"/>
+      <wsdl:fault message="tns:SigopSystemException" name="SigopSystemException"/>
+    </wsdl:operation>
+    <wsdl:operation name="serviceEstraiPagamentiBeneficiariLimite">
+      <wsdl:input message="tns:serviceEstraiPagamentiBeneficiariLimite" name="serviceEstraiPagamentiBeneficiariLimite"/>
+      <wsdl:output message="tns:serviceEstraiPagamentiBeneficiariLimiteResponse" name="serviceEstraiPagamentiBeneficiariLimiteResponse"/>
+      <wsdl:fault message="tns:SigopMaxRecordException" name="SigopMaxRecordException"/>
+      <wsdl:fault message="tns:SigopServiceException" name="SigopServiceException"/>
+      <wsdl:fault message="tns:SigopSystemException" name="SigopSystemException"/>
+    </wsdl:operation>
+    <wsdl:operation name="serviceVisualizzaDebiti">
+      <wsdl:input message="tns:serviceVisualizzaDebiti" name="serviceVisualizzaDebiti"/>
+      <wsdl:output message="tns:serviceVisualizzaDebitiResponse" name="serviceVisualizzaDebitiResponse"/>
+      <wsdl:fault message="tns:SigopServiceException" name="SigopServiceException"/>
+      <wsdl:fault message="tns:SigopSystemException" name="SigopSystemException"/>
+    </wsdl:operation>
+    <wsdl:operation name="serviceScriviNuovoSoggettoRegistroAntimafia">
+      <wsdl:input message="tns:serviceScriviNuovoSoggettoRegistroAntimafia" name="serviceScriviNuovoSoggettoRegistroAntimafia"/>
+      <wsdl:output message="tns:serviceScriviNuovoSoggettoRegistroAntimafiaResponse" name="serviceScriviNuovoSoggettoRegistroAntimafiaResponse"/>
+      <wsdl:fault message="tns:SigopSystemException" name="SigopSystemException"/>
+    </wsdl:operation>
+    <wsdl:operation name="serviceEstraiPagamentiBeneficiari">
+      <wsdl:input message="tns:serviceEstraiPagamentiBeneficiari" name="serviceEstraiPagamentiBeneficiari"/>
+      <wsdl:output message="tns:serviceEstraiPagamentiBeneficiariResponse" name="serviceEstraiPagamentiBeneficiariResponse"/>
+      <wsdl:fault message="tns:SigopMaxRecordException" name="SigopMaxRecordException"/>
+      <wsdl:fault message="tns:SigopServiceException" name="SigopServiceException"/>
+      <wsdl:fault message="tns:SigopSystemException" name="SigopSystemException"/>
+    </wsdl:operation>
+    <wsdl:operation name="serviceEstraiDecreti">
+      <wsdl:input message="tns:serviceEstraiDecreti" name="serviceEstraiDecreti"/>
+      <wsdl:output message="tns:serviceEstraiDecretiResponse" name="serviceEstraiDecretiResponse"/>
+      <wsdl:fault message="tns:SigopServiceException" name="SigopServiceException"/>
+      <wsdl:fault message="tns:SigopSystemException" name="SigopSystemException"/>
+    </wsdl:operation>
+    <wsdl:operation name="serviceEstraiPagamentiErogati">
+      <wsdl:input message="tns:serviceEstraiPagamentiErogati" name="serviceEstraiPagamentiErogati"/>
+      <wsdl:output message="tns:serviceEstraiPagamentiErogatiResponse" name="serviceEstraiPagamentiErogatiResponse"/>
+      <wsdl:fault message="tns:SigopSystemException" name="SigopSystemException"/>
+    </wsdl:operation>
+    <wsdl:operation name="serviceEstraiFondi">
+      <wsdl:input message="tns:serviceEstraiFondi" name="serviceEstraiFondi"/>
+      <wsdl:output message="tns:serviceEstraiFondiResponse" name="serviceEstraiFondiResponse"/>
+      <wsdl:fault message="tns:SigopServiceException" name="SigopServiceException"/>
+      <wsdl:fault message="tns:SigopSystemException" name="SigopSystemException"/>
+    </wsdl:operation>
+    <wsdl:operation name="isAlive">
+      <wsdl:input message="tns:isAlive" name="isAlive"/>
+      <wsdl:output message="tns:isAliveResponse" name="isAliveResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="sigopservSoapBinding" type="tns:ISigopservWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="serviceEstraiPagamentiBeneficiariCompleto">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="serviceEstraiPagamentiBeneficiariCompleto">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="serviceEstraiPagamentiBeneficiariCompletoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SigopMaxRecordException">
+        <soap:fault name="SigopMaxRecordException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SigopServiceException">
+        <soap:fault name="SigopServiceException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SigopSystemException">
+        <soap:fault name="SigopSystemException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="serviceEstraiRecuperiPregressi">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="serviceEstraiRecuperiPregressi">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="serviceEstraiRecuperiPregressiResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SigopSystemException">
+        <soap:fault name="SigopSystemException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="serviceAggiornaCoordinateBancariePagamento">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="serviceAggiornaCoordinateBancariePagamento">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="serviceAggiornaCoordinateBancariePagamentoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SigopSystemException">
+        <soap:fault name="SigopSystemException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="serviceEstraiInterventi">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="serviceEstraiInterventi">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="serviceEstraiInterventiResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SigopServiceException">
+        <soap:fault name="SigopServiceException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SigopSystemException">
+        <soap:fault name="SigopSystemException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="testResources">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="testResources">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="testResourcesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SigopSystemException">
+        <soap:fault name="SigopSystemException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="serviceEstraiPagamentiBeneficiariLimite">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="serviceEstraiPagamentiBeneficiariLimite">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="serviceEstraiPagamentiBeneficiariLimiteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SigopMaxRecordException">
+        <soap:fault name="SigopMaxRecordException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SigopServiceException">
+        <soap:fault name="SigopServiceException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SigopSystemException">
+        <soap:fault name="SigopSystemException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="serviceVisualizzaDebiti">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="serviceVisualizzaDebiti">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="serviceVisualizzaDebitiResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SigopServiceException">
+        <soap:fault name="SigopServiceException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SigopSystemException">
+        <soap:fault name="SigopSystemException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="serviceScriviNuovoSoggettoRegistroAntimafia">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="serviceScriviNuovoSoggettoRegistroAntimafia">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="serviceScriviNuovoSoggettoRegistroAntimafiaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SigopSystemException">
+        <soap:fault name="SigopSystemException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="serviceEstraiPagamentiBeneficiari">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="serviceEstraiPagamentiBeneficiari">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="serviceEstraiPagamentiBeneficiariResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SigopMaxRecordException">
+        <soap:fault name="SigopMaxRecordException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SigopServiceException">
+        <soap:fault name="SigopServiceException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SigopSystemException">
+        <soap:fault name="SigopSystemException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="serviceEstraiDecreti">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="serviceEstraiDecreti">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="serviceEstraiDecretiResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SigopServiceException">
+        <soap:fault name="SigopServiceException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SigopSystemException">
+        <soap:fault name="SigopSystemException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="serviceEstraiPagamentiErogati">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="serviceEstraiPagamentiErogati">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="serviceEstraiPagamentiErogatiResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SigopSystemException">
+        <soap:fault name="SigopSystemException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="serviceEstraiFondi">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="serviceEstraiFondi">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="serviceEstraiFondiResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SigopServiceException">
+        <soap:fault name="SigopServiceException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SigopSystemException">
+        <soap:fault name="SigopSystemException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isAlive">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="isAlive">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="isAliveResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="sigopserv">
+    <wsdl:port binding="tns:sigopservSoapBinding" name="sigopservPort">
+      <soap:address location="https://<WEB_SERVER_HOST:PORT>/sigopserv/ws/servizi"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

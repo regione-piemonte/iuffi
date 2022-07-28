@@ -1,0 +1,18 @@
+<ion-item
+    [button]="true"
+    [disabled]="disabled"
+    [detail]="false"
+    [ngClass]="['color-' + color]"
+    [style.--min-height]="height + 'px'"
+    [style.text-align]="alignment"
+    lines="none"
+    mode="md"
+>
+    <ng-content slot="start" select="[slot='start']"></ng-content>
+
+    <ion-label [ngClass]="labelClass">
+        {{ label | translate }}
+    </ion-label>
+
+    <ng-content slot="end" select="[slot='end']"></ng-content>
+</ion-item>

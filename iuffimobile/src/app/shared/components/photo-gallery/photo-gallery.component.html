@@ -1,0 +1,12 @@
+<ion-grid *ngIf="photos.length > 0" class="photos">
+    <ion-row>
+        <ion-col size="4" *ngFor="let photo of photos; let i = index" class="ion-text-left">
+            <img [src]="fileManagerService.getImgContent(photo.displayUrl)" (click)="viewPhoto(photo)" />
+            <ion-fab *ngIf="editable" vertical="bottom" horizontal="center">
+                <ion-fab-button size="small" (click)="deletePhoto(i)">
+                    <ion-icon name="iuffi-delete"></ion-icon>
+                </ion-fab-button>
+            </ion-fab>
+        </ion-col>
+    </ion-row>
+</ion-grid>

@@ -1,0 +1,15 @@
+:host {
+    display: flex;
+    ion-icon {
+        color: #748a9d;
+        font-size: 24px;
+    }
+}
+
+.indicator {
+    transition: 125ms ease;
+}
+
+.indicator.rotate {
+    transform: rotateZ(180deg);
+}

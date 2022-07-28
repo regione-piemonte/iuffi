@@ -1,0 +1,87 @@
+<ion-card class="mission-form-card">
+    <ion-card-content>
+        <form [formGroup]="missionForm">
+            <ion-item>
+                <ion-label class="form-label text-medium" position="floating">
+                    {{ 'DAY' | translate }}
+                </ion-label>
+                <ion-datetime
+                    #datePickerDay
+                    formControlName="dataMissione"
+                    type="date"
+                    [monthNames]="monthNames"
+                    displayFormat="DD MMMM YYYY"
+                    pickerFormat="DD MMMM YYYY"
+                    [min]="minCreationDate.toISOString(true)"
+                    [max]="minCreationDate.clone().add(1, 'year').toISOString(true)"
+                    [cancelText]="'RESET' | translate"
+                    [doneText]="'DONE' | translate"
+                ></ion-datetime>
+            </ion-item>
+            <app-error-message [control]="this.missionForm.get('dataMissione')"></app-error-message>
+            <ion-item>
+                <ion-label position="floating">
+                    {{ 'START_TIME' | translate }}
+                </ion-label>
+                <ion-datetime
+                    #datePickerStartTime
+                    formControlName="oraInizio"
+                    (ionChange)="updateEndMinDate($event)"
+                    type="date"
+                    displayFormat="HH:mm"
+                    pickerFormat="HH:mm"
+                    [cancelText]="'RESET' | translate"
+                    [doneText]="'DONE' | translate"
+                ></ion-datetime>
+            </ion-item>
+            <app-error-message [control]="this.missionForm.get('oraInizio')"></app-error-message>
+            <ion-item>
+                <ion-label position="floating">
+                    {{ 'END_TIME' | translate }}
+                </ion-label>
+                <ion-datetime
+                    #datePickerEndTime
+                    formControlName="oraFine"
+                    type="date"
+                    displayFormat="HH:mm"
+                    pickerFormat="HH:mm"
+                    [cancelText]="'RESET' | translate"
+                    [doneText]="'DONE' | translate"
+                    [min]="minEndMissionDate.toISOString(true)"
+                ></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">
+                    {{ 'NAME' | translate }}
+                </ion-label>
+                <ion-input disabled formControlName="nomeIspettore" type="text" value=""></ion-input>
+            </ion-item>
+            <app-error-message [control]="this.missionForm.get('nomeIspettore')"></app-error-message>
+            <ion-item>
+                <ion-label position="floating"> {{ 'SURNAME' | translate }}</ion-label>
+                <ion-input disabled formControlName="cognomeIspettore" type="text" value=""></ion-input>
+            </ion-item>
+            <app-error-message [control]="this.missionForm.get('cognomeIspettore')"></app-error-message>
+            <ion-item lines="none" ngf>
+                <ion-label>
+                    {{ 'COACHING_INSPECTORS' | translate }}
+                </ion-label>
+                <ion-button fill="clear" slot="end" (click)="fetchInspectors()">
+                    <ion-icon name="iuffi-add"></ion-icon>
+                </ion-button>
+            </ion-item>
+            <ion-item class="inspector-item" *ngFor="let item of inspectorsAdded; let i = index">
+                <ion-label class="ion-text-capitalize"> {{ item.cognome }} {{ item.nome }} </ion-label>
+                <ion-button fill="clear" slot="end" (click)="removeInspector(i)">
+                    <ion-icon name="iuffi-remove"></ion-icon>
+                </ion-button>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">
+                    {{ 'TRAVEL_NUMBER' | translate }}
+                </ion-label>
+                <ion-input type="number" pattern="\d*" formControlName="numeroTrasferta"></ion-input>
+            </ion-item>
+        </form>
+    </ion-card-content>
+</ion-card>

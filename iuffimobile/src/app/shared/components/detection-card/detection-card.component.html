@@ -1,0 +1,10 @@
+<iuffi-animated-card #ex>
+    <ion-card-header header (click)="ex.toggle()">
+        <detection-card-header-component [detection]="detection"></detection-card-header-component>
+    </ion-card-header>
+    <detection-card-content-component
+        [detection]="detection"
+        [isRelatedToEmergency]="isRelatedToEmergency"
+        content
+    ></detection-card-content-component>
+</iuffi-animated-card>

@@ -1,0 +1,8 @@
+/.settings
+/build
+/lib
+/bin
+/classes
+/dist
+.project
+.classpath

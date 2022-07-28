@@ -1,0 +1,30 @@
+<ion-header [translucent]="false">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button (click)="backToDetection()" defaultHref="/"> </ion-back-button>
+        </ion-buttons>
+        <ion-title> {{ 'TRAPPING' | translate }} </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item class="ion-margin" lines="none" (click)="goForward('maintenance')">
+        <ion-label class="ion-text-wrap">
+            <ion-text>
+                <h2>{{ 'MAINTENANCE' | translate }}</h2>
+            </ion-text>
+        </ion-label>
+        <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+        <ion-icon slot="start" name="iuffi-maintenance"></ion-icon>
+    </ion-item>
+
+    <ion-item class="ion-margin" lines="none" (click)="goForward('removal')">
+        <ion-label class="ion-text-wrap">
+            <ion-text>
+                <h2>{{ 'REMOVAL' | translate }}</h2>
+            </ion-text>
+        </ion-label>
+        <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+        <ion-icon slot="start" name="iuffi-removal"></ion-icon>
+    </ion-item>
+</ion-content>

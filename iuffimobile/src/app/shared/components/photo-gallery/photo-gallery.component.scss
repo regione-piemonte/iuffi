@@ -1,0 +1,23 @@
+.photos {
+    margin: 0 16px;
+    border-radius: 8px;
+    background: var(--card-background-color);
+    img {
+        width: 56px;
+        height: 56px;
+        border-radius: 8px;
+    }
+    ion-fab {
+        bottom: 30px;
+    }
+}
+:host-context(html.plt-tablet) {
+    ion-grid {
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    ion-fab {
+        left: 25%;
+    }
+}

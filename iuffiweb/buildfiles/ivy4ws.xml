@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+	<info organisation="csipiemonte" module="testivy" />
+	<dependencies>
+		<dependency transitive="false" org="others" name="jboss"
+			rev="eap-6.0">
+			<artifact name="cxf-tools-wsdlto-core-2.4.6-redhat-1" type="jar" />
+			<artifact name="cxf-tools-common-2.4.6-redhat-1" type="jar" />
+			<artifact name="cxf-common-utilities-2.4.6-redhat-1" type="jar" />
+			<artifact name="cxf-tools-wsdlto-frontend-jaxws-2.4.6-redhat-1"
+				type="jar" />
+			<artifact name="cxf-rt-frontend-jaxws-2.4.6-redhat-1" type="jar" />
+			<artifact name="cxf-tools-wsdlto-core-2.4.6-redhat-1" type="jar" />
+			<artifact name="cxf-tools-wsdlto-databinding-jaxb-2.4.6-redhat-1"
+				type="jar" />
+			<artifact name="cxf-tools-validator-2.4.6-redhat-1" type="jar" />
+			<artifact name="cxf-api-2.4.6-redhat-1" type="jar" />
+			<artifact name="cxf-rt-core-2.4.6-redhat-1" type="jar" />
+			<artifact name="wsdl4j-1.6.2-redhat-1" type="jar" />
+			<artifact name="xmlschema-core-2.0.2-redhat-1" type="jar" />
+		</dependency>
+
+		<dependency transitive="false" org="apache" name="velocity"
+			rev="1.7" />
+
+		<dependency org="sun" name="jaxb" rev="2.2.5.1">
+			<artifact name="jaxb-xjc-2.2.5.1" type="jar" />
+		</dependency>
+
+		<dependency org="sun" name="jaxb-impl" rev="2.2.4-1">
+			<artifact name="jaxb-impl-2.2.4-1" type="jar" />
+		</dependency>
+		<conflict org="others" module="jboss" manager="all" />
+	</dependencies>
+</ivy-module>

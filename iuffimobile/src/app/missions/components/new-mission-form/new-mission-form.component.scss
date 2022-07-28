@@ -1,0 +1,87 @@
+@import '../../../../theme/text-utils.scss';
+ion-card {
+    --background: var(--card-background-color);
+    box-shadow: none;
+    border-radius: 30px 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    ion-card-content {
+        background: var(--card-background-color);
+        padding: 8px 20px 16px;
+        ion-item {
+            --background: var(--card-background-color);
+            --padding-start: 0;
+            --inner-padding-end: 0;
+            --min-height: 68px;
+            &.inspector-item {
+                --padding-start: 30px;
+                --min-height: 50px;
+                ion-label {
+                    --color: var(--app-text-color-dark);
+                    @extend %text-bold;
+                    @extend %text-medium;
+                }
+                ion-button {
+                    ion-icon {
+                        color: var(--ion-color-primary);
+                        background: var(--card-background-color);
+                    }
+                }
+            }
+            ion-button {
+                margin: 0;
+                min-height: 36px;
+                --padding-bottom: 0;
+                --padding-end: 0;
+                --padding-start: 0;
+                --padding-top: 0;
+                ion-icon {
+                    background: var(--card-background-color);
+                    color: #748a9d;
+                    font-size: 36px;
+                    margin-inline: 0;
+                }
+            }
+
+            ion-label {
+                --color: #748a9d;
+                @extend %text-normal;
+                @extend %text-medium;
+            }
+            ion-datetime {
+                &::part(text) {
+                    --color: var(--app-text-color-dark);
+                    @extend %text-bold;
+                    @extend %text-medium;
+                }
+            }
+        }
+
+        ion-text {
+            p {
+                color: #748a9d;
+                margin-bottom: 8px;
+            }
+        }
+        ion-col {
+            &.detection-number {
+                font-size: 45px;
+                color: #000;
+            }
+            .status {
+                background-color: red;
+                width: 20px;
+                height: 20px;
+                display: inline-block;
+            }
+        }
+    }
+}
+:host-context(html.plt-tablet) {
+    ion-card {
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

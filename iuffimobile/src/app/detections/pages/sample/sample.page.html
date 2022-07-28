@@ -1,0 +1,154 @@
+<ion-header [translucent]="false">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button icon="arrow-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title> {{ 'SAMPLING' | translate }} </ion-title>
+        <ion-buttons slot="end">
+            <ion-button *ngIf="detection.cuaa" (click)="openAvivModal()">
+                <ion-icon name="iuffi-field"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid class="detection-position ion-no-padding ion-margin">
+        <ion-row class="ion-padding-top">
+            <ion-col size="2">
+                <ion-icon name="iuffi-sampleid"></ion-icon>
+            </ion-col>
+            <ion-col class="ion-padding-start">
+                <p>{{ 'SAMPLING_ID' | translate }}</p>
+                <ion-text>
+                    <h2>{{sample.idCampionamento}}</h2>
+                </ion-text>
+            </ion-col>
+        </ion-row>
+        <ion-row class="ion-padding-vertical">
+            <ion-col size="2">
+                <ion-icon name="iuffi-position"></ion-icon>
+            </ion-col>
+            <ion-col class="ion-padding-start">
+                <p>{{ 'GPS_COORD' | translate }}</p>
+                <ion-text *ngIf="sample.latitudine && sample.longitudine">
+                    <h2>{{sample.latitudine | number:'1.2-7'}} - {{sample.longitudine | number:'1.2-7'}}</h2>
+                </ion-text>
+                <ion-text *ngIf="!sample.latitudine && !sample.longitudine">
+                    <h2>-</h2>
+                </ion-text>
+            </ion-col>
+            <ion-col *ngIf="deviceService.isOnline()" size="2" class="ion-text-center">
+                <ion-button fill="clear" size="small" (click)="openMapModal()">
+                    <ion-icon name="iuffi-modify-position" slot="start"></ion-icon>
+                </ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="2">
+                <ion-icon name="iuffi-municipality"></ion-icon>
+            </ion-col>
+            <ion-col class="ion-padding-start">
+                <p>{{ 'MUNICIPALITY' | translate }}</p>
+                <ion-text *ngIf="comune?.nome">
+                    <h2>{{comune?.nome}}</h2>
+                </ion-text>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-card>
+        <ion-card-header>
+            <plant-species-selection
+                loggerInfo="SamplePage"
+                (plantSpeciesSelected)="onPlantSpeciesSelected($event)"
+                [readOnly]="this.sample.idIspezioneVisiva"
+            >
+            </plant-species-selection>
+        </ion-card-header>
+        <ion-card-content *ngIf="plantSpeciesSelected">
+            <ion-list>
+                <ion-item class="no-resize" lines="none">
+                    <ion-label class="ion-text-capitalize">{{ plantSpeciesSelected?.nomeVolgare }}</ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="plantSpeciesSelected">
+        <ion-card-header>
+            <harmful-organism-selection
+                loggerInfo="SamplePage"
+                [plantSpeciesSelected]="plantSpeciesSelected"
+                [harmfulOrganismsAdded]="harmfulOrganismsSelected"
+                (harmfulOrganismSelected)="onHarmfulOrganismSelected($event)"
+                [readOnly]="sample.idIspezioneVisiva"
+                [isRelatedToEmergency]="isRelatedToEmergency"
+            ></harmful-organism-selection>
+        </ion-card-header>
+        <ion-card-content *ngIf="harmfulOrganismsSelected?.length > 0">
+            <ion-list>
+                <ion-item class="no-resize" lines="none" *ngFor="let entry of harmfulOrganismsSelected">
+                    <ion-label [ngClass]="{'emergency': entry.flagEmergenza === 'S'}" class="ion-text-capitalize"
+                        >{{entry.nomeLatino}}</ion-label
+                    >
+                    <ion-icon *ngIf="entry.euro === 'S'" slot="end" name="iuffi-euro"></ion-icon>
+                    <ion-checkbox
+                        *ngIf="this.sample.idIspezioneVisiva"
+                        (ionChange)="organismFounded(entry)"
+                        [(ngModel)]="entry.selected"
+                        slot="end"
+                    ></ion-checkbox>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="harmfulOrganismsSelected && harmfulOrganismsSelected.length>0">
+        <ion-card-header>
+            <sample-type-selection
+                loggerInfo="SamplePage"
+                [sampleType]="sampleTypeSelected"
+                [plantSpeciesSelected]="plantSpeciesSelected"
+                [harmfulOrganismsSelected]="sample.organismiNocivi"
+                (sampleTypeSelected)="onSampleTypeSelected($event)"
+            ></sample-type-selection>
+        </ion-card-header>
+        <ion-card-content *ngIf="sampleTypeSelected">
+            <ion-list>
+                <ion-item class="no-resize" lines="none">
+                    <ion-label class="ion-text-capitalize">{{sampleTypeSelected.tipologiaCampione}}</ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <photo-gallery
+        logger="SamplePage"
+        [photos]="(sample.photos && sample.photos.length>0)? sample.photos : []"
+    ></photo-gallery>
+
+    <ion-item class="textarea">
+        <ion-label position="stacked">{{'INSERT_NOTE' | translate}}</ion-label>
+        <ion-textarea [(ngModel)]="sample.note" autoGrow="true" rows="8" cols="20"></ion-textarea>
+    </ion-item>
+
+    <ion-fab *ngIf="sample.photos.length < 3" vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="primary" (click)="selectImageSource()">
+            <ion-icon name="iuffi-camera"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>
+<ion-footer class="ion-no-border ion-no-padding hide-on-keyboard-open">
+    <ion-toolbar>
+        <ion-grid class="ion-no-padding" fixed>
+            <ion-row>
+                <ion-col size="6">
+                    <iuffi-button color="medium" label="DELETE" (click)="deleteSample()" expand="block"></iuffi-button>
+                </ion-col>
+                <ion-col size="6">
+                    <iuffi-button color="primary" label="SAVE" (click)="saveSample()" expand="block"></iuffi-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,51 @@
+ion-content {
+    .login-logo-regione {
+        width: 80%;
+        padding-top: 10vh;
+        padding-bottom: 2vh;
+        margin: 0 auto;
+        margin-bottom: 20%;
+
+        ion-img {
+            width: 26vh;
+            margin: 0 auto;
+        }
+    }
+    .login-logo-app {
+        width: 80%;
+        // padding-top: 10vh;
+        padding-bottom: 2vh;
+        margin: 0 auto;
+        margin-bottom: 8%;
+
+        ion-img {
+            width: 17vh;
+            margin: 0 auto;
+        }
+    }
+    .app-description {
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-bottom: 10%;
+        .overview {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 500;
+            color: #29594d;
+        }
+    }
+    .app-overview {
+        margin-left: 10%;
+        margin-right: 10%;
+        .overview {
+            font-size: 14px;
+            font-weight: 400;
+        }
+    }
+    .container {
+        .center {
+            margin-left: 4%;
+            margin-right: 4%;
+        }
+    }
+}

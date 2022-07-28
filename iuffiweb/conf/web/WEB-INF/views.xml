@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+   
+   <bean id="excelElencoPagamentiView" class="it.csi.iuffi.iuffiweb.presentation.ricercaprocedimento.RicercaPagamentiExcelBuilder" />  
+   <bean id="excelDichiarazionePLVView" class="it.csi.iuffi.iuffiweb.presentation.quadro.coltureaziendali.CultureAziendaliExcelBuilder" />  
+   <bean id="excelElencoProcedimentiView" class="it.csi.iuffi.iuffiweb.presentation.ricercaprocedimento.RicercaProcedimentoExcelBuilder" />  
+   <bean id="excelReportView" class="it.csi.iuffi.iuffiweb.presentation.ExcelBuilderReport" />
+   <bean id="excelDettaglioEstrazioneView" class="it.csi.iuffi.iuffiweb.presentation.estrazionicampione.DettaglioEstrazioneExcelBuilder" />
+   <bean id="excelElencoPraticheListaLiquidazioneView" class="it.csi.iuffi.iuffiweb.presentation.listeliquidazione.ElencoPraticheListaLiquidazioneExcelBuilder" />
+   <bean id="excelElencoInterventiPartecipanteView" class="it.csi.iuffi.iuffiweb.presentation.quadro.interventi.interventi.ElencoInterventiPartExcelBuilder" />
+   <bean id="excelElencoDocumentiView" class="it.csi.iuffi.iuffiweb.presentation.operazioniprocedimento.documentispesa.RicercaDocumentiExcelBuilder" />
+   <bean id="excelElencoInterventiView" class="it.csi.iuffi.iuffiweb.presentation.quadro.interventi.interventi.ElencoInterventiExcelBuilder" />
+   <bean id="excelRiepilogoDanniFaunaView" class="it.csi.iuffi.iuffiweb.presentation.quadro.dannifauna.RiepilogoDanniFaunaExcelBuilder" />
+   <bean id="excelDanniFaunaView" class="it.csi.iuffi.iuffiweb.presentation.quadro.dannifauna.DanniFaunaExcelBuilder" />
+   <bean id="excelSpecieOgurView" class="it.csi.iuffi.iuffiweb.presentation.quadro.specieogur.SpecieOgurExcelBuilder" />
+   <bean id="excelElencoProcedimentiEstrazioneView" class="it.csi.iuffi.iuffiweb.presentation.estrazionicampione.RicercaProcedimentoEstrazioneExcelBuilder" />
+   <bean id="excelMissioniView" class="it.csi.iuffi.iuffiweb.excel.MissioneExcelBuilder" />
+   <bean id="excelSpecieVegetaleView" class="it.csi.iuffi.iuffiweb.excel.SpecieVegetaleExcelBuilder" />
+   <bean id="excelOrganismoNocivoView" class="it.csi.iuffi.iuffiweb.excel.OrganismoNocivoExcelBuilder" />
+   <bean id="excelTipoAreaView" class="it.csi.iuffi.iuffiweb.excel.TipoAreaExcelBuilder" />
+   <bean id="excelAnagraficaView" class="it.csi.iuffi.iuffiweb.excel.AnagraficaExcelBuilder" />
+   <bean id="excelTipoCampioniView" class="it.csi.iuffi.iuffiweb.excel.TipoCampioneExcelBuilder" />
+   <bean id="excelTipoTrappolaView" class="it.csi.iuffi.iuffiweb.excel.TipoTrappolaExcelBuilder" />
+   <bean id="excelAnfiView" class="it.csi.iuffi.iuffiweb.excel.AnfiExcelBuilder" />
+   <bean id="excelTrappolaEnteView" class="it.csi.iuffi.iuffiweb.excel.TrappolaEnteExcelBuilder" />
+   <bean id="excelCampioneEnteView" class="it.csi.iuffi.iuffiweb.excel.CampioneEnteExcelBuilder" />
+   <bean id="excelTrappolaOnView" class="it.csi.iuffi.iuffiweb.excel.TrappolaOnExcelBuilder" />
+   <bean id="excelPianoMonitoraggioView" class="it.csi.iuffi.iuffiweb.excel.PianoMonitoraggioExcelBuilder" />
+   <bean id="excelPianoMonitoraggioDettaglioView" class="it.csi.iuffi.iuffiweb.excel.PianoMonitoraggioDettaglioExcelBuilder" />
+   <bean id="excelGestioneVisualView" class="it.csi.iuffi.iuffiweb.excel.GestioneVisualExcelBuilder" />
+   <bean id="excelRendicontazioneView" class="it.csi.iuffi.iuffiweb.excel.RendicontazioneExcelBuilder" />
+   <bean id="excelRiepilogoMonitoraggioView" class="it.csi.iuffi.iuffiweb.excel.RiepilogoMonitoraggioExcelBuilder" />
+   <bean id="excelGestioneCampioniView" class="it.csi.iuffi.iuffiweb.excel.GestioneCampioniExcelBuilder" />
+   <bean id="excelGestioneTrappoleView" class="it.csi.iuffi.iuffiweb.excel.GestioneTrappoleExcelBuilder" />
+   
+</beans>

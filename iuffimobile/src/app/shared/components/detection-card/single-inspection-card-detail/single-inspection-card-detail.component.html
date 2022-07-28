@@ -1,0 +1,129 @@
+<ion-card class="no-resize">
+    <ion-card-header class="ion-no-padding">
+        <ion-grid class="ion-no-padding">
+            <ion-row class="ion-padding-top">
+                <ion-col size="2">
+                    <ion-icon name="iuffi-quantity"></ion-icon>
+                </ion-col>
+                <ion-col class="ion-padding-start">
+                    <p>{{ 'QUANTITY' | translate }}</p>
+                    <ion-text>
+                        <h2>N° {{ inspection.quantita }}</h2>
+                    </ion-text>
+                </ion-col>
+            </ion-row>
+            <ion-row class="ion-padding-top">
+                <ion-col size="2">
+                    <ion-icon name="iuffi-position"></ion-icon>
+                </ion-col>
+                <ion-col class="ion-padding-start">
+                    <p>{{ 'GPS_COORD' | translate }}</p>
+                    <ion-text>
+                        <h2>
+                            {{ inspection.coordinate?.latitudine | number: '1.2-7' }} -
+                            {{ inspection.coordinate?.longitudine | number: '1.2-7' }}
+                        </h2>
+                    </ion-text>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card-header>
+    <ion-card-content *ngIf="isRelatedToEmergency">
+        <ion-item>
+            <ion-label>
+                <ion-text>
+                    <h2>{{ 'NUMBER' | translate }}</h2>
+                </ion-text>
+                <p>{{ inspection.ubicazione.numero }}</p>
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>
+                <ion-text>
+                    <h2>{{ 'NAME' | translate }}</h2>
+                </ion-text>
+                <p>{{ inspection.ubicazione.nome }}</p>
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>
+                <ion-text>
+                    <h2>{{ 'SURNAME' | translate }}</h2>
+                </ion-text>
+                <p>{{ inspection.ubicazione.cognome }}</p>
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>
+                <ion-text>
+                    <h2>{{ 'ADDRESS' | translate }}</h2>
+                </ion-text>
+                <p>{{ inspection.ubicazione.indirizzo }}</p>
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>
+                <ion-text>
+                    <h2>{{ 'TEL' | translate }}</h2>
+                </ion-text>
+                <p>{{ inspection.ubicazione.telefono }}</p>
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>
+                <ion-text>
+                    <h2>{{ 'EMAIL' | translate }}</h2>
+                </ion-text>
+                <p>{{ inspection.ubicazione.email }}</p>
+            </ion-label>
+        </ion-item>
+        <ion-item *ngIf="positivity">
+            <ion-label> {{ 'POSITIVITY' | translate }}</ion-label>
+            <ion-text color="primary">
+                <p>{{ positivity.label | translate }}</p>
+            </ion-text>
+        </ion-item>
+        <ion-item *ngIf="diameter">
+            <ion-label> {{ 'DIAMETER' | translate }}</ion-label>
+            <ion-text color="primary">
+                <p>{{ diameter.label | translate }}</p>
+            </ion-text>
+        </ion-item>
+        <ion-item>
+            <ion-label class="ion-text-wrap"> {{ 'TREE_CLIMBER_INSPECTION' | translate }}</ion-label>
+            <ion-text>
+                <p>{{ flagTreeClimberIspezione }}</p>
+            </ion-text>
+        </ion-item>
+        <ion-item>
+            <ion-label class="ion-text-wrap"> {{ 'TREE_CLIMBER_CUT' | translate }}</ion-label>
+            <ion-text>
+                <p>{{ flagTreeClimberTaglio }}</p>
+            </ion-text>
+        </ion-item>
+        <ion-item class="note">
+            <ion-label class="ion-text-wrap">
+                <ion-text>
+                    <h2>{{ 'NOTE_1' | translate }}</h2>
+                </ion-text>
+                <p>{{ inspection.note1 }}</p>
+            </ion-label>
+        </ion-item>
+        <ion-item class="note">
+            <ion-label class="ion-text-wrap">
+                <ion-text>
+                    <h2>{{ 'NOTE_2' | translate }}</h2>
+                </ion-text>
+                <p>{{ inspection.note2 }}</p>
+            </ion-label>
+        </ion-item>
+        <ion-item class="note">
+            <ion-label class="ion-text-wrap">
+                <ion-text>
+                    <h2>{{ 'NOTE_3' | translate }}</h2>
+                </ion-text>
+                <p>{{ inspection.note3 }}</p>
+            </ion-label>
+        </ion-item>
+    </ion-card-content>
+</ion-card>

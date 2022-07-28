@@ -1,0 +1,126 @@
+<ion-header [translucent]="false">
+    <ion-toolbar color="primary">
+        <ion-title> {{ 'BUSINESS_REGISTRY' | translate }} </ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="close()">
+                <ion-icon name="iuffi-close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-card-header>
+            <ion-grid class="ion-no-padding" fixed>
+                <ion-row class="ion-padding-top">
+                    <ion-col class="title"><ion-text class="header">Recupera informazioni azienda</ion-text></ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-grid class="ion-no-padding" fixed>
+                            <ion-row>
+                                <ion-col
+                                    ><ion-text class="subtitle"
+                                        >Inserisci N. autorizzazione o il C.U.A.A.</ion-text
+                                    ></ion-col
+                                >
+                            </ion-row>
+                            <ion-row class="ion-align-items-center ion-padding-vertical">
+                                <ion-col size="2" class="ion-text-left">
+                                    <ion-icon name="iuffi-field"></ion-icon>
+                                </ion-col>
+                                <ion-col>
+                                    <ion-input
+                                        class="autoCap"
+                                        autocapitalize="characters"
+                                        [(ngModel)]="codAz"
+                                        minlength="3"
+                                        maxlength="16"
+                                        type="text"
+                                    ></ion-input>
+                                </ion-col>
+                                <ion-col size="2" class="ion-text-right">
+                                    <ion-button (click)="searchAnagraficaAviv()">
+                                        <ion-icon slot="icon-only" name="iuffi-search"></ion-icon>
+                                    </ion-button>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngIf="avivRegistry" class="ion-padding-vertical">
+                    <ion-col>
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col class="ion-text-left"
+                                    ><ion-text class="title">Codice autorizzazione</ion-text></ion-col
+                                >
+                            </ion-row>
+                            <ion-row>
+                                <ion-col class="ion-text-left">
+                                    <ion-text class="description">{{ avivRegistry?.anagRuop }}</ion-text>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col class="ion-text-left"><ion-text class="title">Partita IVA</ion-text></ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col class="ion-text-left">
+                                    <ion-text class="description">{{ avivRegistry?.anagPiva }}</ion-text>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col class="ion-text-left"><ion-text class="title">C.U.A.A.</ion-text></ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col class="ion-text-left">
+                                    <ion-text class="description">{{ avivRegistry?.anagCuaa }}</ion-text>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col class="ion-text-left"
+                                    ><ion-text class="title">Denominazione</ion-text></ion-col
+                                >
+                            </ion-row>
+                            <ion-row>
+                                <ion-col class="ion-text-left">
+                                    <ion-text class="description">{{ avivRegistry?.anagDenom }}</ion-text>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-header>
+        <ion-card-content *ngIf="avivRegistry && avivRegistry?.arrCA && avivRegistry.arrCA.length>0">
+            <ion-item-divider class="ion-margin-vertical">
+                <ion-label>Seleziona un centro aziendale:</ion-label>
+            </ion-item-divider>
+            <ion-list>
+                <ion-radio-group [(ngModel)]="businessCenterSelected">
+                    <ion-item *ngFor="let entry of avivRegistry?.arrCA">
+                        <ion-label>
+                            <p>{{ entry.denomiUte }}</p>
+                            <ion-text>
+                                <h2>{{entry.comuneUte}}</h2>
+                            </ion-text>
+                            <p>{{ entry.indirizzoUte }}</p>
+                        </ion-label>
+                        <ion-text slot="start"> {{ entry.numProgr }} </ion-text>
+                        <ion-radio mode="md" [value]="entry" slot="end"></ion-radio>
+                    </ion-item>
+                </ion-radio-group>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
+<ion-footer *ngIf="avivRegistry" class="ion-no-border ion-no-padding hide-on-keyboard-open">
+    <iuffi-button color="primary" label="CONFIRM" expand="block" (click)="confirm()"></iuffi-button>
+</ion-footer>

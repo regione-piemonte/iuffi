@@ -1,0 +1,14 @@
+ion-toolbar {
+    --min-height: var(--app-toolbar-height);
+    --border-width: 0 !important;
+    --background: var(--app-background-color);
+    --color: var(--ion-color-primary);
+
+    ion-title {
+        font-weight: 500;
+    }
+
+    ion-back-button {
+        margin-left: 16px;
+    }
+}

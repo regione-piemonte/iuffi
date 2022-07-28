@@ -1,0 +1,158 @@
+<ion-header [translucent]="false">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button icon="arrow-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title> {{ headerLabel | translate }} </ion-title>
+        <ion-buttons slot="end">
+            <ion-button *ngIf="detection.cuaa" (click)="openAvivModal()">
+                <ion-icon name="iuffi-field"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-grid class="detection-position ion-no-padding ion-margin">
+        <ion-row class="ion-padding-vertical">
+            <ion-col size="2">
+                <ion-icon name="iuffi-code"></ion-icon>
+            </ion-col>
+            <ion-col class="ion-padding-start">
+                <p>{{ 'SFR_CODE' | translate }}</p>
+                <ion-text>
+                    <h2>{{ trapping.trappola.codiceSfr }}</h2>
+                </ion-text>
+            </ion-col>
+        </ion-row>
+        <ion-row class="ion-padding-vertical">
+            <ion-col size="2">
+                <ion-icon name="iuffi-position"></ion-icon>
+            </ion-col>
+            <ion-col class="ion-padding-start">
+                <p>{{ 'GPS_COORD' | translate }}</p>
+                <ion-text *ngIf="trapping.trappola.latitudine && trapping.trappola.longitudine">
+                    <h2>
+                        {{trapping.trappola.latitudine | number:'1.2-7'}} - {{trapping.trappola.longitudine |
+                        number:'1.2-7'}}
+                    </h2>
+                </ion-text>
+                <ion-text *ngIf="!trapping.trappola.latitudine && !trapping.trappola.longitudine">
+                    <h2>-</h2>
+                </ion-text>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-card>
+        <ion-card-header class="plant-species">
+            <ion-item class="ion-margin" lines="none">
+                <ion-label class="ion-text-wrap">
+                    <ion-text>
+                        <h2>{{ 'PLANT_SPECIES' | translate }}</h2>
+                    </ion-text>
+                </ion-label>
+                <ion-icon slot="start" name="iuffi-plant-species"></ion-icon>
+            </ion-item>
+            <ion-text>
+                <p>{{ trapping.trappola.specie }}</p>
+            </ion-text>
+        </ion-card-header>
+    </ion-card>
+
+    <ion-card *ngIf="harmfulOrganism">
+        <ion-card-header class="plant-species">
+            <ion-item class="ion-margin" lines="none">
+                <ion-label class="ion-text-wrap">
+                    <ion-text>
+                        <h2>{{ 'HARMFUL_ORGANISM' | translate }}</h2>
+                    </ion-text>
+                </ion-label>
+                <ion-icon slot="start" name="iuffi-harmful-organisms"></ion-icon>
+            </ion-item>
+            <ion-text>
+                <p>{{ harmfulOrganism?.nomeLatino }}</p>
+            </ion-text>
+        </ion-card-header>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-header class="plant-species">
+            <ion-item class="ion-margin" lines="none">
+                <ion-label class="ion-text-wrap">
+                    <ion-text>
+                        <h2>{{ 'TRAP_TYPE' | translate }}</h2>
+                    </ion-text>
+                </ion-label>
+                <ion-icon slot="start" name="iuffi-sampling-type"></ion-icon>
+            </ion-item>
+            <ion-text>
+                <p>{{ trapping.descrTrappola }}</p>
+            </ion-text>
+        </ion-card-header>
+    </ion-card>
+
+    <ion-card *ngIf="enabledOperation && trapping.idOperazione === 2">
+        <ion-card-content>
+            <ion-item class="no-resize iuffi-item-detail toggle" lines="none">
+                <ion-label class="ion-text-wrap"> {{ 'RECHARGE' | translate }}</ion-label>
+                <ion-toggle [(ngModel)]="recharge"></ion-toggle>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="trappingHistory && trappingHistory.length>0">
+        <ion-card-header>
+            <ion-label class="ion-text-wrap">
+                <ion-text>
+                    <h2>{{ 'PREVIOUS_MAINTENANCE' | translate }}</h2>
+                </ion-text>
+            </ion-label>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list *ngFor="let trapping of trappingHistory">
+                <ion-item class="no-resize iuffi-item-detail" lines="none">
+                    <ion-label class="ion-text-wrap">
+                        <p>{{'INSPECTOR' | translate}}</p>
+                        <h2>{{ trapping.ispettore }}</h2>
+                        <p>{{'MAINTENANCE_DATE' | translate}}</p>
+                        <h2>{{ trapping.dataTrappolaggio | moment: 'dddd DD MMMM YYYY' }}</h2>
+                        <p>{{'OPERATION_TYPE' | translate}}</p>
+                        <h2>{{ trapping.descrOperazione }}</h2>
+                        <p *ngIf="trapping.note">{{'NOTE' | translate}}</p>
+                        <h2 *ngIf="trapping.note">{{ trapping.note }}</h2>
+                    </ion-label>
+                    <!-- <ion-note *ngIf="trapping.idOperazione===3">
+                        <ion-text><p>Ricarica</p></ion-text>
+                    </ion-note> -->
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <photo-gallery logger="TrapMaintenanceRemovePage" [photos]="trapping.photos"></photo-gallery>
+
+    <ion-item *ngIf="enabledOperation" class="iuffi-item-detail" lines="none" class="textarea">
+        <ion-label position="stacked">{{'INSERT_NOTE' | translate}}</ion-label>
+        <ion-textarea autoGrow="true" [(ngModel)]="trapping.note" rows="8" cols="20"></ion-textarea>
+    </ion-item>
+
+    <ion-fab *ngIf="trapping.photos.length < 3 && enabledOperation" vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="primary" (click)="selectImageSource()">
+            <ion-icon name="iuffi-camera"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>
+<ion-footer *ngIf="enabledOperation" class="ion-no-border ion-no-padding hide-on-keyboard-open">
+    <ion-toolbar>
+        <ion-grid class="ion-no-padding" fixed>
+            <ion-row>
+                <!-- <ion-col size="6">
+                    <iuffi-button color="medium" label="DELETE" (click)="deleteTrap()" expand="block"></iuffi-button>
+                </ion-col> -->
+                <ion-col>
+                    <iuffi-button color="primary" label="SAVE" (click)="saveTrap()" expand="block"></iuffi-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-footer>

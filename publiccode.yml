@@ -1,0 +1,82 @@
+# This repository adheres to the publiccode.yml standard by including this 
+# metadata file that makes public software easily discoverable.
+# More info at https://github.com/italia/publiccode.yml
+
+publiccodeYmlVersion: '0.2'
+categories:
+  - application-development
+dependsOn:
+  open:
+    - name: Redhat JBOSS
+      optional: false
+      version: '6.4 EAP'
+      versionMax: ''
+      versionMin: ''
+  proprietary:
+    - name: Oracle Database
+      optional: false
+      version: '11g'
+      versionMax: '19c'
+      versionMin: '11g'
+description:
+  it:
+    features:
+      - Inserimento e ricerca Missioni
+      - Inserimento ricerca modifica ispezioni visive
+      - Inserimento ricerca modifica campionamenti
+      - Inserimento ricerca modifica trappolaggi
+      - Generazione verbali missioni
+      - Definizione piano attività di monitoraggio annuale
+      - Ricerca delle posizioni GPS e delle foto
+      - Inserimento shape file con posizioni predefinite
+      - Gestione tabelle di sistema
+      - Reportistica
+    genericName: Monitoraggio organismi nocivi
+    localisedName: IUFFI
+    longDescription: |
+      Il funzionario o ispettore tecnico che si e' autenticato, tramite l'app e il back office puo':
+        - inserire con l'app nuove missioni georeferenziate, visualizzandole poi nel backoffice con la relativa composizione di ispezioni visive, campionamenti e trappolaggi
+        - entrare nel dettaglio di ciascuna ispezione, campionamento o trappolaggio, ognuno ricercabile anche indipendentemente dalle missioni di appartenenza
+        - definire il piano di attività delle missioni da compiere nell'anno per tipologia, con il riscontro di quante effettivamente già compiute
+        - se amministratore modificare le tabelle di sistema riguardanti aree, specie vegetali, organismi nocivi e periodi di compatibilità tra gli stessi
+        - consultare i risultati delle analisi dopo l'inserimento degli stessi da parte dei tecnici di laboratorio
+        - generare la documentazione finale relativa ai verbali e alla rendicontazione finanziaria per Ministero e UE
+    shortDescription: |
+      Consente la gestione del monitoraggio fitosanitario per la lotta agli organismi nocivi
+developmentStatus: stable
+it:
+  conforme:
+    gdpr: true
+    lineeGuidaDesign: false
+    misureMinimeSicurezza: true
+    modelloInteroperabilita: false
+  countryExtensionVersion: '0.2'
+  piattaforme:
+    anpr: false
+    cie: true
+    pagopa: false
+    spid: true
+  riuso:
+    codiceIPA: r_piemon
+legal:
+  license: EUPL-1.2
+  mainCopyrightOwner: Regione Piemonte
+  repoOwner: Regione Piemonte
+localisation:
+  availableLanguages:
+    - it
+  localisationReady: false
+maintenance:
+  contacts:
+    - email: michele.pianta@csi.it
+      name: Michele Pianta'
+  type: community
+name: IUFFI
+platforms:
+  - web
+releaseDate: '2022-07-31'
+softwareType: standalone/web
+softwareVersion: 4.1.4
+url: 'https://github.com/regione-piemonte/iuffi'
+usedBy:
+  - Regione Piemonte

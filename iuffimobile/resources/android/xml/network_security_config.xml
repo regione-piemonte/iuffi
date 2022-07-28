@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">tst-applogic.reteunitaria.piemonte.it</domain>
+        <domain includeSubdomains="true">tst-agrigeoweb.csi.it</domain>
+        <domain includeSubdomains="true">secure.sistemapiemonte.it</domain>
+    </domain-config>
+</network-security-config>

@@ -1,0 +1,145 @@
+<porta-delegata name="iufficonf.pd.modolsrv">
+	<services>
+		<service name="iufficonf.pd.modolsrv.service" public-interface-class="it.csi.modol.modolsrv.interfacecsi.ModolSrvITF" top-version="1.0.0">
+			<operations>
+				<operation name="elencoModuliDisponibili" type="synch-call"  since="1.0.0">
+					<param-list>
+						<param name="applicazione" type="it.csi.modol.modolsrv.dto.Applicazione" />
+						<param name="utente" type="it.csi.modol.modolsrv.dto.Utente" />
+					</param-list>
+					<ret-val type="it.csi.modol.modolsrv.dto.Modulo[]" />
+				</operation>
+				<operation name="salvaSuIndex" type="synch-call"  since="1.0.0">
+					<param-list>
+						<param name="applicazione" type="it.csi.modol.modolsrv.dto.Applicazione" />
+						<param name="utente" type="it.csi.modol.modolsrv.dto.Utente" />
+						<param name="indexCredentials" type="it.csi.modol.modolsrv.dto.index.IndexCredentials" />
+						<param name="requestInputStream" type="byte[]" />
+						<param name="metadatoIndex" type="it.csi.modol.modolsrv.dto.index.MetadatoIndex" />
+					</param-list>
+					<ret-val type="it.csi.modol.modolsrv.dto.index.RiferimentoIndex" />
+				</operation>
+				<operation name="mergeModulo" type="synch-call"  since="1.0.0">
+					<param-list>
+						<param name="applicazione" type="it.csi.modol.modolsrv.dto.Applicazione" />
+						<param name="utente" type="it.csi.modol.modolsrv.dto.Utente" />						
+						<param name="modulo" type="it.csi.modol.modolsrv.dto.Modulo" />
+						<param name="xmlModel" type="it.csi.modol.modolsrv.dto.XmlModel" />
+					</param-list>
+					<ret-val type="it.csi.modol.modolsrv.dto.Modulo" />
+				</operation>
+				<operation name="processForm" type="synch-call"  since="1.0.0">
+					<param-list>
+						<param name="applicazione" type="it.csi.modol.modolsrv.dto.Applicazione" />
+						<param name="utente" type="it.csi.modol.modolsrv.dto.Utente" />						
+						<param name="modulo" type="it.csi.modol.modolsrv.dto.ProcessFormRequest" />
+					</param-list>
+					<ret-val type="it.csi.modol.modolsrv.dto.ProcessFormResponse" />
+				</operation>
+				<operation name="inserisciApplicazione" type="synch-call"  since="1.0.0">
+					<param-list>
+						<param name="applicazione" type="it.csi.modol.modolsrv.dto.Applicazione" />
+						<param name="utente" type="it.csi.modol.modolsrv.dto.Utente" />						
+						<param name="ruoli" type="it.csi.modol.modolsrv.dto.Ruolo[]" />
+					</param-list>
+					<ret-val type="it.csi.modol.modolsrv.dto.esiti.EsitoInserimentoApplicazione" />
+				</operation>
+				<operation name="inserisciModello" type="synch-call"  since="1.0.0">
+					<param-list>
+						<param name="applicazione" type="it.csi.modol.modolsrv.dto.Applicazione" />
+						<param name="utente" type="it.csi.modol.modolsrv.dto.Utente" />
+						<param name="modello" type="it.csi.modol.modolsrv.dto.Modello" />												
+						<param name="contenutoModello" type="it.csi.modol.modolsrv.dto.UploadContent" />
+					</param-list>
+					<ret-val type="it.csi.modol.modolsrv.dto.esiti.EsitoInserimentoModello" />
+				</operation>
+				<operation name="elencoRendererModality" type="synch-call"  since="1.0.0">
+					<param-list/>
+					<ret-val type="it.csi.modol.modolsrv.dto.RendererModality[]" />
+				</operation>
+				<operation name="inserisciModulo" type="synch-call" since="1.0.0">
+					<param-list>
+						<param name="applicazione" type="it.csi.modol.modolsrv.dto.Applicazione" />	
+						<param name="ruoli" type="it.csi.modol.modolsrv.dto.Ruolo[]" />
+						<param name="utente" type="it.csi.modol.modolsrv.dto.Utente" />
+						<param name="modulo" type="it.csi.modol.modolsrv.dto.Modulo" />												
+					</param-list>
+					<ret-val type="it.csi.modol.modolsrv.dto.esiti.EsitoInserimentoModulo" />
+				</operation>
+				<operation name="elencoModelli" type="synch-call" since="1.0.0">
+					<param-list>
+						<param name="applicazione" type="it.csi.modol.modolsrv.dto.Applicazione" />	
+						<param name="utente" type="it.csi.modol.modolsrv.dto.Utente" />
+					</param-list>
+					<ret-val type="it.csi.modol.modolsrv.dto.Modello[]" />
+				</operation>
+				<operation name="ricercaModelli" type="synch-call" since="1.0.0">
+					<param-list>
+						<param name="applicazione" type="it.csi.modol.modolsrv.dto.Applicazione" />	
+						<param name="utente" type="it.csi.modol.modolsrv.dto.Utente" />
+						<param name="criterioRicercaModello" type="it.csi.modol.modolsrv.dto.criteri.CriterioRicercaModello" />
+					</param-list>
+					<ret-val type="it.csi.modol.modolsrv.dto.Modello[]" />
+				</operation>
+				<operation name="elencoRuoliAssociati" type="synch-call" since="1.0.0">
+					<param-list>
+						<param name="applicazione" type="it.csi.modol.modolsrv.dto.Applicazione" />	
+						<param name="utente" type="it.csi.modol.modolsrv.dto.Utente" />
+					</param-list>
+					<ret-val type="it.csi.modol.modolsrv.dto.Ruolo[]" />
+				</operation>
+				<operation name="cancellaModello" type="synch-call" since="1.0.0">
+					<param-list>
+						<param name="applicazione" type="it.csi.modol.modolsrv.dto.Applicazione" />	
+						<param name="utente" type="it.csi.modol.modolsrv.dto.Utente" />
+						<param name="richiestaCancellazioneModello" type="it.csi.modol.modolsrv.dto.richieste.RichiestaCancellazioneModello" />
+					</param-list>
+					<ret-val type="void" />
+				</operation>
+				<operation name="aggiornaModulo" type="synch-call" since="1.0.0">
+					<param-list>
+						<param name="applicazione" type="it.csi.modol.modolsrv.dto.Applicazione" />	
+						<param name="utente" type="it.csi.modol.modolsrv.dto.Utente" />
+						<param name="richiestaAggiornamentoModulo" type="it.csi.modol.modolsrv.dto.richieste.RichiestaAggiornamentoModulo" />
+					</param-list>
+					<ret-val type="void" />
+				</operation>
+				<operation name="cancellaModulo" type="synch-call" since="1.0.0">
+					<param-list>
+						<param name="applicazione" type="it.csi.modol.modolsrv.dto.Applicazione" />	
+						<param name="utente" type="it.csi.modol.modolsrv.dto.Utente" />
+						<param name="richiestaCancellazioneModulo" type="it.csi.modol.modolsrv.dto.richieste.RichiestaCancellazioneModulo" />
+					</param-list>
+					<ret-val type="void" />
+				</operation>
+				<operation name="ricercaModuli" type="synch-call" since="1.0.0">
+					<param-list>
+						<param name="applicazione" type="it.csi.modol.modolsrv.dto.Applicazione" />	
+						<param name="utente" type="it.csi.modol.modolsrv.dto.Utente" />
+						<param name="criterioRicercaModello" type="it.csi.modol.modolsrv.dto.criteri.CriterioRicercaModulo" />
+					</param-list>
+					<ret-val type="it.csi.modol.modolsrv.dto.Modulo[]" />
+				</operation>
+				
+			</operations>
+		</service>
+	</services>
+  
+	<config>
+  
+		<url-pa>not_used</url-pa>
+		<pluggable-pd-list chooser-class="it.csi.csi.porte.FixedDelegateChooser">
+			<pluggable-pd
+        name="iufficonf.pd.modolsrv.business"
+        class="it.csi.csi.porte.ejb20.PortaDelegataEJB"
+        url-pa="modol.modolsrv.ejb.ModolSrvPA">
+				<properties>
+					<property name="java.naming.provider.url" value="t3://<COMMA_SEPARATED_LIST_OF_SERVER:PORT>" />
+					<property name="java.naming.factory.initial" value="weblogic.jndi.WLInitialContextFactory" />
+				</properties>
+			</pluggable-pd>
+		</pluggable-pd-list>				
+		<queue-manager url="not_used" />
+    
+	</config>
+</porta-delegata>

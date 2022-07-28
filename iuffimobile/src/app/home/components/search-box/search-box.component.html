@@ -1,0 +1,60 @@
+<div
+    #searchbox
+    [@listAnim]="{ value: isOpen ? 'open' : 'closed', params: timingFunction ? { time: timingFunction } : {} }"
+    style="overflow: hidden"
+    class="search-box"
+>
+    <ion-grid [class.show]="isOpen" [formGroup]="searchForm">
+        <ion-row class="ion-align-items-center">
+            <ion-col size="2" class="ion-text-right text-medium">dal:</ion-col>
+            <ion-col class="ion-no-padding" size="3">
+                <ion-item>
+                    <ion-datetime
+                        #datePickerFrom
+                        formControlName="fromDate"
+                        type="date"
+                        displayFormat="DD/MM/YYYY"
+                        pickerFormat="DD MM YYYY"
+                        [cancelText]="'RESET' | translate"
+                        [doneText]="'DONE' | translate"
+                    ></ion-datetime>
+                </ion-item>
+            </ion-col>
+            <ion-col size="1" class="ion-text-right text-medium">al:</ion-col>
+            <ion-col class="ion-no-padding" size="3">
+                <ion-item>
+                    <ion-datetime
+                        #datePickerTo
+                        formControlName="toDate"
+                        type="date"
+                        displayFormat="DD/MM/YYYY"
+                        pickerFormat="DD MM YYYY"
+                        [cancelText]="'RESET' | translate"
+                        [doneText]="'DONE' | translate"
+                    ></ion-datetime>
+                </ion-item>
+            </ion-col>
+            <ion-col
+                *ngIf="!searching"
+                class="ion-text-center ion-activatable ripple-parent"
+                (click)="search()"
+                size="3"
+            >
+                <ion-icon name="iuffi-search"></ion-icon>
+                <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+            </ion-col>
+            <ion-col *ngIf="searching" class="ion-text-center ion-activatable ripple-parent" (click)="reset()" size="3">
+                <ion-icon name="iuffi-close"></ion-icon>
+                <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+            </ion-col>
+        </ion-row>
+        <ion-row
+            *ngIf="searchForm.errors?.invalidEndDate && searchForm.get('toDate')?.touched"
+            class="ion-text-center ion-padding-top"
+        >
+            <ion-col
+                ><ion-text>{{ 'ERR_SELECTED_RANGE' | translate }}</ion-text></ion-col
+            >
+        </ion-row>
+    </ion-grid>
+</div>

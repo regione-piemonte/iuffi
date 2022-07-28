@@ -1,0 +1,9 @@
+<ion-item (click)="selectHarmfulOrganism()" class="ion-margin" lines="none">
+    <ion-label class="ion-text-wrap">
+        <ion-text>
+            <h2>{{ 'HARMFUL_ORGANISM' | translate }}</h2>
+        </ion-text>
+    </ion-label>
+    <ion-icon *ngIf="!readOnly" class="chevron" name="chevron-forward-outline"></ion-icon>
+    <ion-icon slot="start" name="iuffi-harmful-organisms"></ion-icon>
+</ion-item>

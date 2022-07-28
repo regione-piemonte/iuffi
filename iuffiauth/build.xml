@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="iuffiweb" xmlns:ivy="antlib:fr.jayasoft.ivy.ant" default="distribution">
+	<description>Build file per componente IUFFIWEB (Prodotto IUFFI)</description>
+
+	<property environment="env" />
+
+	<target name="resolve-dependencies" description="carica le librerie dal repository remoto">
+		<ivy:configure file="buildfiles/ivyconf.xml" />
+		<ivy:resolve file="buildfiles/ivy.xml" />
+	</target>
+
+	<target name="load-dependencies" depends="resolve-dependencies, clean-lib" description="Risolve le dipendenze esterne.">
+		<ivy:retrieve pattern="lib/[artifact].[type]" />
+	</target>
+
+	<target name="load-properties">
+		<echo message="Loading build properties..." />
+		<property file="buildfiles/build.properties" />
+		<tstamp />
+		<!-- Se non è stato indicato il target si imposta di default tst-rp-01 -->
+		<condition property="target" value="tst-rp-01">
+			<not>
+				<isset property="target" />
+			</not>
+		</condition>
+		<loadproperties srcFile="buildfiles/${target}.properties" />
+	</target>
+
+	<target name="init" depends="load-properties">
+		<path id="ref.classpath">
+			<fileset dir="${dir.lib}" includes="*.jar" />
+		</path>
+		<mkdir dir="${dir.build}" />
+	</target>
+
+	<target name="distribution" depends="clean-all, package-all"> 
+	</target>
+
+	<target name="compile-all" depends="init, load-dependencies" description="Compila i sorgenti nella build directory">
+		<mkdir dir="${dir.classes}" />
+		<echo message="Sorgenti: ${dir.src.java}" />
+		<javac srcdir="${dir.src.java}"
+			   classpathref="ref.classpath"
+			   destdir="${dir.classes}"
+			   optimize="on"
+			   deprecation="on"
+			   fork="true"
+			   encoding="iso8859-15"
+			   memoryInitialSize="128m"
+			   memoryMaximumSize="512m" />
+	</target>
+
+	<target name="web-environment">
+		<echo>Copying web configuration files from ${dir.conf.webinf} to temporary directory ${dir.temp.webinf}</echo>
+		<mkdir dir="${dir.temp.webinf}" />
+		<copy todir="${dir.temp.webinf}">
+			<fileset dir="${dir.conf.webinf}" includes="*.xml,*.tld,**/*.properties" />
+		</copy>
+		<replaceregexp match="@@context.root@@" replace="${context.root}" flags="s" byline="false" file="${dir.temp.webinf}/jboss-web.xml" />
+		<replaceregexp match="@@jwts.timeout.minutes@@" replace="${jwts.timeout.minutes}" flags="s" byline="false" file="${dir.temp.webinf}/classes/config.properties" />
+	</target>
+
+	<target name="package-war" depends="web-environment, compile-all">
+		<mkdir dir="${dir.archive.target}" />
+		<echo>Creating web archive ${war.archive}</echo>
+		<war basedir="${dir.src.web}" warfile="${war.archive}" excludes="**/*.class,**/*.txt" webxml="${file.temp.webxml}">
+			<webinf dir="${dir.temp.webinf}" excludes="web.xml" />
+			<classes dir="${dir.classes}" />
+			<lib dir="lib">
+				<exclude name="${war.lib.excludes}" />
+			</lib>
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Built-Date" value="${DSTAMP}" />
+				<attribute name="Target" value="${target}" />
+				<attribute name="ComponentName" value="${app.componente}" />
+				<attribute name="ComponentVersion" value="${app.version}" />
+			</manifest>
+		</war>
+	</target>
+
+	<target name="package-ejb" depends="compile-all">
+		<echo>Creating ${ejb.archive}</echo>
+		<jar basedir="${dir.classes}" includes="**/*.class,**/*.xml,**/*.properties,**/*.wsdl" destfile="${ejb.archive}" >
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Built-Date" value="${DSTAMP}" />
+				<attribute name="Target" value="${target}" />
+				<attribute name="ComponentName" value="${app.componente}" />
+				<attribute name="ComponentVersion" value="${app.version}" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="package-ear" depends="package-war, package-ejb" description="Costruisce l'ear per un ambiente">
+		<ear appxml="${file.temp.applicationxml}" earfile="${ear.archive}">
+			<fileset dir="${dir.archive.target}" includes="${war.name},${ejb.name}" />
+			<zipfileset dir="${dir.lib}" excludes="${ear.lib.excludes}" prefix="lib" />
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Built-Date" value="${DSTAMP}" />
+				<attribute name="Target" value="${target}" />
+				<attribute name="ComponentName" value="${app.componente}" />
+				<attribute name="ComponentVersion" value="${app.version}" />
+				<attribute name="Dependencies" value="com.oracle" />
+			</manifest>
+		</ear>
+	</target>
+
+	<target name="package-all" depends="init, package-war" description="Ccrea tutti gli archivi per un ambiente">
+		<delete dir="${dir.dist.target}" />
+		<mkdir dir="${dir.dist.target}" />
+		<tar destfile="${dir.dist.target}/${app.componente}-${app.version}.tar">
+			<tarfileset dir="${dir.archive.target}" includes="${war.name}" />
+		</tar>
+	</target>
+
+	<target name="clean-cache" depends="load-properties" description="Cancella la directory build/cache creata da Ivy con il download delle dipendenze">
+		<echo>Deleting dir ${dir.cache}</echo>
+		<delete dir="${dir.cache}" />
+	</target>
+
+	<target name="clean-temp" depends="load-properties" description="Cancella la directory build/temp creata da Ant">
+		<echo>Deleting dir ${dir.temp}</echo>
+		<delete dir="${dir.temp}" />
+	</target>
+
+	<target name="clean-classes" depends="load-properties" description="Cancella la directory build/classes creata da Ant contenente i file .class ottenuti dalla compilazione del sorgente Java">
+		<delete dir="${dir.classes}" />
+	</target>
+
+	<target name="clean-archive" depends="load-properties" description="Cancella la directory build/dist creata da Ant contenente tutti gli archivi generati dai target">
+		<delete dir="${dir.archive}" />
+	</target>
+
+	<target name="clean-dist" depends="load-properties">
+		<delete dir="${dir.dist.target}" />
+	</target>
+
+	<target name="clean-lib" depends="load-properties">
+		<delete dir="${dir.lib}" />
+	</target>
+
+	<target name="clean-all" depends="clean-temp, clean-cache, clean-lib, clean-classes, clean-archive, clean-dist" description="Cancella tutte le directory create da Ant ad eccezione della cache di Ivy" />
+
+</project>

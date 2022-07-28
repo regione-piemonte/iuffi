@@ -1,0 +1,104 @@
+@import url(/assets/global/css/skin.css);
+
+/*******************************/
+
+/*correzioni*/
+.container-fluid {padding-left:15px;padding-right: 15px;} /*change value header.html*/
+
+/*ottimiziamo versione js*/
+.icon-info span,
+.glyphicon-asterisk strong {display: none;}
+
+.icon-info span[class^="glyphicon-"],
+.icon-info span[class^="icon-"] {display:inline-block}
+
+/*ottimizzo icone*/
+.glyphicon-asterisk {font-size:1.1em;}
+.icon-info {border: 1px solid #2A6496;display: inline-block;padding-left: 6px;padding-right: 6px;}
+.icon-info span, .glyphicon-asterisk strong {display:none} /*per gli altri browser */
+*:first-child+html .icon-info span,
+*:first-child+html .glyphicon-asterisk strong {display:inline-block;cursor:pointer;} /*per IE7 */ 
+ 
+ /*error ottimizzato*/
+.error {position:relative}
+.error input, .error select, .error textarea {border-color: #B94A48;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;}
+.error input:focus, .error select:focus, .error textarea:focus {border-color: #953B39;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 6px #D59392;}
+.error .form-control-feedback {color:#B94A48;
+display: block;position: absolute;right: 0;text-align: center;top: 0;right:15px;
+width:20px;z-index: 2;height: 30px;line-height: 30px;} 
+
+#ui-datepicker-div {z-index:10!important}
+span.ui-datepicker-trigger {left: auto;position: absolute;right:15px;top: 3px;}
+.error.calendar-control .form-control-feedback {right:40px;}
+
+/*popover*/
+.popover ul {margin:0;padding:0;list-style:none;}
+.popover-error,
+.popover .icon-exclamation {color:#B94A48;}
+.popover .icon-exclamation {padding-right:6px}
+[class^="icon-"] .popover, [class*=" icon-"] .popover {font-family: Arial;cursor:default;color:#000}
+.popover ul li .icon-chevron-right  {font-size:0.7em}
+
+/*wizard*/
+.stepwizard-step p {margin-top: 10px;}
+.stepwizard-row { display: table-row;}
+.stepwizard { display: table; width: 100%; margin-top:20px;  position: relative;}
+.stepwizard-step button {cursor:default}
+.stepwizard-step button[disabled] { opacity: 1 !important; filter: alpha(opacity=100) !important;}
+.stepwizard-row:before { top: 14px; bottom: 0;  position: absolute;  content: " ";  width: 100%;height: 1px; background-color: #ccc; z-order: 0;}
+.stepwizard-step {   display: table-cell;    text-align: center;    position: relative; /*width:20%*/}
+.stepwizard-step .btn-circle { cursor:default;width: 30px; height: 30px; text-align: center; padding: 6px 0; font-size: 12px; line-height: 1.428571429; border-radius: 15px;}
+
+.form-horizontal textarea {font-size: 0.8em;}
+[class*="col-sm-"] label {margin-bottom:0}
+
+/***************************/
+
+/* header servizio */
+div#header-servizio { background: #0153A9; padding: 10px 40px 10px 80px;width:100%!important;width:auto;color: #fff;}
+div#header-servizio h2 { font-size: 32px;}
+/* /header servizio */
+
+.menupaprivati{ width:100%; display:inline-block;}
+.menupaprivati ul.pull-right li a {height:auto;}
+.menupaprivati ul.pull-right{ margin-bottom:-5px;}
+/*menu SP - risolve problema ie6 */
+.menupaprivati ul.pull-right li.active {padding:0;margin:0;}
+
+div.header {border:1px solid #D3D3D3;}
+
+/* breadcrumb */
+.breadcrumb {padding: 8px 15px;margin: 0 0 18px;list-style: none;background: none;}
+.breadcrumb > li {display: inline-block;zoom: 1;text-shadow: 0 1px 0 #fff;}
+.breadcrumb > li > .divider {padding: 0 5px;color: #ccc;}
+.breadcrumb > .active {color: #999;}
+.pathway{ text-transform:uppercase; color:#000;}
+.breadcrumb > li + li:before {content: none;}
+.breadcrumb li  {display:inline;}
+/* /breadcrumb */	
+
+h3, h4 {color: #0153A9;text-transform: uppercase;}
+
+/* footer */
+.footer {padding-right: 80px;padding-left: 80px;}
+.footer {background:#1E354D; color:#ffffff;}
+.footer hr{display:none;}
+.footerCsi { padding:40px 0px;overflow:hidden;width:auto}
+.footerCsi a{color:#ffffff;}
+/* /footer */
+
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) @screen-sm-min */
+@media (max-width: 768px) { 
+
+div[class^="col-sm-"] {margin-bottom:8px}
+}
+
+/* Medium devices (desktops, 992px and up) @screen-md-min*/
+@media (max-width: 992px) { ... }
+
+/* Large devices (large desktops, 1200px and up) @screen-lg-min*/
+@media (max-width: 1200px) { ... }

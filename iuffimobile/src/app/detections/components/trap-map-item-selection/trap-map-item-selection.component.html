@@ -1,0 +1,26 @@
+<ion-item *ngIf="trap" lines="none">
+    <ion-label class="ion-text-wrap">
+        <ion-text>
+            <h2>{{ 'INSTALLATION_DATE_SHORT' | translate }}:</h2>
+            <p *ngIf="trap.dataInstallazione">{{ trap.dataInstallazione | moment: 'dddd DD MMMM YYYY' }}</p>
+            <p *ngIf="!trap.dataInstallazione">-</p>
+            <h2>{{ 'CODE' | translate }}:</h2>
+            <p *ngIf="trap.codiceSfr">{{ trap.codiceSfr }}</p>
+            <p *ngIf="!trap.codiceSfr">-</p>
+            <h2>{{ 'PLANT_SPECIES' | translate }}:</h2>
+            <p *ngIf="trap.specie">{{ trap.specie }}</p>
+            <p *ngIf="!trap.specie">-</p>
+            <h2>{{ 'HARMFUL_ORGANISM' | translate }}:</h2>
+            <p *ngIf="harmfulOrganism">{{ harmfulOrganism?.nomeLatino }}</p>
+            <p *ngIf="!harmfulOrganism">-</p>
+            <h2>{{ 'TRAP_TYPE' | translate }}:</h2>
+            <p *ngIf="trap.descrTrappola">{{ trap.descrTrappola }}</p>
+            <p *ngIf="!trap.descrTrappola">-</p>
+            <h2>{{ 'GPS_COORD' | translate }}:</h2>
+            <p *ngIf="trap.latitudine && trap.longitudine">{{ trap.latitudine }} {{ trap.longitudine }}</p>
+            <p *ngIf="!trap.latitudine || !trap.longitudine">-</p>
+        </ion-text>
+    </ion-label>
+    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    <ion-icon slot="start" name="iuffi-trapping"></ion-icon>
+</ion-item>

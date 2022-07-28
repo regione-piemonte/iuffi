@@ -1,0 +1,37 @@
+ion-button {
+    --border-radius: 8px;
+    // box-shadow: #5e70b340 5px 5px 5px;
+    max-height: 50pt;
+    width: 90%;
+    margin: 10px auto;
+
+    ion-label {
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &.ion-color-light {
+        ion-label {
+            color: var(--ion-color-primary);
+        }
+    }
+
+    &.ion-color-primary {
+        ion-label {
+            color: var(--ion-color-light);
+        }
+    }
+
+    ion-icon {
+        font-size: 32px;
+
+        color: var(--ion-color-light);
+    }
+}
+:host-context(html.plt-tablet) {
+    ion-button {
+        width: 75%;
+    }
+}

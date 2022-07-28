@@ -1,0 +1,133 @@
+<ion-header [translucent]="false">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button icon="arrow-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title> {{ 'VISUAL_INSPECTION' | translate }} </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid class="detection-position ion-no-padding ion-margin">
+        <ion-row class="ion-padding-vertical">
+            <ion-col size="2">
+                <ion-icon name="iuffi-position"></ion-icon>
+            </ion-col>
+            <ion-col class="ion-padding-start">
+                <p>{{ 'GPS_COORD' | translate }}</p>
+                <ion-text>
+                    <h2>
+                        {{visualInspection.latitudine | number:'1.2-7'}} - {{visualInspection.longitudine |
+                        number:'1.2-7'}}
+                    </h2>
+                </ion-text>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="2">
+                <ion-icon name="iuffi-municipality"></ion-icon>
+            </ion-col>
+            <ion-col class="ion-padding-start">
+                <p>{{ 'MUNICIPALITY' | translate }}</p>
+                <ion-text>
+                    <h2>{{comune?.nome}}</h2>
+                </ion-text>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-card>
+        <ion-card-header>
+            <ion-item class="ion-margin" lines="none">
+                <ion-label class="ion-text-wrap">
+                    <ion-text>
+                        <h2>{{ 'PLANT_SPECIES' | translate }}</h2>
+                    </ion-text>
+                </ion-label>
+                <ion-icon slot="start" name="iuffi-plant-species"></ion-icon>
+            </ion-item>
+            <ion-text>
+                <p>{{ plantSpecies.nomeVolgare }}</p>
+            </ion-text>
+        </ion-card-header>
+    </ion-card>
+
+    <single-inspection-card-detail
+        *ngFor="let inspection of visualInspection.ispezioni; let index"
+        [inspection]="inspection"
+        [isRelatedToEmergency]="isRelatedToEmergency"
+    ></single-inspection-card-detail>
+
+    <ion-card *ngIf="visualInspection.superficie">
+        <ion-card-header>
+            <ion-grid class="ion-no-padding" fixed>
+                <ion-row class="ion-padding-top">
+                    <ion-col class="title">Area ispezionata metri quadrati</ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col>
+                        <ion-grid class="ion-no-padding" fixed>
+                            <ion-row class="ion-align-items-center ion-padding-vertical">
+                                <ion-col size="2" class="ion-text-left">
+                                    <ion-icon name="iuffi-area-inspection"></ion-icon>
+                                </ion-col>
+                                <ion-col size="6">
+                                    <ion-text color="primary">
+                                        <p class="inspected-area">{{visualInspection.superficie}} mq</p>
+                                    </ion-text>
+                                </ion-col>
+                                <ion-col class="ion-text-right"> </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-header>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-header>
+            <ion-item class="ion-margin" lines="none">
+                <ion-label class="ion-text-wrap">
+                    <ion-text>
+                        <h2>{{ 'HARMFUL_ORGANISM' | translate }}</h2>
+                    </ion-text>
+                </ion-label>
+                <ion-icon slot="start" name="iuffi-harmful-organisms"></ion-icon>
+            </ion-item>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list>
+                <ion-item lines="none" *ngFor="let entry of harmfulOrganismsAdded">
+                    <ion-label [ngClass]="{ emergency: entry.flagEmergenza === 'S' }" class="ion-text-capitalize"
+                        >{{ entry.nomeLatino }}</ion-label
+                    >
+                    <ion-icon *ngIf="entry.euro === 'S'" slot="end" name="iuffi-euro"></ion-icon>
+                    <ion-icon *ngIf="entry.selected" name="checkbox-outline" slot="end"></ion-icon>
+                    <ion-icon *ngIf="!entry.selected" name="square-outline" slot="end"></ion-icon>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <photo-gallery
+        logger="VisualInspectionConfirmPage"
+        [editable]="false"
+        [photos]="visualInspection.photos"
+    ></photo-gallery>
+
+    <ion-item class="note">
+        <ion-label class="ion-text-wrap">
+            <ion-text>
+                <h2>{{ 'NOTE' | translate }}</h2>
+            </ion-text>
+            <p>{{visualInspection.note}}</p>
+        </ion-label>
+    </ion-item>
+</ion-content>
+<ion-footer class="ion-no-border ion-no-padding hide-on-keyboard-open">
+    <ion-toolbar>
+        <iuffi-button color="primary" label="CONFIRM" (click)="saveVisualInspection()" expand="block"></iuffi-button>
+    </ion-toolbar>
+</ion-footer>

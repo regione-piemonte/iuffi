@@ -1,0 +1,32 @@
+<ion-header [translucent]="false">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button icon="arrow-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title *ngIf="action === 'CREATE'"> {{ 'CREATE_MISSION' | translate }} </ion-title>
+        <ion-title *ngIf="action === 'MODIFY'"> {{ 'MODIFY_MISSION' | translate }} </ion-title>
+        <ion-buttons slot="end">
+            <ion-button>
+                <ion-icon name="iuffi-info"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <new-mission-form [mission]="mission"></new-mission-form>
+    <iuffi-button
+        *ngIf="action === 'CREATE'"
+        color="primary"
+        [label]="action"
+        expand="block"
+        (click)="createMission()"
+    ></iuffi-button>
+    <iuffi-button
+        *ngIf="action === 'MODIFY'"
+        color="primary"
+        [label]="action"
+        expand="block"
+        (click)="updateMission()"
+    ></iuffi-button>
+</ion-content>

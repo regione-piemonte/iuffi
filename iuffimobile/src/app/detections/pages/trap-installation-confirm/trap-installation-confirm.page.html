@@ -1,0 +1,118 @@
+<ion-header [translucent]="false">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button icon="arrow-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title> {{ 'TRAPPING' | translate }} </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid class="detection-position ion-no-padding ion-margin">
+        <ion-row *ngIf="trapOperationDesc" class="ion-padding-vertical">
+            <ion-col class="ion-padding-start ion-text-center">
+                <ion-label class="ion-text-wrap">
+                    <h2>{{ trapOperationDesc | translate }}</h2>
+                </ion-label></ion-col
+            >
+        </ion-row>
+        <ion-row class="ion-padding-vertical">
+            <ion-col size="2">
+                <ion-icon name="iuffi-position"></ion-icon>
+            </ion-col>
+            <ion-col class="ion-padding-start">
+                <p>{{ 'GPS_COORD' | translate }}</p>
+                <ion-text>
+                    <h2>{{trap.latitudine | number:'1.2-7'}} - {{trap.longitudine | number:'1.2-7'}}</h2>
+                </ion-text>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-card>
+        <ion-card-header>
+            <ion-item class="ion-margin" lines="none">
+                <ion-label class="ion-text-wrap">
+                    <ion-text>
+                        <h2>{{ 'SFR_CODE' | translate }}</h2>
+                    </ion-text>
+                </ion-label>
+                <ion-icon slot="start" name="iuffi-code"></ion-icon>
+            </ion-item>
+            <ion-text>
+                <p>{{ trap.trappola.codiceSfr }}</p>
+            </ion-text>
+        </ion-card-header>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-header>
+            <ion-item class="ion-margin" lines="none">
+                <ion-label class="ion-text-wrap">
+                    <ion-text>
+                        <h2>{{ 'PLANT_SPECIES' | translate }}</h2>
+                    </ion-text>
+                </ion-label>
+                <ion-icon slot="start" name="iuffi-plant-species"></ion-icon>
+            </ion-item>
+            <ion-text>
+                <p>{{ plantSpecies.nomeVolgare }}</p>
+            </ion-text>
+        </ion-card-header>
+    </ion-card>
+
+    <ion-card *ngIf="harmfulOrganismsAdded && harmfulOrganismsAdded.length>0">
+        <ion-card-header>
+            <ion-item class="ion-margin" lines="none">
+                <ion-label class="ion-text-wrap">
+                    <ion-text>
+                        <h2>{{ 'HARMFUL_ORGANISM' | translate }}</h2>
+                    </ion-text>
+                </ion-label>
+                <ion-icon slot="start" name="iuffi-harmful-organisms"></ion-icon>
+            </ion-item>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list>
+                <ion-item lines="none" *ngFor="let entry of harmfulOrganismsAdded">
+                    <ion-label [ngClass]="{'emergency': entry.flagEmergenza === 'S'}" class="ion-text-capitalize"
+                        >{{entry.nomeLatino}}</ion-label
+                    >
+                    <ion-icon *ngIf="entry.euro === 'S'" slot="end" name="iuffi-euro"></ion-icon>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-header>
+            <ion-item class="ion-margin" lines="none">
+                <ion-label class="ion-text-wrap">
+                    <ion-text>
+                        <h2>{{ 'TRAP_TYPE' | translate }}</h2>
+                    </ion-text>
+                </ion-label>
+                <ion-icon slot="start" name="iuffi-sampling-type"></ion-icon>
+            </ion-item>
+            <ion-text>
+                <p>{{ trapTypeDescription }}</p>
+            </ion-text>
+        </ion-card-header>
+    </ion-card>
+
+    <photo-gallery logger="TrapInstallationConfirmPage" [editable]="false" [photos]="trap.photos"></photo-gallery>
+
+    <ion-item class="note">
+        <ion-label class="ion-text-wrap">
+            <ion-text>
+                <h2>{{ 'NOTE' | translate }}</h2>
+            </ion-text>
+            <p>{{trap.note}}</p>
+        </ion-label>
+    </ion-item>
+</ion-content>
+<ion-footer class="ion-no-border ion-no-padding hide-on-keyboard-open">
+    <ion-toolbar>
+        <iuffi-button color="primary" label="CONFIRM" (click)="saveTrap()" expand="block"></iuffi-button>
+    </ion-toolbar>
+</ion-footer>

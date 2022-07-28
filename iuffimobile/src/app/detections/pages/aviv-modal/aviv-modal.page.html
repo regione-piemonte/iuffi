@@ -1,0 +1,140 @@
+<ion-header [translucent]="false">
+    <ion-toolbar color="primary">
+        <ion-title> {{ 'BUSINESS_INFO' | translate }} </ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="close()">
+                <ion-icon name="iuffi-close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ng-container>
+        <ion-card *ngIf="avivRegistry">
+            <ion-card-content>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col
+                            ><ion-text class="subtitle"
+                                ><strong>{{'COMPANY_REGISTRY' | translate}}</strong></ion-text
+                            ></ion-col
+                        >
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <ion-grid class="ion-no-padding ion-padding-horizontal">
+                                <ion-row>
+                                    <ion-col class="ion-text-left"
+                                        ><ion-text class="title"
+                                            >{{'AUTHORIZATION_CODE' | translate}}</ion-text
+                                        ></ion-col
+                                    >
+                                </ion-row>
+                                <ion-row class="ion-padding-bottom">
+                                    <ion-col class="ion-text-left">
+                                        <ion-text class="description">{{avivRegistry?.anagRuop}}</ion-text>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col class="ion-text-left"
+                                        ><ion-text class="title">Partita IVA</ion-text></ion-col
+                                    >
+                                </ion-row>
+                                <ion-row class="ion-padding-bottom">
+                                    <ion-col class="ion-text-left">
+                                        <ion-text class="description">{{ avivRegistry?.anagPiva }}</ion-text>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col class="ion-text-left"><ion-text class="title">C.U.A.A.</ion-text></ion-col>
+                                </ion-row>
+                                <ion-row class="ion-padding-bottom">
+                                    <ion-col class="ion-text-left">
+                                        <ion-text class="description">{{ avivRegistry?.anagCuaa }}</ion-text>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col class="ion-text-left"
+                                        ><ion-text class="title">Denominazione</ion-text></ion-col
+                                    >
+                                </ion-row>
+                                <ion-row class="ion-padding-bottom">
+                                    <ion-col class="ion-text-left">
+                                        <ion-text class="description">{{ avivRegistry?.anagDenom }}</ion-text>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-col>
+                    </ion-row>
+                    <ng-container *ngIf="businessCenter">
+                        <ion-row>
+                            <ion-col
+                                ><ion-text class="subtitle"><strong>Centro aziendale</strong></ion-text></ion-col
+                            >
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <ion-grid class="ion-no-padding ion-padding-horizontal">
+                                    <ng-container *ngIf="businessCenter?.denomiUte">
+                                        <ion-row>
+                                            <ion-col class="ion-text-left"
+                                                ><ion-text class="title">Denominazione</ion-text></ion-col
+                                            >
+                                        </ion-row>
+                                        <ion-row class="ion-padding-bottom">
+                                            <ion-col class="ion-text-left">
+                                                <ion-text class="description">{{ businessCenter?.denomiUte }}</ion-text>
+                                            </ion-col>
+                                        </ion-row>
+                                    </ng-container>
+                                    <ion-row>
+                                        <ion-col class="ion-text-left"
+                                            ><ion-text class="title">Comune</ion-text></ion-col
+                                        >
+                                    </ion-row>
+                                    <ion-row class="ion-padding-bottom">
+                                        <ion-col class="ion-text-left">
+                                            <ion-text class="description">{{ businessCenter?.comuneUte }}</ion-text>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row>
+                                        <ion-col class="ion-text-left"
+                                            ><ion-text class="title">Indirizzo</ion-text></ion-col
+                                        >
+                                    </ion-row>
+                                    <ion-row class="ion-padding-bottom">
+                                        <ion-col class="ion-text-left">
+                                            <ion-text class="description">{{ businessCenter?.indirizzoUte }}</ion-text>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-grid>
+                            </ion-col>
+                        </ion-row>
+                    </ng-container>
+                </ion-grid>
+            </ion-card-content>
+        </ion-card>
+
+        <ng-container *ngIf="avivRegistry">
+            <ion-item class="ion-margin" lines="none" (click)="selectPlantSpeciesAviv()">
+                <ion-label class="ion-text-wrap">
+                    <ion-text>
+                        <h2>{{ 'PLANT_SPECIES_AVIV' | translate }}</h2>
+                    </ion-text>
+                </ion-label>
+                <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+                <ion-icon slot="start" name="iuffi-plants"></ion-icon>
+            </ion-item>
+            <ion-item *ngIf="businessCenter" class="ion-margin" lines="none" (click)="viewLastReportAviv()">
+                <ion-label class="ion-text-wrap">
+                    <ion-text>
+                        <h2>{{ 'VIEW_REPORT_AVIV' | translate }}</h2>
+                    </ion-text>
+                </ion-label>
+                <ion-icon class="chevron" name="chevron-forward-outline"></ion-icon>
+                <ion-icon slot="start" name="iuffi-report"></ion-icon>
+            </ion-item>
+        </ng-container>
+    </ng-container>
+</ion-content>

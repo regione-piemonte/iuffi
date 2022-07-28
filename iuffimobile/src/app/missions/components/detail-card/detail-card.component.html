@@ -1,0 +1,88 @@
+<ion-card>
+    <ion-card-header>
+        <ion-text *ngIf="!isSkeleton" class="text-medium text-bold ion-text-capitalize">
+            {{ mission?.dataMissione | moment: 'dddd DD MMMM YYYY' }}</ion-text
+        >
+        <ion-skeleton-text *ngIf="isSkeleton" animated style="width: 60%"></ion-skeleton-text>
+        <ion-row class="ion-no-padding ion-align-items-center">
+            <ion-col class="ion-no-padding text-smaller ion-text-left" size="2">
+                <span>{{ 'START_HOUR' | translate }}</span>
+            </ion-col>
+            <ion-col class="ion-text-left">
+                <span *ngIf="!isSkeleton">{{ mission?.oraInizio }}</span>
+                <ion-skeleton-text *ngIf="isSkeleton" animated></ion-skeleton-text>
+            </ion-col>
+            <ion-col class="ion-no-padding text-smaller ion-text-center" size="2">
+                <span>{{ 'END_HOUR' | translate }}</span>
+            </ion-col>
+            <ion-col>
+                <span *ngIf="!isSkeleton">{{ mission?.oraFine }}</span>
+                <ion-skeleton-text *ngIf="isSkeleton" animated></ion-skeleton-text>
+            </ion-col>
+        </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+        <ion-item class="iuffi-item-detail" lines="none">
+            <ion-label class="ion-text-wrap">
+                <p>{{ 'INSPECTOR' | translate }}</p>
+                <ion-text>
+                    <h2 *ngIf="!isSkeleton">{{ mission?.nomeIspettore }} {{ mission?.cognomeIspettore }}</h2>
+                    <ion-skeleton-text *ngIf="isSkeleton" animated></ion-skeleton-text>
+                </ion-text>
+            </ion-label>
+            <ion-icon slot="start" name="iuffi-inspector"></ion-icon>
+        </ion-item>
+
+        <ion-item class="iuffi-item-detail" lines="none">
+            <ion-label class="ion-text-wrap">
+                <p>{{ 'COACHING_INSPECTORS' | translate }}</p>
+                <ion-text *ngFor="let item of mission?.ispettoriAggiunti">
+                    <h2>{{ item?.nome }} {{ item?.cognome }}</h2>
+                </ion-text>
+                <ion-text *ngIf="isSkeleton">
+                    <ion-skeleton-text *ngIf="isSkeleton" animated></ion-skeleton-text>
+                </ion-text>
+                <ion-text *ngIf="isSkeleton">
+                    <ion-skeleton-text *ngIf="isSkeleton" animated></ion-skeleton-text>
+                </ion-text>
+            </ion-label>
+            <ion-icon slot="start" name="iuffi-inspectors"></ion-icon>
+        </ion-item>
+
+        <ion-item class="iuffi-item-detail" lines="none">
+            <ion-label class="ion-text-wrap">
+                <p>{{ 'TRAVEL_NUMBER' | translate }}</p>
+                <ion-text *ngIf="!isSkeleton">
+                    <h2>{{ mission?.numeroTrasferta }}</h2>
+                </ion-text>
+                <ion-text *ngIf="isSkeleton">
+                    <ion-skeleton-text *ngIf="isSkeleton" animated></ion-skeleton-text>
+                </ion-text>
+            </ion-label>
+            <div
+                *ngIf="!isSkeleton && mission.pdf"
+                slot="end"
+                (click)="getPdfTrasferta()"
+                class="travel-img ion-text-wrap ion-text-center"
+            >
+                <ion-img src="assets/imgs/pdf.png"></ion-img>
+                <p>Scarica</p>
+            </div>
+            <ion-skeleton-text *ngIf="isSkeleton" animated style="width: 30px; height: 40px"></ion-skeleton-text>
+        </ion-item>
+    </ion-card-content>
+    <ion-row *ngIf="canModify || canDelete" class="mission-toolbar ion-no-padding">
+        <ion-col class="ion-padding-start">
+            <ion-button *ngIf="canModify" fill="clear" size="small" (click)="modify()">
+                <ion-icon name="iuffi-modify" slot="start"></ion-icon>
+                <p>{{ 'MODIFY' | translate }}</p>
+            </ion-button>
+        </ion-col>
+        <ion-col>
+            <ion-button *ngIf="canDelete" fill="clear" size="small" (click)="delete()">
+                <ion-icon name="iuffi-delete" slot="start"></ion-icon>
+                <p>{{ 'DELETE' | translate }}</p>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-card>

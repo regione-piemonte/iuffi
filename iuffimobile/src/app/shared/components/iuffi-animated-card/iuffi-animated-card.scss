@@ -1,0 +1,10 @@
+:host {
+    ion-card {
+        box-shadow: none;
+        margin-top: 0;
+        ion-card-content {
+            background: var(--card-background-color);
+            padding: 0;
+        }
+    }
+}

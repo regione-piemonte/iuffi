@@ -1,0 +1,130 @@
+@import '../../../../theme/text-utils.scss';
+
+ion-card {
+    --background: var(--card-background-color);
+    box-shadow: none;
+    ion-card-header {
+        padding: 0 20px;
+        ion-icon {
+            background: var(--card-background-color);
+            font-size: 36px;
+            color: #000000;
+        }
+
+        p {
+            margin: 0;
+            color: #000000;
+            @extend %text-medium;
+            @extend %text-normal;
+            @extend %text-capitalize;
+            &.aviv-registry {
+                text-transform: none !important;
+                @extend %text-medium;
+                @extend %text-bold;
+            }
+        }
+    }
+}
+ion-grid {
+    .header {
+        color: #748a9d;
+        @extend %text-medium;
+        @extend %text-normal;
+    }
+    .subtitle {
+        color: #000000;
+        @extend %text-small;
+        @extend %text-bold;
+    }
+    .title {
+        color: #748a9d;
+        @extend %text-small;
+        @extend %text-normal;
+    }
+    .description {
+        color: #000000;
+        @extend %text-medium;
+        @extend %text-bold;
+    }
+    ion-icon {
+        background: var(--card-background-color);
+        font-size: 36px;
+    }
+    ion-input {
+        min-height: 50px;
+        font-size: 20px;
+        --background: #d9eef7;
+        --padding-bottom: 0;
+        --padding-end: 0;
+        --padding-start: 4px;
+        --padding-top: 0;
+        --placeholder-color: #000000;
+        color: #000;
+    }
+    ion-button {
+        display: inline-block;
+        margin: 0;
+        min-height: 50px;
+        color: #000000;
+        --background: #60fcd2;
+        --border-radius: 4px;
+        @extend %text-medium;
+        ion-icon {
+            background: transparent;
+            color: #000000;
+            font-size: 36px;
+        }
+        &.search {
+            min-width: 50px;
+            --padding-bottom: 0;
+            --padding-end: 0;
+            --padding-start: 0;
+            --padding-top: 0;
+            ion-icon {
+                font-size: 24px;
+            }
+        }
+    }
+}
+
+ion-item {
+    margin: 10px 15px;
+    border-radius: 8px;
+    // box-shadow: #5e70b340 5px 5px 5px;
+    --background: var(--card-background-color);
+    --padding-start: 20px;
+    --padding-end: 0;
+    --inner-padding-end: 0;
+    --min-height: 68px;
+    border-bottom: 0;
+    ion-label {
+        --color: var(--app-text-color-dark);
+        ion-text {
+            h2 {
+                color: #748a9d;
+                @extend %text-normal;
+                @extend %text-small;
+                // @extend %text-capitalize;
+            }
+            p {
+                color: #000000;
+                @extend %text-medium;
+                @extend %text-small;
+                // @extend %text-capitalize;
+            }
+        }
+    }
+
+    ion-icon {
+        background: var(--card-background-color);
+        font-size: 42px;
+    }
+}
+
+:host-context(html.plt-tablet) {
+    ion-card {
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

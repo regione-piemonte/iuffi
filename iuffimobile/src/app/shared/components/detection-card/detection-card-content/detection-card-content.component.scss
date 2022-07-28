@@ -1,0 +1,101 @@
+@import '../../../../../theme/text-utils.scss';
+ion-card {
+    --background: var(--card-background-color);
+    margin-bottom: 20px;
+    box-shadow: none;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    ion-card-header {
+        background: var(--card-background-color);
+        border-bottom: 0px solid rgba(var(--ion-color-primary-contrast-rgb), 0.1);
+        padding: 0px 0px;
+        ion-text {
+            color: #000;
+        }
+        ion-col {
+            color: #748a9d;
+        }
+    }
+    ion-card-content {
+        background: var(--card-background-color);
+        padding: 0px 0 16px;
+    }
+}
+.detection-time {
+    background-color: #dcf8f1;
+    border-radius: 30px 0px;
+    p {
+        @extend %text-smaller;
+        @extend %text-normal;
+    }
+    ion-text {
+        h2 {
+            color: #1d1d1d;
+            @extend %text-medium;
+            @extend %text-bold;
+        }
+    }
+    ion-icon {
+        color: #000000;
+        padding-inline-start: 20px;
+        font-size: 36px;
+    }
+}
+
+.detection-position {
+    background-color: #dbffd9;
+    border-radius: 30px 0px;
+    p {
+        @extend %text-smaller;
+        @extend %text-normal;
+    }
+    ion-text {
+        h2 {
+            color: #1d1d1d;
+            @extend %text-medium;
+            @extend %text-bold;
+        }
+    }
+    ion-icon {
+        color: #000000;
+        padding-inline-start: 20px;
+        font-size: 36px;
+    }
+}
+
+ion-item.plant-species {
+    --background: var(--card-background-color);
+    --padding-start: 20px;
+    --padding-end: 20px;
+    --inner-padding-end: 0;
+    border-bottom: 0;
+    ion-label {
+        --color: var(--app-text-color-dark);
+        h2 {
+            color: #748a9d;
+            @extend %text-bold;
+            @extend %text-medium;
+        }
+        p {
+            @extend %text-smaller;
+            @extend %text-normal;
+        }
+    }
+
+    ion-icon {
+        background: var(--card-background-color);
+        font-size: 36px;
+    }
+}
+
+ion-text.plant-species {
+    h2 {
+        padding-left: 20px;
+        margin-bottom: 20px;
+        color: #1d1d1d;
+        @extend %text-medium;
+        @extend %text-normal;
+    }
+}

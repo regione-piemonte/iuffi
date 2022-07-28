@@ -1,0 +1,68 @@
+<ion-header [translucent]="false">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button (click)="backToMissions()" defaultHref="/" icon="arrow-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title> {{ 'MISSION_DETAIL' | translate }} </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid class="ion-no-padding" fixed>
+        <ion-row>
+            <ion-col>
+                <detail-card-component (action)="manageMission($event)" [mission]="mission"></detail-card-component>
+
+                <ion-item-divider *ngIf="mission?.rilevazioni && mission?.rilevazioni?.length !== 0">
+                    <ion-label>{{'DETECTIONS_MADE' | translate}}</ion-label>
+                </ion-item-divider>
+
+                <ion-list class="ion-margin" *ngFor="let detection of mission?.rilevazioni">
+                    <detection-header-component
+                        (delete)="deleteDetection($event)"
+                        (modify)="modifyDetection($event)"
+                        [detection]="detection"
+                    ></detection-header-component>
+                    <ion-grid class="ion-no-padding no-resize" fixed>
+                        <ion-row *ngFor="let inspection of detection.ispezioniVisive">
+                            <ion-col>
+                                <detection-card-component
+                                    [detection]="inspection"
+                                    [flagEmergenza]="detection.flagEmergenza"
+                                ></detection-card-component>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row *ngFor="let sampling of detection.campionamenti">
+                            <ion-col>
+                                <detection-card-component
+                                    *ngIf="!sampling.idIspezioneVisiva"
+                                    [detection]="sampling"
+                                    [flagEmergenza]="detection.flagEmergenza"
+                                ></detection-card-component>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row *ngFor="let trapping of detection.trappolaggi">
+                            <ion-col>
+                                <detection-card-component
+                                    *ngIf="trapping.idOperazione !== 1"
+                                    [detection]="trapping"
+                                    [flagEmergenza]="detection.flagEmergenza"
+                                ></detection-card-component>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-fab *ngIf="newDetectionVisible" vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="primary" (click)="newDetection()">
+            <ion-icon name="iuffi-detection"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>
+<ion-footer *ngIf="saveMissionVisible" class="ion-no-border ion-no-padding hide-on-keyboard-open">
+    <ion-toolbar>
+        <iuffi-button color="primary" label="ENDS_MISSION" (click)="saveMission()" expand="block"></iuffi-button>
+    </ion-toolbar>
+</ion-footer>

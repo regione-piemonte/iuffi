@@ -1,0 +1,60 @@
+<porta-delegata name="iuffiweb.pd.modolpdfgeneratorsrv">
+	<services>
+		<service name="iuffiweb.pd.modolpdfgeneratorsrv.service" public-interface-class="it.csi.modol.modolpdfgeneratorsrv.interfacecsi.ModolPdfGeneratorSrvITF" top-version="1.0.0">
+			<operations>
+				<operation name="generaPDFDaFile" type="synch-call"  since="1.0.0">
+					<param-list>
+						<param name="applicazione" type="it.csi.modol.modolpdfgeneratorsrv.dto.Applicazione" />
+						<param name="utente" type="it.csi.modol.modolpdfgeneratorsrv.dto.Utente" />						
+						<param name="fileToGenerate" type="it.csi.modol.modolpdfgeneratorsrv.dto.generator.FileInputDaGenerare" />							
+					</param-list>
+					<ret-val type="byte[]" />
+				</operation>
+			
+				<operation name="assemblaPdf" type="synch-call"  since="1.0.0">
+					<param-list>
+						<param name="applicazione" type="it.csi.modol.modolpdfgeneratorsrv.dto.Applicazione" />
+						<param name="utente" type="it.csi.modol.modolpdfgeneratorsrv.dto.Utente" />						
+						<param name="fileList" type="it.csi.modol.modolpdfgeneratorsrv.dto.assembler.FileInput[]" />	
+						<param name="specificheAssemblaggio" type="it.csi.modol.modolpdfgeneratorsrv.dto.assembler.SpecificheAssemblaggio" />
+					</param-list>
+					<ret-val type="byte[]" />
+				</operation>
+				
+				<operation name="toPdfA" type="synch-call"  since="1.1.0">
+					<param-list>
+						<param name="applicazione" type="it.csi.modol.modolpdfgeneratorsrv.dto.Applicazione" />
+						<param name="utente" type="it.csi.modol.modolpdfgeneratorsrv.dto.Utente" />						
+						<param name="pdfaInputRequest" type="it.csi.modol.modolpdfgeneratorsrv.dto.pdfa.PdfAInputRequest" />	
+					</param-list>
+					<ret-val type="byte[]" />
+				</operation>				
+
+				<operation name="toStaticPdf" type="synch-call"  since="1.1.0">
+					<param-list>
+						<param name="applicazione" type="it.csi.modol.modolpdfgeneratorsrv.dto.Applicazione" />
+						<param name="utente" type="it.csi.modol.modolpdfgeneratorsrv.dto.Utente" />						
+						<param name="pdfStaticInputRequest" type="it.csi.modol.modolpdfgeneratorsrv.dto.pdfstatic.PdfStaticInputRequest" />	
+					</param-list>
+					<ret-val type="byte[]" />
+				</operation>				
+								
+			</operations>
+		</service>
+	</services>
+	<config>
+		<url-pa>not used</url-pa>
+		<pluggable-pd-list chooser-class="it.csi.csi.porte.FixedDelegateChooser">
+			<pluggable-pd name="iuffiweb.pd.modolpdfgeneratorsrv.business" class="it.csi.csi.porte.ejb20.PortaDelegataEJB" url-pa="modol.modolpdfgeneratorsrv.ejb.ModolPdfGeneratorSrvPA"
+				url-qm="">
+				<properties>
+					<property name="java.naming.provider.url" value="t3://<COMMA_SEPARATED_LIST_OF_SERVER:PORT>" />
+					<!-- initial contxt factory per WLS92 -->
+					<property name="java.naming.factory.initial" value="weblogic.jndi.WLInitialContextFactory" />
+				</properties>
+			</pluggable-pd>
+		</pluggable-pd-list>
+				
+		<queue-manager url="" />
+	</config>
+</porta-delegata>

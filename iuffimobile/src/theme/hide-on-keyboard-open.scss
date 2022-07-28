@@ -1,0 +1,5 @@
+// Class to add to all elements to hide when the keyboard appear and the device's height is reduced
+ion-app.keyboard-is-visible.hide-on-keyboard-open,
+ion-app.keyboard-is-visible .hide-on-keyboard-open {
+    display: none !important;
+}

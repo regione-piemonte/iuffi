@@ -1,0 +1,135 @@
+<ion-card>
+    <ion-card-header class="ion-no-padding">
+        <ion-grid class="ion-no-padding">
+            <ion-row class="ion-padding-top">
+                <ion-col size="2">
+                    <ion-icon name="iuffi-quantity"></ion-icon>
+                </ion-col>
+                <ion-col class="ion-padding-start">
+                    <p>{{ 'QUANTITY' | translate }}</p>
+                    <ion-text>
+                        <h2>N° {{ inspection.quantita }}</h2>
+                    </ion-text>
+                </ion-col>
+                <ion-col size="2" class="ion-text-center">
+                    <ion-button fill="clear" size="small" (click)="delete()">
+                        <ion-icon name="iuffi-delete" slot="start"></ion-icon>
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+            <ion-row class="ion-padding-top">
+                <ion-col size="2">
+                    <ion-icon name="iuffi-position"></ion-icon>
+                </ion-col>
+                <ion-col class="ion-padding-start">
+                    <p>{{ 'GPS_COORD' | translate }}</p>
+                    <ion-text>
+                        <h2>
+                            {{ inspection.coordinate?.latitudine | number: '1.2-7' }} -
+                            {{ inspection.coordinate?.longitudine | number: '1.2-7' }}
+                        </h2>
+                    </ion-text>
+                </ion-col>
+                <ion-col size="2" class="ion-text-center">
+                    <ion-button fill="clear" size="small" (click)="openMapModal()">
+                        <ion-icon name="iuffi-modify-position" slot="start"></ion-icon>
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card-header>
+    <ion-card-content *ngIf="isRelatedToEmergency">
+        <form [formGroup]="inspectionForm">
+            <form formGroupName="ubicazione">
+                <ion-item>
+                    <ion-label position="floating">
+                        {{ 'NUMBER' | translate }}
+                    </ion-label>
+                    <ion-input formControlName="numero" type="text" value=""></ion-input>
+                </ion-item>
+                <app-error-message [control]="this.inspectionForm.get('ubicazione.numero')"></app-error-message>
+                <ion-item>
+                    <ion-label position="floating">
+                        {{ 'NAME' | translate }}
+                    </ion-label>
+                    <ion-input formControlName="nome" type="text" value=""></ion-input>
+                </ion-item>
+                <app-error-message [control]="this.inspectionForm.get('ubicazione.nome')"></app-error-message>
+                <ion-item>
+                    <ion-label position="floating">
+                        {{ 'SURNAME' | translate }}
+                    </ion-label>
+                    <ion-input formControlName="cognome" type="text" value=""></ion-input>
+                </ion-item>
+                <app-error-message [control]="this.inspectionForm.get('ubicazione.cognome')"></app-error-message>
+                <ion-item>
+                    <ion-label position="floating">
+                        {{ 'ADDRESS' | translate }}
+                    </ion-label>
+                    <ion-input formControlName="indirizzo" type="text" value=""></ion-input>
+                </ion-item>
+                <app-error-message [control]="this.inspectionForm.get('ubicazione.indirizzo')"></app-error-message>
+                <ion-item>
+                    <ion-label position="floating">
+                        {{ 'TEL' | translate }}
+                    </ion-label>
+                    <ion-input formControlName="telefono" type="text" value=""></ion-input>
+                </ion-item>
+                <app-error-message [control]="this.inspectionForm.get('ubicazione.telefono')"></app-error-message>
+                <ion-item>
+                    <ion-label position="floating">
+                        {{ 'EMAIL' | translate }}
+                    </ion-label>
+                    <ion-input formControlName="email" type="text" value=""></ion-input>
+                </ion-item>
+                <app-error-message [control]="this.inspectionForm.get('ubicazione.email')"></app-error-message>
+            </form>
+            <ion-item>
+                <ion-label> {{ 'POSITIVITY' | translate }}</ion-label>
+                <ion-select
+                    interface="action-sheet"
+                    formControlName="positivita"
+                    placeholder="{{ 'SELECT' | translate }}"
+                >
+                    <ion-select-option *ngFor="let item of positivity" [value]="item.value">{{
+                        item.label | translate
+                    }}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <app-error-message [control]="this.inspectionForm.get('positivita')"></app-error-message>
+            <ion-item>
+                <ion-label> {{ 'DIAMETER' | translate }}</ion-label>
+                <ion-select
+                    interface="action-sheet"
+                    formControlName="diametro"
+                    placeholder="{{ 'SELECT' | translate }}"
+                >
+                    <ion-select-option *ngFor="let item of diameter" [value]="item.value">{{
+                        item.label | translate
+                    }}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <app-error-message [control]="this.inspectionForm.get('diametro')"></app-error-message>
+            <ion-item class="toggle" lines="none">
+                <ion-label class="ion-text-wrap"> {{ 'TREE_CLIMBER_INSPECTION' | translate }}</ion-label>
+                <ion-toggle formControlName="flagTreeClimberIspezione"></ion-toggle>
+            </ion-item>
+            <ion-item class="toggle" lines="none">
+                <ion-label class="ion-text-wrap"> {{ 'TREE_CLIMBER_CUT' | translate }}</ion-label>
+                <ion-toggle formControlName="flagTreeClimberTaglio"></ion-toggle>
+            </ion-item>
+            <ion-item class="textarea">
+                <ion-label position="stacked">{{ 'NOTE_1' | translate }}</ion-label>
+                <ion-textarea formControlName="note1" autoGrow="true" rows="8" cols="20"></ion-textarea>
+            </ion-item>
+            <ion-item class="textarea">
+                <ion-label position="stacked">{{ 'NOTE_2' | translate }}</ion-label>
+                <ion-textarea formControlName="note2" autoGrow="true" rows="8" cols="20"></ion-textarea>
+            </ion-item>
+            <ion-item class="textarea">
+                <ion-label position="stacked">{{ 'NOTE_3' | translate }}</ion-label>
+                <ion-textarea formControlName="note3" autoGrow="true" rows="8" cols="20"></ion-textarea>
+            </ion-item>
+        </form>
+    </ion-card-content>
+</ion-card>

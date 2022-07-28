@@ -1,0 +1,21 @@
+.app-spinner {
+    width: 100%;
+    text-align: center;
+    padding: 8px;
+
+    ion-spinner {
+        width: 56px;
+        height: 56px;
+    }
+}
+
+:host[no-padding] {
+    .app-spinner {
+        padding: 0;
+    }
+}
+
+.refresher-refreshing-icon .spinner-dots {
+    width: 56px;
+    height: 56px;
+}

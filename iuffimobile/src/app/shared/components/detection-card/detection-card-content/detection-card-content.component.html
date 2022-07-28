@@ -1,0 +1,16 @@
+<visual-inspection-content-component
+    [isRelatedToEmergency]="isRelatedToEmergency"
+    [visualInspection]="detection"
+    *ngIf="detectionType === 'VISUAL_INSPECTION'"
+></visual-inspection-content-component>
+<sampling-content-component
+    [isRelatedToEmergency]="isRelatedToEmergency"
+    [sample]="detection"
+    *ngIf="detectionType === 'SAMPLING'"
+>
+</sampling-content-component>
+<trapping-content-component
+    *ngIf="detectionType === 'TRAPPING'"
+    [isRelatedToEmergency]="isRelatedToEmergency"
+    [trap]="detection"
+></trapping-content-component>

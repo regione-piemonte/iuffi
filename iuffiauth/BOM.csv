@@ -1,0 +1,10 @@
+name@version *,license *,copyrights *,end-of-support,dependencies,language,repository,email,URL
+csi-stadapter-1.4.6.jar,"Apache-2.0, MIT (Rilasciata da CSI Piemonte su richiesta)",CSI-Piemonte,-,-,Java,-,-,-
+gson-2.2.4.jar,"Apache-2.0",Google,-,-,Java,-,-,-
+iridev2-pep-intf-2.0.0.jar,"Apache-2.0, MIT (Rilasciata da CSI Piemonte su richiesta)",CSI-Piemonte,-,-,Java,-,-,-
+javax.servlet-api-3.0.1.jar,"CDDL-1.1, GPL-2.0 w/cpe",Redhat,-,-,Java,-,-,https://glassfish.dev.java.net/nonav/public/CDDL+GPL.html
+jjwt-api-0.11.2.jar,"Apache-2.0",Apache Foundation,-,-,Java,-,-,-
+jjwt-gson-0.11.2.jar,"Apache-2.0",Apache Foundation,-,-,Java,-,-,-
+jjwt-impl-0.11.2.jar,"Apache-2.0",Apache Foundation,-,-,Java,-,-,-
+log4j-1.2.16.jar,"Apache-2.0",-,-,-,Java,-,-,-
+shibboleth-shibfilter-1.0.0.jar,"Apache-2.0",-,-,-,Java,-,-,-

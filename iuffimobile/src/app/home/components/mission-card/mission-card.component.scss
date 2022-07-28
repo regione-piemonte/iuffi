@@ -1,0 +1,80 @@
+ion-card {
+    --background: var(--card-background-color);
+    box-shadow: none;
+    border-radius: 30px 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    ion-card-header {
+        background: var(--card-background-color);
+        border-bottom: 1px solid rgba(var(--ion-color-primary-contrast-rgb), 0.1);
+        padding: 16px 20px;
+        ion-text {
+            color: #000;
+        }
+        ion-col {
+            color: #748a9d;
+        }
+    }
+
+    ion-card-content {
+        background: var(--card-background-color);
+        padding: 8px 20px 16px;
+        ion-text {
+            p {
+                color: #748a9d;
+                margin-bottom: 8px;
+            }
+        }
+        ion-col {
+            &.detection-number {
+                font-size: 45px;
+                color: #000;
+            }
+            .status {
+                width: 20px;
+                height: 20px;
+                display: inline-block;
+                &.draft-status {
+                    background-color: #db2138;
+                }
+                &.to-synchronize-status {
+                    background-color: #e09b00;
+                }
+                &.synchronized-status {
+                    background-color: #29c31e;
+                }
+            }
+        }
+    }
+}
+
+// .mission-overview {
+//     background-color: #ecf0f3;
+//     .mission-overview-grid {
+//         .mission-action-row {
+//             .mission-action-col {
+//                 text-align: center;
+//                 .action-checkbox {
+//                     margin: 0 auto;
+//                     border: 3px solid black;
+//                     height: 54px;
+//                     width: 54px;
+//                     .circle {
+//                         background-color: #f4f8fb;
+//                         border: 3px solid var(--ion-color-primary);
+//                         border-radius: 50%;
+//                         -moz-border-radius: 50%;
+//                         -webkit-border-radius: 50%;
+//                         height: 30px;
+//                         width: 30px;
+//                         margin: 20% auto;
+//                     }
+//                 }
+//                 ion-label {
+//                     font-size: 15px;
+//                 }
+//             }
+//         }
+//     }
+// }

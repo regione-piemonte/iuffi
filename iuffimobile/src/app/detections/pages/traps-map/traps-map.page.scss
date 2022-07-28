@@ -1,0 +1,12 @@
+@import '../../../../theme/text-utils.scss';
+.change-address-shipping-modal {
+    --height: 60%;
+    align-items: flex-end;
+}
+:host-context(html.plt-tablet) {
+    ion-grid {
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

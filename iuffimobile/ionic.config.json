@@ -1,0 +1,7 @@
+{
+  "name": "IUFFI-Piemonte",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

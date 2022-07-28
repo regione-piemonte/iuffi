@@ -1,0 +1,67 @@
+<ion-header [translucent]="false">
+    <ion-toolbar color="primary">
+        <ion-title> {{ 'SELECT_TRAP_TYPE' | translate }} </ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="close()">
+                <ion-icon name="iuffi-close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar no-border-top>
+        <ion-grid class="search-bar">
+            <ion-row class="ion-no-padding ion-align-items-center">
+                <ion-col>
+                    <ion-searchbar
+                        #searchbar
+                        class="ion-no-padding"
+                        [placeholder]="translateService.instant('INSERT_DESCRIPTION')"
+                        type="text"
+                        [debounce]="500"
+                        animated="true"
+                        (ionChange)="filterList($event.target.value)"
+                        (ionClear)="reset($event)"
+                    ></ion-searchbar>
+                </ion-col>
+                <ion-col size="2" class="ion-text-center">
+                    <ion-icon *ngIf="!isListening" name="iuffi-mic-start" (click)="startListening()"></ion-icon>
+                    <ion-icon
+                        *ngIf="isListening"
+                        [ngClass]="{'pulse': isListening}"
+                        name="iuffi-mic-stop"
+                        (click)="stopListening()"
+                    ></ion-icon>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card *ngIf="trapTypesToShow.length > 0">
+        <ion-card-content>
+            <ion-list>
+                <ion-radio-group [(ngModel)]="trapTypeSelected">
+                    <ion-item *ngFor="let entry of trapTypesToShow">
+                        <ion-label class="ion-text-capitalize">{{entry.tipologiaTrappola}}</ion-label>
+                        <ion-radio mode="md" [value]="entry" slot="end"></ion-radio>
+                    </ion-item>
+                </ion-radio-group>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+    <ion-grid *ngIf="trapTypesFiltered.length > 0" fixed>
+        <ion-row>
+            <ion-col class="ion-text-right" offset="8" size="4">
+                <ion-button *ngIf="!showMoreSelected" (click)="showMore()" size="small" expand="block" fill="clear"
+                    >{{ 'SHOW_ALL' | translate }}</ion-button
+                >
+                <ion-button *ngIf="showMoreSelected" (click)="showMore()" size="small" expand="block" fill="clear"
+                    >{{ 'SHOW_LESS' | translate }}</ion-button
+                >
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+<ion-footer class="ion-no-border ion-no-padding hide-on-keyboard-open">
+    <iuffi-button color="primary" label="CONFIRM" expand="block" (click)="confirm()"></iuffi-button>
+</ion-footer>

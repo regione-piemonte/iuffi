@@ -1,0 +1,19 @@
+<ion-header [translucent]="false">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button icon="arrow-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title> {{ 'SEARCH_TRAP' | translate }} </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <leaflet-map-component
+        [markers]="traps"
+        [currentPosition]="currentPosition"
+        (onLoad)="getTraps($event)"
+        (onDragEnd)="getTraps($event)"
+        (onZoomEnd)="getTraps($event)"
+        (onMarkerSelected)="openTrapBottomModal($event)"
+    ></leaflet-map-component>
+</ion-content>

@@ -1,0 +1,63 @@
+<ion-card *ngIf="!_isSkeleton">
+    <ion-card-header>
+        <ion-text class="text-medium text-bold ion-text-capitalize">
+            {{ mission.dataMissione | moment: 'dddd DD MMMM YYYY' }}</ion-text
+        >
+        <ion-row class="ion-no-padding">
+            <ion-col class="ion-no-padding text-smaller ion-text-left"
+                ><span>{{ 'START_HOUR' | translate }}</span> {{ mission.oraInizio }}</ion-col
+            >
+            <ion-col class="ion-no-padding text-smaller ion-text-center" size="3"
+                ><span>{{ 'END_HOUR' | translate }}</span> {{ mission.oraFine }}</ion-col
+            >
+        </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+        <ion-text>
+            <p class="text-medium">{{ 'DETECTIONS_MADE' | translate }}</p>
+        </ion-text>
+        <ion-row class="ion-no-padding ion-align-items-center">
+            <ion-col class="ion-no-padding text-bold detection-number ion-text-left">
+                {{ mission.rilevazioni?.length }}
+            </ion-col>
+            <ion-col class="ion-no-padding ion-text-center" size="3">
+                <div
+                    class="status"
+                    [ngClass]="{
+                        'draft-status': mission.stato === MissionStatus.DRAFT,
+                        'to-synchronize-status': mission.stato === MissionStatus.TO_SYNCHRONIZE,
+                        'synchronized-status': mission.stato === MissionStatus.SYNCHRONIZED
+                    }"
+                ></div>
+            </ion-col>
+        </ion-row>
+    </ion-card-content>
+</ion-card>
+
+<ion-card *ngIf="_isSkeleton">
+    <ion-card-header>
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        <ion-row class="ion-no-padding">
+            <ion-col class="ion-no-padding text-smaller ion-text-left" size="3"
+                ><span><ion-skeleton-text animated></ion-skeleton-text></span>
+            </ion-col>
+            <ion-col></ion-col>
+            <ion-col class="ion-no-padding text-smaller ion-text-center" size="3"
+                ><span><ion-skeleton-text animated></ion-skeleton-text></span>
+            </ion-col>
+        </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+        <ion-text>
+            <p class="text-medium"><ion-skeleton-text animated></ion-skeleton-text></p>
+        </ion-text>
+        <ion-row class="ion-no-padding ion-align-items-center">
+            <ion-col class="ion-no-padding text-bold detection-number ion-text-left">
+                <ion-skeleton-text animated style="width: 25px; height: 30px"></ion-skeleton-text>
+            </ion-col>
+            <ion-col class="ion-no-padding ion-text-center" size="3">
+                <ion-skeleton-text animated style="width: 20px; height: 20px"></ion-skeleton-text>
+            </ion-col>
+        </ion-row>
+    </ion-card-content>
+</ion-card>

@@ -1,0 +1,14 @@
+.app-toggle {
+    height: 26px;
+    width: 50px;
+    border: 2px solid #fff;
+    border-radius: 16px;
+    --background: var(--ion-color-primary);
+    --background-checked: var(--ion-color-light);
+
+    --handle-background: var(--ion-color-light);
+    --handle-background-checked: var(--ion-color-primary);
+    --handle-width: 26px;
+    --handle-height: 26px;
+    --handle-spacing: 0;
+}

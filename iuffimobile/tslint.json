@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "tslint:latest",
+    "tslint-config-prettier"
+  ],
+  "rulesDirectory": [
+    "node_modules/tslint-eslint-rules/dist/rules"
+  ]
+}

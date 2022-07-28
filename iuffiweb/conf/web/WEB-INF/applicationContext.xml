@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="autodetect">
+
+ <bean id="menuitem" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/MenuItem" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IMenuItemEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+ </bean>
+
+ <bean id="rendicontazione" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/Rendicontazione" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IRendicontazioneFinanziariaEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+ </bean>
+ 
+ 
+ <bean id="missione" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/Missione" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IMissioneEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+ 
+ <bean id="specieVegetale" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/SpecieVegetale" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.ISpecieVegetaleEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+ 
+ 
+  <bean id="gestioneVerbale" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/Verbale" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IGestioneVerbaleEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+ 
+  <bean id="tipoCampione" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/TipoCampione" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.ITipoCampioneEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+
+  <bean id="tipoArea" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/TipoArea" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.ITipoAreaEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+
+
+  <bean id="rilevazione" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/Rilevazione" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IRilevazioneEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+ 
+  <bean id="tipoTrappola" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/TipoTrappola" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.ITipoTrappolaEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+ 
+   <bean id="trappolaEnte" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/TrappolaEnte" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.ITrappolaEnteEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+
+   <bean id="trappolaOn" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/TrappolaOrganismoNocivo" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.ITrappolaOrganismoNocivoEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+ 
+   <bean id="anagrafica" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/Anagrafica" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IAnagraficaEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+ 
+ 
+    <bean id="gestioneCampione" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/GestioneCampione" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IGestioneCampioneEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+ 
+ 
+    <bean id="gestioneTrappola" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/GestioneTrappola" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IGestioneTrappolaEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+  
+  <bean id="gestioneVisual" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/GestioneVisual" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IGestioneVisualEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+ 
+  <bean id="utilService" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/UtilService" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IUtilServiceEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+ 
+  <bean id="anfi" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/Anfi" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IAnfiEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+
+  <bean id="extraFieldCamp" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/ExtraFieldCamp" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IExtraFieldCampEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+
+  <bean id="extraFieldTrap" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/ExtraFieldTrap" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IExtraFieldTrapEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+  
+  <bean id="organismoNocivo" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/OrganismoNocivo" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IOrganismoNocivoEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+
+  <bean id="campioneEnte" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/CampioneEnte" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.ICampioneEnteEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+
+  <bean id="extraFieldVisual" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/ExtraFieldVisual" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IExtraFieldVisualEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+
+  <bean id="previsioneMonitoraggio" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/PrevisioneMonitoraggio" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IPrevisioneMonitoraggioEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+
+  <bean id="riepilogoMonitoraggio" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/RiepilogoMonitoraggio" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IRiepilogoMonitoraggioEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+  
+  <bean id="gpsFoto" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/GpsFoto" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IGpsFotoEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+
+  <bean id="shape" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/Shape" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IShapeEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+
+  <bean id="rendicontazioneEAccertamentoSpese" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/RendicontazioneEAccertamentoSpese" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IRendicontazioneEAccertamentoSpeseEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+
+  <bean id="listeLiquidazione" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/ListeLiquidazione" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IListeLiquidazioneEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+
+	<bean id="nuovoProcedimento" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/NuovoProcedimento" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.INuovoProcedimentoEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+	<bean id="quadro" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/Quadro" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IQuadroEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+  	<bean id="quadroIuffi" lazy-init="true" class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/QuadroIuffi" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IQuadroIuffiEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+  <bean id="interventi" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/Interventi" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IInterventiEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+  <bean id="quadroDinamico" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/QuadroDinamico" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IQuadroDinamicoEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+  <bean id="async" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/Async" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IAsyncEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+
+  <bean id="ricerca" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/Ricerca" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IRicercaEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean> 
+  <bean id="reportistica" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/Reportistica" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IReportisticaEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+  
+  <bean id="estrazioni" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/Estrazioni" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IEstrazioniEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+  
+  <bean id="gestioneeventi" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/GestioneEventi" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IGestioneEventiEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+  
+  <bean id="autorizzazioni" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/Autorizzazioni" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IAutorizzazioniEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+  
+  <bean id="ispezioneVisivaPianta" lazy-init="true"
+        class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean">
+    <property name="jndiName" value="java:app/IspezioneVisivaPianta" />
+    <property name="businessInterface" value="it.csi.iuffi.iuffiweb.business.IIspezioneVisivaPiantaEJB" />
+    <property name="cacheHome" value="true"/>
+    <property name="lookupHomeOnStartup" value="false"/>
+    <property name="resourceRef" value="false" />
+  </bean>
+  
+  <bean id="IuffiSecurityManager" lazy-init="true"
+        class="it.csi.iuffi.iuffiweb.presentation.interceptor.security.IuffiSecurityManager">
+  </bean>
+
+</beans>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+  "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+
+<taglib>
+	<tlibversion>1.0</tlibversion>
+	<jspversion>1.1</jspversion>
+	<shortname>Remote Include Tag Library</shortname>
+	<uri>http://www.csi.it/taglibs/remincl-1.0</uri>
+
+	<info>
+		This tag library contains functionality to include a remote
+		resource using an http request.
+	</info>
+
+	<tag>
+		<name>include</name>
+		<tagclass>it.csi.util.jsp.tag.remoteinclude.RemoteIncludeTag</tagclass>
+		<bodycontent>empty</bodycontent>
+		<info>
+			url - the url used the fetch the page to be cached.
+			resourceProvider - the provider of remote resoures
+		</info>
+		<attribute>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>resourceProvider</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+</taglib>

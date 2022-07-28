@@ -1,0 +1,172 @@
+<ion-grid>
+    <ion-row *ngIf="isEditable" class="detection-toolbar ion-no-padding">
+        <ion-col>
+            <ion-button fill="clear" (click)="modify()" size="small">
+                <ion-icon name="iuffi-modify" slot="start"></ion-icon>
+                <p>{{ 'MODIFY' | translate }}</p>
+            </ion-button>
+        </ion-col>
+        <ion-col>
+            <ion-button (click)="delete()" fill="clear" size="small">
+                <ion-icon name="iuffi-delete" slot="start"></ion-icon>
+                <p>{{ 'DELETE' | translate }}</p>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+<ion-grid class="detection-position ion-no-padding">
+    <ion-row class="ion-padding-vertical">
+        <ion-col size="2">
+            <ion-icon name="iuffi-time"></ion-icon>
+        </ion-col>
+        <ion-col size="3" class="ion-padding-start">
+            <p>{{ 'START_TIME' | translate }}</p>
+            <ion-text>
+                <h2>{{ visualInspection.dataOraInizio | date: 'HH:mm' }}</h2>
+            </ion-text>
+        </ion-col>
+        <ion-col size="2" *ngIf="visualInspection.dataOraFine">
+            <ion-icon name="iuffi-time"></ion-icon>
+        </ion-col>
+        <ion-col size="3" class="ion-padding-start" *ngIf="visualInspection.dataOraFine">
+            <p>{{ 'END_TIME' | translate }}</p>
+            <ion-text>
+                <h2>{{ visualInspection.dataOraFine | date: 'HH:mm' }}</h2>
+            </ion-text>
+        </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-padding-vertical">
+        <ion-col size="2">
+            <ion-icon name="iuffi-position"></ion-icon>
+        </ion-col>
+        <ion-col class="ion-padding-start">
+            <p>{{ 'GPS_COORD' | translate }}</p>
+            <ion-text>
+                <h2>
+                    {{ visualInspection.latitudine | number: '1.2-7' }} -
+                    {{ visualInspection.longitudine | number: '1.2-7' }}
+                </h2>
+            </ion-text>
+        </ion-col>
+    </ion-row>
+    <ion-row *ngIf="comune" class="ion-padding-vertical">
+        <ion-col size="2">
+            <ion-icon name="iuffi-municipality"></ion-icon>
+        </ion-col>
+        <ion-col class="ion-padding-start">
+            <p>{{ 'MUNICIPALITY' | translate }}</p>
+            <ion-text>
+                <h2>
+                    {{ comune?.nome }}
+                </h2>
+            </ion-text>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+
+<ion-card>
+    <ion-card-header>
+        <ion-item lines="none">
+            <ion-label class="ion-text-wrap">
+                <ion-text>
+                    <h2>{{ 'PLANT_SPECIES' | translate }}</h2>
+                </ion-text>
+            </ion-label>
+            <ion-icon slot="start" name="iuffi-plant-species"></ion-icon>
+        </ion-item>
+        <ion-text>
+            <p>{{ plantSpecies.nomeVolgare }}</p>
+        </ion-text>
+    </ion-card-header>
+</ion-card>
+
+<single-inspection-card-detail
+    *ngFor="let inspection of visualInspection.ispezioni"
+    [inspection]="inspection"
+    [isRelatedToEmergency]="isRelatedToEmergency"
+></single-inspection-card-detail>
+
+<ion-card *ngIf="visualInspection.superficie">
+    <ion-card-header>
+        <ion-grid class="ion-no-padding" fixed>
+            <ion-row class="ion-padding-top">
+                <ion-col class="title">Area ispezionata</ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col>
+                    <ion-grid class="ion-no-padding" fixed>
+                        <ion-row class="ion-align-items-center ion-padding-vertical">
+                            <ion-col size="2" class="ion-text-left">
+                                <ion-icon name="iuffi-area-inspection"></ion-icon>
+                            </ion-col>
+                            <ion-col size="6">
+                                <ion-text color="primary">
+                                    <p class="inspected-area">{{ visualInspection.superficie }} mq</p>
+                                </ion-text>
+                            </ion-col>
+                            <ion-col class="ion-text-right"> </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card-header>
+</ion-card>
+
+<ion-card *ngIf="harmfulOrganismsAdded.length > 0">
+    <ion-card-header>
+        <ion-item class="ion-margin" lines="none">
+            <ion-label class="ion-text-wrap">
+                <ion-text>
+                    <h2>{{ 'HARMFUL_ORGANISM' | translate }}</h2>
+                </ion-text>
+            </ion-label>
+            <ion-icon slot="start" name="iuffi-harmful-organisms"></ion-icon>
+        </ion-item>
+    </ion-card-header>
+    <ion-card-content>
+        <ion-list>
+            <ion-item lines="none" *ngFor="let entry of harmfulOrganismsAdded">
+                <ion-label [ngClass]="{ emergency: entry.flagEmergenza === 'S' }" class="ion-text-capitalize">{{
+                    entry.nomeLatino
+                }}</ion-label>
+                <ion-icon *ngIf="entry.euro === 'S'" slot="end" name="iuffi-euro"></ion-icon>
+                <ion-icon *ngIf="entry.selected" name="checkmark-outline" slot="end"></ion-icon>
+            </ion-item>
+        </ion-list>
+    </ion-card-content>
+</ion-card>
+
+<photo-gallery logger="VisualInspectionDetailPage" [editable]="false" [photos]="photos"></photo-gallery>
+
+<ion-item lines="none" class="note">
+    <ion-label class="ion-text-wrap">
+        <ion-text>
+            <h2>{{ 'NOTE' | translate }}</h2>
+        </ion-text>
+        <p>{{ visualInspection.note }}</p>
+    </ion-label>
+</ion-item>
+
+<ion-grid class="ion-no-padding internal-activities" fixed>
+    <ion-row *ngFor="let sampling of detection?.campionamenti">
+        <ion-col>
+            <detection-card-component
+                *ngIf="sampling.idIspezioneVisiva === visualInspection.idIspezione"
+                [detection]="sampling"
+                [flagEmergenza]="detection?.flagEmergenza"
+            ></detection-card-component>
+        </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let trapping of detection?.trappolaggi">
+        <ion-col>
+            <detection-card-component
+                *ngIf="trapping.idIspezioneVisiva === visualInspection.idIspezione && trapping.idOperazione === 1"
+                [detection]="trapping"
+                [flagEmergenza]="detection?.flagEmergenza"
+            ></detection-card-component>
+        </ion-col>
+    </ion-row>
+</ion-grid>

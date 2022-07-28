@@ -1,0 +1,104 @@
+app-item-button {
+    ion-item {
+        --border-radius: 32px !important;
+        &.ion-activated {
+            --border-radius: 32px !important;
+        }
+    }
+    ion-item.md {
+        box-shadow: #5e70b340 5px 5px 5px;
+        border-radius: 32px !important;
+
+        &.ion-activated {
+            border-radius: 32px !important;
+        }
+
+        ion-label {
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        &.color-primary {
+            --background: var(--ion-color-primary);
+
+            ion-label {
+                color: var(--ion-color-light);
+            }
+        }
+
+        &.color-light {
+            --background: var(--ion-color-light);
+
+            ion-label {
+                color: var(--ion-color-primary);
+            }
+        }
+
+        &.color-success {
+            --background: var(--ion-color-success-tint);
+
+            ion-label {
+                color: var(--app-text-color);
+            }
+        }
+
+        &.color-danger {
+            --background: var(--ion-color-danger-tint);
+
+            ion-label {
+                color: var(--app-text-color);
+            }
+        }
+
+        &.color-inactive {
+            --background: var(--ion-color-medium-tint);
+
+            ion-label {
+                color: var(--ion-color-light);
+            }
+        }
+
+        ion-img[slot='start'] ~ ion-label {
+            margin-right: 60px;
+        }
+
+        ion-label ~ ion-img[slot='end'] {
+            margin-left: -28px;
+        }
+
+        ion-icon[slot='start'] ~ ion-label {
+            margin-right: 28px;
+        }
+
+        ion-label ~ ion-icon[slot='end'] {
+            margin-left: -28px;
+        }
+
+        ion-icon {
+            margin-right: 6px;
+            margin-left: 6px;
+        }
+    }
+
+    &.small {
+        ion-item {
+            ion-label {
+                margin-left: 0px !important;
+                margin-right: 0px !important;
+            }
+        }
+
+        &.with-icon {
+            ion-item {
+                ion-icon {
+                    margin-left: 0px;
+                    margin-right: 0px;
+                    padding-right: 4px;
+                    color: white;
+                }
+            }
+        }
+    }
+}

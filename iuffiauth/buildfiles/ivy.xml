@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+	<info organisation="csipiemonte" module="iuffiauth" />
+	<dependencies>
+		<dependency transitive="false" org="csipiemonte" name="iridev2" rev="2.0.0" />
+		<dependency transitive="false" org="csipiemonte" name="shibboleth" rev="1.0.0" />
+		<dependency transitive="false" org="csipiemonte" name="csi" rev="1.4.6">
+			<artifact name="csi-stadapter-1.4.6" type="jar" />
+		</dependency>
+		<dependency transitive="false" org="sun" name="javax.servlet-api" rev="3.0.1" />
+		<dependency transitive="false" org="apache" name="log4j" rev="1.2.16" />
+		<dependency transitive="false" org="google" name="gson" rev="2.2.4" />
+		<dependency transitive="false" org="jsonwebtoken" name="jjwt" rev="0.11.2">
+			<artifact name="jjwt-api-0.11.2" type="jar" />
+			<artifact name="jjwt-impl-0.11.2" type="jar" />
+			<artifact name="jjwt-gson-0.11.2" type="jar" />
+		</dependency>
+	</dependencies>
+</ivy-module>

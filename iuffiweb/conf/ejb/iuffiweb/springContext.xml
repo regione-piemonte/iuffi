@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <bean id="listeLiquidazioneDAO" class="it.csi.iuffi.iuffiweb.integration.ListeLiquidazioneDAO" />
+	<bean id="nuovoProcedimentoDAO"
+		class="it.csi.iuffi.iuffiweb.integration.NuovoProcedimentoDAO">
+	</bean>
+  <bean id="missioneDAO" class="it.csi.iuffi.iuffiweb.service.MissioneDAO" />
+  <bean id="menuItemDAO" class="it.csi.iuffi.iuffiweb.service.MenuItemDAO" />
+  <bean id="specieVegetaleDAO" class="it.csi.iuffi.iuffiweb.service.SpecieVegetaleDAO" />
+  <bean id="tipoCampioneDAO" class="it.csi.iuffi.iuffiweb.service.TipoCampioneDAO" />
+  <bean id="campioneEnteDAO" class="it.csi.iuffi.iuffiweb.service.CampioneEnteDAO" />  
+  <bean id="gestioneCampioneDAO" class="it.csi.iuffi.iuffiweb.service.GestioneCampioneDAO" />
+  <bean id="gestioneTrappolaDAO" class="it.csi.iuffi.iuffiweb.service.GestioneTrappolaDAO" />
+  <bean id="gestioneVerbaleDAO" class="it.csi.iuffi.iuffiweb.service.GestioneVerbaleDAO" />
+  <bean id="tipoAreaDAO" class="it.csi.iuffi.iuffiweb.service.TipoAreaDAO" />
+  <bean id="rendicontazioneDAO" class="it.csi.iuffi.iuffiweb.service.RendicontazioneDAO" />
+  <bean id="utilServiceDAO" class="it.csi.iuffi.iuffiweb.service.UtilServiceDAO" />
+  <bean id="tipoTrappolaDAO" class="it.csi.iuffi.iuffiweb.service.TipoTrappolaDAO" />
+  <bean id="trappolaEnteDAO" class="it.csi.iuffi.iuffiweb.service.TrappolaEnteDAO" />
+  <bean id="trappolaOnDAO" class="it.csi.iuffi.iuffiweb.service.TrappolaOnDAO" />
+  <bean id="anagraficaDAO" class="it.csi.iuffi.iuffiweb.service.AnagraficaDAO" />
+  <bean id="anfi" class="it.csi.iuffi.iuffiweb.service.AnfiDAO" />
+  <bean id="extraFieldCamp" class="it.csi.iuffi.iuffiweb.service.ExtraFieldCampDAO" />
+  <bean id="extraFieldTrap" class="it.csi.iuffi.iuffiweb.service.ExtraFieldTrapDAO" />
+  <bean id="extraFieldVisual" class="it.csi.iuffi.iuffiweb.service.ExtraFieldVisualDAO" />
+  <bean id="organismoNocivoDAO" class="it.csi.iuffi.iuffiweb.service.OrganismoNocivoDAO" />
+  <bean id="previsioneMonitoraggioDAO" class="it.csi.iuffi.iuffiweb.service.PrevisioneMonitoraggioDAO" />
+  <bean id="riepilogoMonitoraggioDAO" class="it.csi.iuffi.iuffiweb.service.RiepilogoMonitoraggioDAO" />
+  <bean id="gpsFotoDAO" class="it.csi.iuffi.iuffiweb.service.GpsFotoDAO" />
+  <bean id="gestioneVisualDAO" class="it.csi.iuffi.iuffiweb.service.GestioneVisualDAO" />
+  <bean id="rilevazioneDAO" class="it.csi.iuffi.iuffiweb.service.RilevazioneDAO" />
+  <bean id="quadroNewDAO" class="it.csi.iuffi.iuffiweb.integration.QuadroNewDAO" />
+  <bean id="quadroIuffiDAO" class="it.csi.iuffi.iuffiweb.integration.QuadroIuffiDAO" />
+	<bean id="estrazioniDAO" class="it.csi.iuffi.iuffiweb.integration.EstrazioniDAO" />
+	<bean id="interventiDAO" class="it.csi.iuffi.iuffiweb.integration.InterventiDAO" />
+	<bean id="rendicontazioneEAccertamentoSpeseDAO" class="it.csi.iuffi.iuffiweb.integration.RendicontazioneEAccertamentoSpeseDAO" />
+	<bean id="ricercaDAO" class="it.csi.iuffi.iuffiweb.integration.RicercaDAO" />
+	<bean id="permissionDAO" class="it.csi.iuffi.iuffiweb.integration.PermissionDAO" />
+	<bean id="quadroDinamicoDAO" class="it.csi.iuffi.iuffiweb.integration.QuadroDinamicoDAO" />
+	<bean id="reportisticaDAO" class="it.csi.iuffi.iuffiweb.integration.ReportisticaDAO" />
+	<bean id="gestioneEventiDAO" class="it.csi.iuffi.iuffiweb.integration.GestioneEventiDAO" />
+	<bean id="autorizzazioniDAO" class="it.csi.iuffi.iuffiweb.service.AutorizzazioniDAO" />
+	<bean id="IspezioneVisivaPiantaDAO" class="it.csi.iuffi.iuffiweb.service.IspezioneVisivaPiantaDAO" />
+  <bean id="shapeDAO" class="it.csi.iuffi.iuffiweb.service.ShapeDAO" />
+
+	<bean id="namedParameterJdbcTemplate"
+		class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<constructor-arg ref="dataSource" />
+	</bean>
+
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:/iuffiweb/jdbc/iuffiwebDS" />
+		<property name="proxyInterface" value="javax.sql.DataSource" />
+	</bean>
+	<bean
+		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+
+  <bean id="validator"
+    class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+
+  <bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor" />
+
+</beans>

@@ -1,0 +1,58 @@
+<ion-header [translucent]="false">
+    <ion-toolbar color="primary">
+        <ion-title> {{ 'PLANT_SPECIES_DECLARED' | translate }} </ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="close()">
+                <ion-icon name="iuffi-close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-card *ngFor="let entry of plantSpeciesScroll">
+            <ion-card-header>
+                <ion-grid class="ion-no-padding">
+                    <ion-row>
+                        <ion-col class="title"> Autorizzazione </ion-col>
+                    </ion-row>
+                    <ion-row class="ion-padding-bottom">
+                        <ion-col><ion-text class="description">{{ entry.denomAutorizzazione}}</ion-text> </ion-col>
+                    </ion-row>
+                    <ng-container *ngIf="entry.specieNomeBotanico">
+                        <ion-row>
+                            <ion-col class="title"> Nome botanico </ion-col>
+                        </ion-row>
+                        <ion-row class="ion-padding-bottom">
+                            <ion-col><ion-text class="description">{{ entry.specieNomeBotanico}}</ion-text></ion-col>
+                        </ion-row>
+                    </ng-container>
+                    <ng-container *ngIf="!entry.specieNomeBotanico">
+                        <ion-row>
+                            <ion-col class="title"> <ion-label>Nessuna specie trovata</ion-label> </ion-col>
+                        </ion-row>
+                    </ng-container>
+                </ion-grid>
+            </ion-card-header>
+            <ion-card-content *ngIf="entry.specieNomeBotanico">
+                <ion-item [style.pointerEvents]="'none'">
+                    <ion-label>Passaporto ordinario</ion-label>
+                    <ion-checkbox [(ngModel)]="entry.flgPassUpp" slot="end"></ion-checkbox>
+                </ion-item>
+                <ion-item [style.pointerEvents]="'none'">
+                    <ion-label>Passaporto ZP</ion-label>
+                    <ion-checkbox [(ngModel)]="entry.flgPassZp" slot="end"></ion-checkbox>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Quantità</ion-label>
+                    <ion-note slot="end">{{entry.qtaProduzione}} {{entry.unitMisura}}</ion-note>
+                </ion-item>
+            </ion-card-content>
+        </ion-card>
+    </ion-list>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Caricamento...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

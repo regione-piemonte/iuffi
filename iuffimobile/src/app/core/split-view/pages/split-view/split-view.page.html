@@ -1,0 +1,15 @@
+<ion-button
+    fill="clear"
+    class="split-view-back-button"
+    (click)="back()"
+    *ngIf="showBack"
+>
+    <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+</ion-button>
+
+<ion-content>
+    <ion-split-pane contentId="main" [when]="splitViewIsActive">
+        <ion-nav #masterNav></ion-nav>
+        <ion-nav #detailNav id="main"></ion-nav>
+    </ion-split-pane>
+</ion-content>

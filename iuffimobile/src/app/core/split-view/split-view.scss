@@ -1,0 +1,18 @@
+.split-pane-side:not(ion-menu) {
+    display: initial;
+}
+
+.split-pane-main {
+    display: none;
+}
+
+.split-pane-visible {
+    .split-pane-main {
+        display: block;
+    }
+}
+
+.split-pane-side {
+    --side-max-width: 330px;
+    --side-min-width: 330px;
+}

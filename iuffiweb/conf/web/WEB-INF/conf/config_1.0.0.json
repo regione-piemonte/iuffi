@@ -1,0 +1,83 @@
+{
+	"versioning": [
+		{
+			"platform": "android",
+			"lastVersion": "0.0.1",
+			"isMandatoryUpdate": false,
+			"storeLink": ""
+		},
+		{
+			"platform": "ios",
+			"lastVersion": "0.0.1",
+			"isMandatoryUpdate": false,
+			"storeLink": ""
+		}
+	],
+	"backend": {
+		"environment": "DEV",
+		"baseUrl": "http://<WEB_SERVER_HOST:PORT>/iuffiweb",
+		"api": [
+			{
+				"name": "credentials",
+				"method": "POST",
+				"headers": {
+					"Content-Type": "application/json"
+				},
+				"url": "/login"
+			},
+			{
+				"name": "missione",
+				"method": "POST",
+				"headers": {
+					"Content-Type": "application/json"
+				},
+				"url": "/creaMissione"
+			},
+			{
+				"name": "track",
+				"method": "POST",
+				"headers": {
+					"Content-Type": "application/json"
+				},
+				"url": "/track"
+			},
+			{
+				"name": "trackState",
+				"method": "POST",
+				"headers": {
+					"Content-Type": "application/json"
+				},
+				"url": "/trackState"
+			},
+			{
+				"name": "comuni",
+				"method": "GET",
+				"headers": {
+					"Content-Type": "application/json"
+				},
+				"url": "/comuniByProvincia/{PROVINCIA}/{BEGINNING}"
+			},
+			{
+				"name": "province",
+				"method": "GET",
+				"headers": {
+					"Content-Type": "application/json"
+				},
+				"url": "/province/{BEGINNING}"
+			}
+		]
+	},
+    "gpsMinutesLimit": 30,
+    "gpsTrackInterval": 60000,
+    "gpsMockApps": [
+        "org.hola.gpslocation",
+        "com.incorporateapps.fakegps.fre",
+        "com.lexa.fakegps",
+        "com.pe.fakegpsrun",
+        "com.xdoapp.virtualphonenavigation"
+    ],
+    "loggerLevel": "DEBUG",
+    "devMode": false,
+    "arcGIS": true,
+    "intervalBeforeConfirm": 72
+}

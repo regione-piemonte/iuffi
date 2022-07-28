@@ -1,0 +1,50 @@
+<ion-header [translucent]="false">
+    <ion-toolbar color="primary">
+        <ion-title> {{ 'SELECT_AREATYPE' | translate }} </ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="close()">
+                <ion-icon name="iuffi-close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar no-border-top>
+        <ion-grid class="search-bar">
+            <ion-row class="ion-no-padding ion-align-items-center">
+                <ion-col>
+                    <ion-searchbar
+                        #searchbar
+                        class="ion-no-padding"
+                        placeholder="{{'INSERT_DESCRIPTION' | translate}}"
+                        type="text"
+                        [debounce]="500"
+                        animated="true"
+                        (ionChange)="filterList($event.target.value)"
+                        (ionClear)="reset($event)"
+                    ></ion-searchbar>
+                </ion-col>
+                <ion-col size="2" class="ion-text-center">
+                    <ion-icon *ngIf="!isListening" name="iuffi-mic-start" (click)="startListening()"></ion-icon>
+                    <ion-icon
+                        *ngIf="isListening"
+                        [ngClass]="{'pulse': isListening}"
+                        name="iuffi-mic-stop"
+                        (click)="stopListening()"
+                    ></ion-icon>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card *ngIf="areaTypeFiltered.length != 0">
+        <ion-card-content>
+            <ion-list>
+                <ion-item *ngFor="let entry of areaTypeFiltered" (click)="confirm(entry)">
+                    <ion-label class="ion-text-wrap ion-text-capitalize">{{entry.descrizione}}</ion-label>
+                    <!-- <ion-radio mode="md" [value]="entry" slot="end"></ion-radio> -->
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

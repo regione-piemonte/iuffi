@@ -1,0 +1,13 @@
+ion-menu {
+    --width: 85%;
+    --background: transparent;
+    &::part(container) {
+        box-shadow: 30px 0px 60px var(--ion-color-dark);
+        border-radius: 0px 30px 0px 0px;
+    }
+}
+:host-context(html.plt-tablet) {
+    ion-menu {
+        --width: 45%;
+    }
+}
