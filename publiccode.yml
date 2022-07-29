@@ -4,20 +4,20 @@
 
 publiccodeYmlVersion: '0.2'
 categories:
-  - application-development
+  - erp
 dependsOn:
   open:
     - name: Redhat JBOSS
       optional: false
-      version: '6.4 EAP'
+      version: 6.4 EAP
       versionMax: ''
       versionMin: ''
   proprietary:
     - name: Oracle Database
       optional: false
-      version: '11g'
-      versionMax: '19c'
-      versionMin: '11g'
+      version: 11g
+      versionMax: 19c
+      versionMin: 11g
 description:
   it:
     features:
@@ -26,7 +26,7 @@ description:
       - Inserimento ricerca modifica campionamenti
       - Inserimento ricerca modifica trappolaggi
       - Generazione verbali missioni
-      - Definizione piano attivit‡ di monitoraggio annuale
+      - Definizione piano attivit√† di monitoraggio annuale
       - Ricerca delle posizioni GPS e delle foto
       - Inserimento shape file con posizioni predefinite
       - Gestione tabelle di sistema
@@ -34,15 +34,33 @@ description:
     genericName: Monitoraggio organismi nocivi
     localisedName: IUFFI
     longDescription: |
-      Il funzionario o ispettore tecnico che si e' autenticato, tramite l'app e il back office puo':
-        - inserire con l'app nuove missioni georeferenziate, visualizzandole poi nel backoffice con la relativa composizione di ispezioni visive, campionamenti e trappolaggi
-        - entrare nel dettaglio di ciascuna ispezione, campionamento o trappolaggio, ognuno ricercabile anche indipendentemente dalle missioni di appartenenza
-        - definire il piano di attivit‡ delle missioni da compiere nell'anno per tipologia, con il riscontro di quante effettivamente gi‡ compiute
-        - se amministratore modificare le tabelle di sistema riguardanti aree, specie vegetali, organismi nocivi e periodi di compatibilit‡ tra gli stessi
-        - consultare i risultati delle analisi dopo l'inserimento degli stessi da parte dei tecnici di laboratorio
-        - generare la documentazione finale relativa ai verbali e alla rendicontazione finanziaria per Ministero e UE
-    shortDescription: |
-      Consente la gestione del monitoraggio fitosanitario per la lotta agli organismi nocivi
+      Il funzionario o ispettore tecnico che si e' autenticato, tramite l'app e
+      il back office puo':
+
+
+      - inserire con l'app nuove missioni georeferenziate, visualizzandole poi
+      nel backoffice con la relativa composizione di ispezioni visive,
+      campionamenti e trappolaggi
+
+      - entrare nel dettaglio di ciascuna ispezione, campionamento o
+      trappolaggio, ognuno ricercabile anche indipendentemente dalle missioni di
+      appartenenza
+
+      - definire il piano di attivit√† delle missioni da compiere nell'anno per
+      tipologia, con il riscontro di quante effettivamente gi√† compiute
+
+      - se amministratore modificare le tabelle di sistema riguardanti aree,
+      specie vegetali, organismi nocivi e periodi di compatibilit√† tra gli
+      stessi
+
+      - consultare i risultati delle analisi dopo l'inserimento degli stessi da
+      parte dei tecnici di laboratorio
+
+      - generare la documentazione finale relativa ai verbali e alla
+      rendicontazione finanziaria per Ministero e UE
+    shortDescription: |-
+      Consente la gestione del monitoraggio fitosanitario per la lotta agli
+      organismi nocivi
 developmentStatus: stable
 it:
   conforme:
@@ -74,8 +92,10 @@ maintenance:
 name: IUFFI
 platforms:
   - web
+  - ios
+  - android
 releaseDate: '2022-07-31'
-softwareType: standalone/web
+softwareType: standalone/backend
 softwareVersion: 4.1.4
 url: 'https://github.com/regione-piemonte/iuffi'
 usedBy:
